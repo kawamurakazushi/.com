@@ -1,10 +1,14 @@
 ---
-title: "Sweet Pandas Eating Sweets!!"
-date: "2017-08-10"
+title: "test blog post"
+date: "2018-06-27"
 tags: ["tech"]
 category: "tec2h"
 ---
 
-# Pandas are really sweet.
+# Testing blog
 
-Here's a video of a panda eating sweets.
+checking code syntax highligting
+
+```
+const a = "hello";
+```
