@@ -1,31 +1,33 @@
 import React from 'react'
 import Link from 'gatsby-link'
 
+import pic from '../../assets/images/logo.png'
+
 const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
+  <div style={{}}>
     <div
       style={{
         margin: '0 auto',
         maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
+        padding: 24,
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
+      <Link
+        to="/"
+        style={{
+          color: 'white',
+          textDecoration: 'none',
+        }}
+      >
+        <img
           style={{
-            color: 'white',
-            textDecoration: 'none',
+            width: 40,
+            height: 40,
+            margin: 0,
           }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+          src={pic}
+        />
+      </Link>
     </div>
   </div>
 )
