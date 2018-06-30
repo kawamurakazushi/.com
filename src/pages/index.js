@@ -6,9 +6,17 @@ const IndexPage = ({ data }) => {
   return (
     <div>
       {data.allMarkdownRemark.edges.map(({ node }) => (
-        <div key={node.fields.slug}>
-          <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-        </div>
+        <Link key={node.fields.slug} to={node.fields.slug}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ flex: 1 }}>
+              <img src={node.frontmatter.thumbnail.childImageSharp.sizes.src} />
+            </div>
+            <div style={{ flex: 3, marginLeft: 16 }}>
+              <h2>{node.frontmatter.title}</h2>
+              <p style={{ color: 'gray' }}>{node.frontmatter.date}</p>
+            </div>
+          </div>
+        </Link>
       ))}
     </div>
   )
@@ -26,9 +34,16 @@ export const query = graphql`
           }
           frontmatter {
             title
-            date(formatString: "DD MMMM, YYYY")
+            date(formatString: "YYYY.MM.DD")
             tags
             category
+            thumbnail {
+              childImageSharp {
+                sizes(maxWidth: 600) {
+                  src
+                }
+              }
+            }
           }
           excerpt
         }
