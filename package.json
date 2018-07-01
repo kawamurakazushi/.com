@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "emotion": "^9.2.4",
     "gatsby": "^1.9.247",
     "gatsby-image": "^1.0.54",
     "gatsby-link": "^1.6.40",
@@ -14,7 +15,9 @@
     "gatsby-source-filesystem": "^1.5.39",
     "gatsby-transformer-remark": "^1.7.44",
     "gatsby-transformer-sharp": "^1.6.27",
-    "react-helmet": "^5.2.0"
+    "react-emotion": "^9.2.4",
+    "react-helmet": "^5.2.0",
+    "rehype-react": "^3.0.2"
   },
   "keywords": [
     "gatsby"
@@ -31,6 +34,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/kawamurakazushi/kawamurakazushi.com"
   }
 }

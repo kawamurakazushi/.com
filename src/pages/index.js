@@ -1,21 +1,38 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import styled from 'react-emotion'
+
+const Article = styled('div')`
+  display: flex;
+`
+
+const Thumbnail = styled('div')`
+  flex: 1;
+`
+
+const Description = styled('div')`
+  flex: 3;
+  margin-left: 16px;
+`
+
+const Date = styled('div')`
+  color: gray;
+`
 
 const IndexPage = ({ data }) => {
-  console.log(data)
   return (
     <div>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <Link key={node.fields.slug} to={node.fields.slug}>
-          <div style={{ display: 'flex' }}>
-            <div style={{ flex: 1 }}>
+          <Article>
+            <Thumbnail>
               <img src={node.frontmatter.thumbnail.childImageSharp.sizes.src} />
-            </div>
-            <div style={{ flex: 3, marginLeft: 16 }}>
+            </Thumbnail>
+            <Description>
               <h2>{node.frontmatter.title}</h2>
-              <p style={{ color: 'gray' }}>{node.frontmatter.date}</p>
-            </div>
-          </div>
+              <Date>{node.frontmatter.date}</Date>
+            </Description>
+          </Article>
         </Link>
       ))}
     </div>
