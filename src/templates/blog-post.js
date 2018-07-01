@@ -13,7 +13,6 @@ const renderAst = new rehypeReact({
 
 export default ({ data }) => {
   const post = data.markdownRemark
-  console.log(post)
   return (
     <div>
       <h1>{post.frontmatter.title}</h1>

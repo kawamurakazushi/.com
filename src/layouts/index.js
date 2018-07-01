@@ -5,6 +5,7 @@ import styled from 'react-emotion'
 
 import favicon from '../../assets/images/favicon.ico'
 import Header from '../components/header'
+import Footer from '../components/footer'
 import './index.css'
 
 const Body = styled('div')`
@@ -23,6 +24,7 @@ const Layout = ({ children, data }) => (
     </Helmet>
     <Header siteTitle={data.site.siteMetadata.title} />
     <Body>{children()}</Body>
+    <Footer />
   </div>
 )
 
