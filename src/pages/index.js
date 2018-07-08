@@ -64,7 +64,7 @@ const IndexPage = ({ data }) => {
         ))}
       </ArticleList>
       <Headline>PROJECTS</Headline>
-      <p>Coming soon...</p>
+      <p>Coming Soon</p>
     </div>
   )
 }

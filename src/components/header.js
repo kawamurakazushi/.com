@@ -47,7 +47,9 @@ const Header = ({ siteTitle }) => (
         <Img src={logo} />
       </Link>
       <Space />
-      <Avatar src={avatar} />
+      <Link to="/me">
+        <Avatar src={avatar} />
+      </Link>
     </Inner>
   </Container>
 )
