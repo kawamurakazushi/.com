@@ -63,5 +63,3 @@ thumbnail: "./thumbnail.jpg"
 記念すべき、はじめてのスパイスカレー!予想以上にカレーで驚きました。
 
 次もまた別のスパイスカレーにチャレンジしたいです。
-
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=48&l=ez&f=ifr&linkID=6ddbb98123ab2089466a6cf31ea968a2&t=kawamurakazus-22&tracking_id=kawamurakazus-22" width="728" height="90" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
