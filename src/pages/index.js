@@ -63,6 +63,8 @@ const IndexPage = ({ data }) => {
           </Link>
         ))}
       </ArticleList>
+      <Headline>CURRIES</Headline>
+      <p>Coming Soon</p>
       <Headline>PROJECTS</Headline>
       <p>Coming Soon</p>
     </div>
