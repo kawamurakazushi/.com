@@ -17,11 +17,13 @@
     "gatsby-transformer-sharp": "^1.6.27",
     "react-emotion": "^9.2.4",
     "react-helmet": "^5.2.0",
+    "react-icons": "^3.2.2",
     "rehype-react": "^3.0.2"
   },
   "keywords": [],
   "license": "MIT",
   "scripts": {
+    "css": "tailwind build main.css -c ./tailwind.js -o src/layouts/tailwind.css",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",

@@ -1,5 +1,9 @@
 @tailwind preflight;
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {

@@ -7,7 +7,7 @@ import favicon from '../../assets/images/favicon.ico'
 import Header from '../components/header'
 import Footer from '../components/footer'
 
-// import './tailwind.css'
+import './tailwind.css'
 
 const Body = styled('div')`
   margin: 0 auto;

@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'react-emotion'
+import { FaGithub } from 'react-icons/fa'
 
 import seoEditor from '../../assets/images/seo-editor.png'
 
@@ -41,10 +42,8 @@ const Date = styled('div')`
 `
 
 const Headline = styled('h1')`
+  margin: 24px 0;
   font-weight: 200;
-`
-const ProjectWrapper = styled('div')`
-  display: flex;
 `
 
 const ProjectThumbnail = styled('img')``
@@ -71,14 +70,31 @@ const IndexPage = ({ data }) => {
         ))}
       </ArticleList>
       <Headline>CURRIES</Headline>
-
-      <Headline>PROJECTS</Headline>
-      <ProjectWrapper>
-        <div>
-          <ProjectThumbnail src={seoEditor} />
-        </div>
-      </ProjectWrapper>
       <p>Coming Soon</p>
+      <Headline>PROJECTS</Headline>
+      <div className="flex mt-3">
+        <div className="w-1/3">
+          <img src={seoEditor} />
+        </div>
+        <div className="ml-4">
+          <div className="text-2xl text-black">SEO Editor</div>
+          <div className="text-sm mt-3 text-grey-darkest">
+            An Editor to write articles.
+          </div>
+          <div className="mt-2 flex items-center">
+            <span className="text-xs bg-purple py-1 px-2 text-white rounded-sm">
+              #elm
+            </span>
+            <a
+              className="flex ml-2"
+              href="https://github.com/kawamurakazushi/seo-editor"
+              target="_blank"
+            >
+              <FaGithub />
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
