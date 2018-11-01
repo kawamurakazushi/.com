@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'react-emotion'
 
+import seoEditor from '../../assets/images/seo-editor.png'
+
 const ArticleList = styled('div')`
   display: flex;
   flex-wrap: wrap;
@@ -41,6 +43,11 @@ const Date = styled('div')`
 const Headline = styled('h1')`
   font-weight: 200;
 `
+const ProjectWrapper = styled('div')`
+  display: flex;
+`
+
+const ProjectThumbnail = styled('img')``
 
 const IndexPage = ({ data }) => {
   return (
@@ -64,8 +71,13 @@ const IndexPage = ({ data }) => {
         ))}
       </ArticleList>
       <Headline>CURRIES</Headline>
-      <p>Coming Soon</p>
+
       <Headline>PROJECTS</Headline>
+      <ProjectWrapper>
+        <div>
+          <ProjectThumbnail src={seoEditor} />
+        </div>
+      </ProjectWrapper>
       <p>Coming Soon</p>
     </div>
   )
