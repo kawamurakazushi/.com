@@ -1,5 +1,5 @@
 ---
-title: "かわむら、ブログをはじめました"
+title: "Start blogging.."
 date: "2018-06-28"
 tags: [""]
 category: "general"
