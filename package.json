@@ -24,7 +24,7 @@
   "license": "MIT",
   "scripts": {
     "css": "tailwind build main.css -c ./tailwind.js -o src/layouts/tailwind.css",
-    "build": "gatsby build",
+    "build": "yarn css && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
