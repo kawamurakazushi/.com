@@ -4,6 +4,7 @@ import styled from 'react-emotion'
 import { FaGithub } from 'react-icons/fa'
 
 import seoEditor from '../../assets/images/seo-editor.png'
+import sketch2trello from '../../assets/images/sketch2trello.png'
 
 const ArticleList = styled('div')`
   display: flex;
@@ -88,6 +89,29 @@ const IndexPage = ({ data }) => {
             <a
               className="flex ml-2"
               href="https://github.com/kawamurakazushi/seo-editor"
+              target="_blank"
+            >
+              <FaGithub />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="flex mt-3">
+        <div className="w-1/3">
+          <img src={sketch2trello} />
+        </div>
+        <div className="ml-4">
+          <div className="text-2xl text-black">Sketch2Trello</div>
+          <div className="text-sm mt-3 text-grey-darkest">
+            Exports Sketch Artboards to Trello.
+          </div>
+          <div className="mt-2 flex items-center">
+            <span className="text-xs bg-pink py-1 px-2 text-white rounded-sm">
+              #cocoascript
+            </span>
+            <a
+              className="flex ml-2"
+              href="https://github.com/kawamurakazushi/sketch2trello"
               target="_blank"
             >
               <FaGithub />
