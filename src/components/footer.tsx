@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import Link from 'gatsby-link'
 import styled from 'react-emotion'
 
@@ -24,7 +24,7 @@ const Text = styled('p')`
   color: gray;
 `
 
-const Header = ({ siteTitle }) => (
+const Header = ({}) => (
   <Container>
     <Inner>
       <hr />

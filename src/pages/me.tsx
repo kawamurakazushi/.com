@@ -1,16 +1,11 @@
-import React from 'react'
-import styled from 'react-emotion'
+import * as React from 'react'
 
 import Layout from '../components/layout'
-
-const Headline = styled('h1')`
-  font-weight: 200;
-`
 
 const MePage = () => {
   return (
     <Layout>
-      <Headline>ABOUT ME</Headline>
+      <h1 className="font-thin">ABOUT ME</h1>
       <p>
         Hi, I'm Kazushi Kawamura working as a Software Engineer based in Tokyo.
       </p>

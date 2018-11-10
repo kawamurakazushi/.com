@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'react-emotion'
 import rehypeReact from 'rehype-react'
 import { graphql } from 'gatsby'

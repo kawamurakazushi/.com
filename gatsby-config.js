@@ -21,5 +21,6 @@ module.exports = {
         includeInDevelopment: false,
       },
     },
+    'gatsby-plugin-typescript',
   ],
 }
