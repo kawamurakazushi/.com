@@ -1,40 +1,16 @@
 import * as React from 'react'
-import Link from 'gatsby-link'
-import styled from 'react-emotion'
-
-const Container = styled('div')`
-  display: flex;
-  justify-content: center;
-  padding: 16px 0;
-`
-
-const Inner = styled('div')`
-  max-width: 960px;
-  width: 960px;
-  padding: 0px 1.0875rem;
-`
-
-const Content = styled('div')`
-  display: flex;
-  flex-direction: row-reverse;
-`
-
-const Text = styled('p')`
-  font-size: 14px;
-  color: gray;
-`
+import { Link } from 'gatsby'
 
 const Header = ({}) => (
-  <Container>
-    <Inner>
-      <hr />
-      <Content>
+  <div className="flex justify-center py-4 bg-grey-darkest">
+    <div className="max-w-5xl">
+      <div className="flex flex-row-reverse">
         <Link to="/">
-          <Text>kawamurakazushi.com</Text>
+          <div className="text-sm text-grey">kawamurakazushi.com</div>
         </Link>
-      </Content>
-    </Inner>
-  </Container>
+      </div>
+    </div>
+  </div>
 )
 
 export default Header

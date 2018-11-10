@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import styled from 'react-emotion'
 import { StaticQuery, graphql } from 'gatsby'
 
 import favicon from '../../assets/images/favicon.ico'
@@ -8,13 +7,6 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 
 import '../tailwind.css'
-
-const Body = styled('div')`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 9px 1.0875rem 1.45rem;
-  padding-top: 0;
-`
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <div>
@@ -36,7 +28,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
             <link rel="shortcut icon" href={favicon} />
           </Helmet>
           <Header siteTitle={data.site.siteMetadata.title} />
-          <Body>{children}</Body>
+          <div className="flex justify-center py-4">
+            <div className="w-4/5">{children}</div>
+          </div>
           <Footer />
         </>
       )}

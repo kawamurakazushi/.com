@@ -1,42 +1,12 @@
 import * as React from 'react'
 import Link from 'gatsby-link'
-import styled from 'react-emotion'
 
 import logo from '../../assets/images/logo.png'
 import avatar from '../../assets/images/avatar.jpg'
 
-const Container = styled('div')`
-  display: flex;
-  justify-content: center;
-  padding: 16px 0;
-`
-
-const Inner = styled('div')`
-  display: flex;
-  align-items: center;
-  max-width: 960px;
-  width: 960px;
-  padding: 0px 1.0875rem;
-`
-
-const Img = styled('img')`
-  width: 32px;
-  margin: 0;
-`
-
-const Space = styled('div')`
-  flex: 1;
-`
-const Avatar = styled('img')`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  margin: 0;
-`
-
 const Header = () => (
-  <Container>
-    <Inner>
+  <div className="flex justify-center py-4">
+    <div className="flex items-center max-w-5xl w-4/5">
       <Link
         to="/"
         style={{
@@ -44,14 +14,14 @@ const Header = () => (
           textDecoration: 'none',
         }}
       >
-        <Img src={logo} />
+        <img className="w-10 h-10" src={logo} />
       </Link>
-      <Space />
+      <div className="flex-1" />
       <Link to="/me">
-        <Avatar src={avatar} />
+        <img className="w-10 h-10 rounded-full" src={avatar} />
       </Link>
-    </Inner>
-  </Container>
+    </div>
+  </div>
 )
 
 export default Header

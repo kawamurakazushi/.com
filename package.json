@@ -4,10 +4,8 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "emotion": "^9.2.12",
     "gatsby": "^2.0.45",
     "gatsby-image": "^2.0.20",
-    "gatsby-link": "^2.0.6",
     "gatsby-plugin-google-tagmanager": "^2.0.6",
     "gatsby-plugin-react-helmet": "^3.0.1",
     "gatsby-plugin-sharp": "^2.0.12",
@@ -18,7 +16,6 @@
     "gatsby-transformer-sharp": "^2.1.8",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
-    "react-emotion": "^9.2.12",
     "react-helmet": "^5.2.0",
     "react-icons": "^3.2.2",
     "rehype-react": "^3.0.3",

@@ -1,79 +1,39 @@
 import * as React from 'react'
-import Link from 'gatsby-link'
-import styled from 'react-emotion'
 import { FaGithub } from 'react-icons/fa'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/layout'
 
 import seoEditor from '../../assets/images/seo-editor.png'
 import sketch2trello from '../../assets/images/sketch2trello.png'
 
-const ArticleList = styled('div')`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`
-
-const Article = styled('div')`
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin-bottom: 16px;
-`
-
-const Thumbnail = styled('div')`
-  flex: 1;
-`
-
-const Description = styled('div')`
-  flex: 3;
-`
-
-const Img = styled('img')`
-  margin-bottom: 0;
-`
-
-const Title = styled('h2')`
-  font-size: 18px;
-  margin: 8px 0;
-`
-
-const Date = styled('div')`
-  color: gray;
-  margin: 0;
-  font-size: 14px;
-`
-
-const Headline = styled('h1')`
-  margin: 24px 0;
-  font-weight: 200;
-`
-
 const IndexPage = ({ data }) => {
   return (
     <Layout>
-      <Headline>BLOG</Headline>
-      <ArticleList>
+      <h2 className="font-thin my-4">BLOG</h2>
+      <div className="flex flex-wrap justify-between">
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <Link key={node.fields.slug} to={node.fields.slug}>
-            <Article>
-              <Thumbnail>
-                <Img
-                  src={node.frontmatter.thumbnail.childImageSharp.sizes.src}
-                />
-              </Thumbnail>
-              <Description>
-                <Title>{node.frontmatter.title}</Title>
-                <Date>{node.frontmatter.date}</Date>
-              </Description>
-            </Article>
+          <Link
+            key={node.fields.slug}
+            className="flex flex-col w-1/3 mb-3"
+            to={node.fields.slug}
+          >
+            <div className="mx-1">
+              <img
+                className="flex flex-1"
+                src={node.frontmatter.thumbnail.childImageSharp.sizes.src}
+              />
+              <div className="">
+                <div className="my-3">{node.frontmatter.title}</div>
+                <div className="text-sm text-grey">{node.frontmatter.date}</div>
+              </div>
+            </div>
           </Link>
         ))}
-      </ArticleList>
-      <Headline>CURRIES</Headline>
+      </div>
+      <h2 className="font-thin my-4">CURRIES</h2>
       <p>Coming Soon</p>
-      <Headline>PROJECTS</Headline>
+      <h2 className="font-thin my-4">PROJECTS</h2>
       <div className="flex mt-3">
         <div className="w-1/3">
           <img alt="seo editor" src={seoEditor} />

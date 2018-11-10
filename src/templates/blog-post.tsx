@@ -1,17 +1,12 @@
 import * as React from 'react'
-import styled from 'react-emotion'
 import rehypeReact from 'rehype-react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 
-const H1 = styled('h1')``
-const H2 = styled('h2')``
-const P = styled('p')``
-
 const renderAst = new rehypeReact({
   createElement: React.createElement,
-  components: { h1: H1, h2: H2, p: P },
+  // components: { h1: <h1 />, h2: <h2 />, p: <p /> },
 }).Compiler
 
 export default ({ data }) => {
