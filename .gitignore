@@ -8,4 +8,4 @@ yarn-error.log
 .DS_Store
 
 
-src/layouts/tailwind.css
+src/tailwind.css

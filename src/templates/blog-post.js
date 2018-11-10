@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'react-emotion'
 import rehypeReact from 'rehype-react'
+import { graphql } from 'gatsby'
+
+import Layout from '../components/layout'
 
 const H1 = styled('h1')``
 const H2 = styled('h2')``
-const P = styled('P')``
+const P = styled('p')``
 
 const renderAst = new rehypeReact({
   createElement: React.createElement,
@@ -14,12 +17,15 @@ const renderAst = new rehypeReact({
 export default ({ data }) => {
   const post = data.markdownRemark
   return (
-    <div>
+    <Layout>
       <h1>{post.frontmatter.title}</h1>
       <p>{post.frontmatter.date}</p>
-      <img src={post.frontmatter.thumbnail.childImageSharp.sizes.src} />
+      <img
+        alt="thumbnail"
+        src={post.frontmatter.thumbnail.childImageSharp.sizes.src}
+      />
       {renderAst(post.htmlAst)}
-    </div>
+    </Layout>
   )
 }
 

@@ -2,6 +2,9 @@ import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'react-emotion'
 import { FaGithub } from 'react-icons/fa'
+import { graphql } from 'gatsby'
+
+import Layout from '../components/layout'
 
 import seoEditor from '../../assets/images/seo-editor.png'
 import sketch2trello from '../../assets/images/sketch2trello.png'
@@ -47,11 +50,9 @@ const Headline = styled('h1')`
   font-weight: 200;
 `
 
-const ProjectThumbnail = styled('img')``
-
 const IndexPage = ({ data }) => {
   return (
-    <div>
+    <Layout>
       <Headline>BLOG</Headline>
       <ArticleList>
         {data.allMarkdownRemark.edges.map(({ node }) => (
@@ -75,7 +76,7 @@ const IndexPage = ({ data }) => {
       <Headline>PROJECTS</Headline>
       <div className="flex mt-3">
         <div className="w-1/3">
-          <img src={seoEditor} />
+          <img alt="seo editor" src={seoEditor} />
         </div>
         <div className="ml-4">
           <div className="text-2xl text-black">SEO Editor</div>
@@ -90,6 +91,7 @@ const IndexPage = ({ data }) => {
               className="flex ml-2"
               href="https://github.com/kawamurakazushi/seo-editor"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <FaGithub />
             </a>
@@ -98,7 +100,7 @@ const IndexPage = ({ data }) => {
       </div>
       <div className="flex mt-3">
         <div className="w-1/3">
-          <img src={sketch2trello} />
+          <img alt="sketch2trello" src={sketch2trello} />
         </div>
         <div className="ml-4">
           <div className="text-2xl text-black">Sketch2Trello</div>
@@ -113,13 +115,14 @@ const IndexPage = ({ data }) => {
               className="flex ml-2"
               href="https://github.com/kawamurakazushi/sketch2trello"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <FaGithub />
             </a>
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 
