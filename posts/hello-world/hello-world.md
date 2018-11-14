@@ -1,17 +1,19 @@
 ---
-title: "Start blogging.."
-date: "2018-06-28"
-tags: [""]
-category: "general"
-thumbnail: "./thumbnail.jpg"
+title: 'About my blog.'
+date: '2018-11-14'
+tags: ['']
+category: 'general'
+thumbnail: './thumbnail.jpg'
 ---
 
-こんにちは、とあるエンジニアのかわむらです。
+## First things first.
 
-さて、この度、情報発信のためにブログを始めることにしました。
+From today I will start writing blog.
 
-内容は技術、マネジメント、プロダクティビティ、読んだ本のレビュー、おすすめレシピなど幅ひろく、ゆるく書いていきます。
+I don't know how often, but as much as I can.
 
-得た知見は自分でためといても腐るだけなので、どんどん発信していきます。
+It will be a techincal, but _short_ and _useless_ for most of the people.
 
-できるだけ、定期的に、ゆるく、やっていこうと思ってるのでよろしくお願いいたします。
+**I will not stop and continue writing.** That is my first goal.
+
+Maybe I got the purpose and process upside down.

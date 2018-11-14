@@ -18,13 +18,14 @@
     "react-dom": "^16.6.1",
     "react-helmet": "^5.2.0",
     "react-icons": "^3.2.2",
+    "react-markdown": "^4.0.3",
     "rehype-react": "^3.0.3",
     "typescript": "^3.1.6"
   },
   "keywords": [],
   "license": "MIT",
   "scripts": {
-    "css": "tailwind build main.css -c ./tailwind.js -o src/layouts/tailwind.css",
+    "css": "tailwind build main.css -c ./tailwind.js -o src/tailwind.css",
     "build": "yarn css && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",

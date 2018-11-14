@@ -27,11 +27,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
             <title>{data.site.siteMetadata.title}</title>
             <link rel="shortcut icon" href={favicon} />
           </Helmet>
-          <Header siteTitle={data.site.siteMetadata.title} />
-          <div className="flex justify-center py-4">
-            <div className="w-4/5">{children}</div>
+          <div className="flex flex-col min-h-screen">
+            <Header siteTitle={data.site.siteMetadata.title} />
+            <div className="flex justify-center py-4 flex-1">
+              <div className="w-4/5">{children}</div>
+            </div>
+            <Footer />
           </div>
-          <Footer />
         </>
       )}
     />

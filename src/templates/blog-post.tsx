@@ -1,25 +1,23 @@
 import * as React from 'react'
-import rehypeReact from 'rehype-react'
 import { graphql } from 'gatsby'
+import ReactMarkdown from 'react-markdown'
 
 import Layout from '../components/layout'
-
-const renderAst = new rehypeReact({
-  createElement: React.createElement,
-  // components: { h1: <h1 />, h2: <h2 />, p: <p /> },
-}).Compiler
 
 export default ({ data }) => {
   const post = data.markdownRemark
   return (
     <Layout>
-      <h1>{post.frontmatter.title}</h1>
-      <p>{post.frontmatter.date}</p>
-      <img
-        alt="thumbnail"
-        src={post.frontmatter.thumbnail.childImageSharp.sizes.src}
-      />
-      {renderAst(post.htmlAst)}
+      <div className="flex flex-col">
+        <div className="mt-1 mb-4">
+          <h1 className="text-black text-xlg mb-2">{post.frontmatter.title}</h1>
+          <div className="w-full h-px bg-grey-lighter my-2" />
+          <p className="text-grey text-sm my-2">{post.frontmatter.date}</p>
+          <div className="post">
+            <ReactMarkdown source={post.rawMarkdownBody} />
+          </div>
+        </div>
+      </div>
     </Layout>
   )
 }
@@ -27,8 +25,7 @@ export default ({ data }) => {
 export const query = graphql`
   query BlogPostQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      htmlAst
+      rawMarkdownBody
       frontmatter {
         title
         date(formatString: "YYYY.MM.DD")

@@ -11,24 +11,20 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <h2 className="font-thin my-4">BLOG</h2>
-      <div className="flex flex-wrap justify-between">
+      <div className="flex flex-col">
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <Link
-            key={node.fields.slug}
-            className="flex flex-col w-1/3 mb-3"
-            to={node.fields.slug}
-          >
-            <div className="mx-1">
-              <img
-                className="flex flex-1"
-                src={node.frontmatter.thumbnail.childImageSharp.sizes.src}
-              />
-              <div className="">
+          <>
+            <Link
+              key={node.fields.slug}
+              className="flex border-b border-grey-lighter py-4"
+              to={node.fields.slug}
+            >
+              <div className="flex-1">
                 <div className="my-3">{node.frontmatter.title}</div>
                 <div className="text-sm text-grey">{node.frontmatter.date}</div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </>
         ))}
       </div>
       <h2 className="font-thin my-4">CURRIES</h2>
