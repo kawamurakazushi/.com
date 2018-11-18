@@ -29,6 +29,14 @@ a:hover {
   letter-spacing: 0.2px;
 }
 
+.post ul {
+  margin: 16px 0;
+}
+
+.post pre {
+  margin: 16px 0;
+}
+
 .gatsby-highlight-code-line {
   background-color: lighten(#141414, 10%);
   display: block;

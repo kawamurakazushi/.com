@@ -31,6 +31,7 @@
     "build": "yarn css && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
+    "install": "yarn css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
