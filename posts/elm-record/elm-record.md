@@ -21,13 +21,13 @@ which means creating a new object from an object.
 You can do it as follows:
 
 ```elm
-{ model | keywords = model.keywords ++ [ model.newKeyword ] }
+{ model | keywords = model.keywords ++ [ model.newKeyword ] };
 ```
 
-If you want to change multiple fields, you can specify it with a `comma`.
+If you want to change multiple fields, you can specify it with a _comma_.
 
 ```elm
-{ model | keywords = model.keywords ++ [ model.newKeyword ], newKeyword = "" }
+{ model | keywords = model.keywords ++ [ model.newKeyword ], newKeyword = "" };
 ```
 
 ### Access
@@ -35,8 +35,8 @@ If you want to change multiple fields, you can specify it with a `comma`.
 There are few different ways to actually access to the model.
 
 ```elm
-model.keywords
-.keywords model
+model.keywords;
+.keywords model;
 ```
 
-The `keyword` can act like a function. Pretty cool.
+The _keyword_ can act like a function. Pretty cool.

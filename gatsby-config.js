@@ -13,19 +13,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              classPrefix: 'language-',
-              // inlineCodeMarker: null,
-              // showLineNumbers: false,
-              // noInlineHighlight: false,
-            },
-          },
-        ],
-      },
+      options: {},
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',

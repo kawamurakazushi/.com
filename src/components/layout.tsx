@@ -7,6 +7,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 
 import '../tailwind.css'
+import 'highlight.js/styles/github.css'
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <div>
