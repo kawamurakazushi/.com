@@ -15,15 +15,16 @@ These are some intersting aspect that are different from other programing langua
 
 ### Creating new object
 
-To update multiple field in the record,
-which means just creating a new object from one.
-In this example it is `model`.
+To update field in the record,
+which means creating a new object from an object.
+
+You can do it as follows:
 
 ```elm
 { model | keywords = model.keywords ++ [ model.newKeyword ] }
 ```
 
-If you want to want to change multiple fields, you can specify with a `comma`.
+If you want to change multiple fields, you can specify it with a `comma`.
 
 ```elm
 { model | keywords = model.keywords ++ [ model.newKeyword ], newKeyword = "" }
@@ -38,4 +39,4 @@ model.keywords
 .keywords model
 ```
 
-The `keyword` can act like a function. pretty cool.
+The `keyword` can act like a function. Pretty cool.
