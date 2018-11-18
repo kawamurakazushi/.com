@@ -1,0 +1,41 @@
+---
+title: 'What is Record in Elm ?'
+date: '2018-11-15'
+tags: ['elm']
+category: 'tech'
+---
+
+## Record
+
+These are some intersting aspect that are different from other programing language.
+
+- You cannot ask for a field that does not exist.
+- No field will ever be _undefined_ or _null_.
+- You cannot create recursive records with a this or self keyword.
+
+### Creating new object
+
+To update multiple field in the record,
+which means just creating a new object from one.
+In this example it is `model`.
+
+```elm
+{ model | keywords = model.keywords ++ [ model.newKeyword ] }
+```
+
+If you want to want to change multiple fields, you can specify with a `comma`.
+
+```elm
+{ model | keywords = model.keywords ++ [ model.newKeyword ], newKeyword = "" }
+```
+
+### Access
+
+There are few different ways to actually access to the model.
+
+```elm
+model.keywords
+.keywords model
+```
+
+The `keyword` can act like a function. pretty cool.

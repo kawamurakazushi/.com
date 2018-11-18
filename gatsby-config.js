@@ -5,17 +5,32 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `src`,
+        name: 'src',
         path: `${__dirname}/posts/`,
       },
     },
-    'gatsby-transformer-remark',
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: 'language-',
+              // inlineCodeMarker: null,
+              // showLineNumbers: false,
+              // noInlineHighlight: false,
+            },
+          },
+        ],
+      },
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-google-tagmanager`,
+      resolve: 'gatsby-plugin-google-tagmanager',
       options: {
         id: 'GTM-5TGK2TM',
         includeInDevelopment: false,
