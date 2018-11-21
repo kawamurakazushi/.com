@@ -1,9 +1,9 @@
 ---
-title: 'About my blog.'
-date: '2018-11-14'
-tags: ['']
-category: 'general'
-thumbnail: './thumbnail.jpg'
+title: "About my blog."
+date: "2018-11-14"
+tags: []
+category: "general"
+thumbnail: "./thumbnail.jpg"
 ---
 
 ## First things first.

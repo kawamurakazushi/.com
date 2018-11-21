@@ -1,13 +1,14 @@
-import * as React from 'react'
-import { FaGithub } from 'react-icons/fa'
-import { graphql, Link } from 'gatsby'
+import * as React from "react";
+import { memo } from "react";
+import { FaGithub } from "react-icons/fa";
+import { graphql, Link } from "gatsby";
 
-import Layout from '../components/layout'
+import Layout from "../components/layout";
 
-import seoEditor from '../../assets/images/seo-editor.png'
-import sketch2trello from '../../assets/images/sketch2trello.png'
+import seoEditor from "../../assets/images/seo-editor.png";
+import sketch2trello from "../../assets/images/sketch2trello.png";
 
-const IndexPage = ({ data }) => {
+const IndexPage = memo(({ data }) => {
   return (
     <Layout>
       <h2 className="font-thin my-4">BLOG</h2>
@@ -20,8 +21,17 @@ const IndexPage = ({ data }) => {
               to={node.fields.slug}
             >
               <div className="flex-1">
+                <div className="mt-2 text-sm text-grey">
+                  {node.frontmatter.date}
+                </div>
                 <div className="my-3">{node.frontmatter.title}</div>
-                <div className="text-sm text-grey">{node.frontmatter.date}</div>
+                <div className="my-3">
+                  {node.frontmatter.tags.map(tag => (
+                    <span className="py-1 px-2 mr-2 rounded bg-grey-darker text-white text-xs">
+                      {`#${tag}`}
+                    </span>
+                  ))}
+                </div>
               </div>
             </Link>
           </>
@@ -79,14 +89,14 @@ const IndexPage = ({ data }) => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+});
 
-export default IndexPage
+export default IndexPage;
 
 export const query = graphql`
   query IndexQuery {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: { order: DESC, fields: frontmatter___date }) {
       edges {
         node {
           fields {
@@ -110,4 +120,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

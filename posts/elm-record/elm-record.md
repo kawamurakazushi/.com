@@ -1,8 +1,8 @@
 ---
-title: 'What is Record in Elm ?'
-date: '2018-11-15'
-tags: ['elm']
-category: 'tech'
+title: "What is Record in Elm ?"
+date: "2018-11-15"
+tags: ["elm"]
+category: "tech"
 ---
 
 ## Record
