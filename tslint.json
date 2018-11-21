@@ -1,0 +1,20 @@
+{
+  "defaultSeverity": "warning",
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "no-empty-interface": false,
+    "no-object-literal-type-assertion": true,
+    "interface-name": false,
+    "no-unused-expression": false,
+    "no-console": { "severity": "warning" },
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-pascal-case"
+    ]
+  },
+  "rulesDirectory": []
+}

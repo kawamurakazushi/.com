@@ -1,17 +1,18 @@
-import * as React from 'react'
-import Link from 'gatsby-link'
+import * as React from "react";
+import { memo } from "react";
+import Link from "gatsby-link";
 
-import logo from '../../assets/images/logo.png'
-import avatar from '../../assets/images/avatar.jpg'
+import logo from "../../assets/images/logo.png";
+import avatar from "../../assets/images/avatar.jpg";
 
-const Header = () => (
+const Header = memo(() => (
   <div className="flex justify-center py-4">
     <div className="flex items-center max-w-5xl w-4/5">
       <Link
         to="/"
         style={{
-          color: 'white',
-          textDecoration: 'none',
+          color: "white",
+          textDecoration: "none",
         }}
       >
         <img className="w-10 h-10" src={logo} />
@@ -22,6 +23,6 @@ const Header = () => (
       </Link>
     </div>
   </div>
-)
+));
 
-export default Header
+export default Header;

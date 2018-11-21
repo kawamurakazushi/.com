@@ -1,7 +1,8 @@
-import * as React from 'react'
-import { Link } from 'gatsby'
+import * as React from "react";
+import { memo } from "react";
+import { Link } from "gatsby";
 
-const Header = ({}) => (
+const Header = memo(({}) => (
   <div className="flex justify-center py-4 bg-grey-darkest">
     <div className="max-w-5xl">
       <div className="flex flex-row-reverse">
@@ -11,6 +12,6 @@ const Header = ({}) => (
       </div>
     </div>
   </div>
-)
+));
 
-export default Header
+export default Header;

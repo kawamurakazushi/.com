@@ -1,15 +1,20 @@
-import * as React from 'react'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+import * as React from "react";
+import { memo } from "react";
+import Helmet from "react-helmet";
+import { StaticQuery, graphql } from "gatsby";
 
-import favicon from '../../assets/images/favicon.ico'
-import Header from '../components/header'
-import Footer from '../components/footer'
+import favicon from "../../assets/images/favicon.ico";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
-import '../tailwind.css'
-import 'highlight.js/styles/github.css'
+import "../tailwind.css";
+import "highlight.js/styles/github.css";
 
-const Layout = ({ children }: { children: React.ReactNode }) => (
+interface Props {
+  children: React.ReactNode;
+}
+
+const Layout = memo(({ children }: Props) => (
   <div>
     <StaticQuery
       query={graphql`
@@ -39,6 +44,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
       )}
     />
   </div>
-)
+));
 
-export default Layout
+export default Layout;
