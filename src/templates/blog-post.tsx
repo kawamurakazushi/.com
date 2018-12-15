@@ -6,13 +6,15 @@ import reactRenderer from "remark-react";
 import Highlight from "react-highlight";
 
 import Layout from "../components/layout";
+import { Link } from "@reach/router";
 
 interface remarkProps {
+  href?: string;
   children: React.ReactNode;
 }
 
 const Paragraph = ({ children }: remarkProps) => {
-  return <p className="my-2 leading-loose">{children}</p>;
+  return <p className="my-4 leading-normal">{children}</p>;
 };
 
 const H2 = ({ children }: remarkProps) => {
@@ -27,6 +29,27 @@ const List = ({ children }: remarkProps) => {
   return <ul className="my-2 leading-normal">{children}</ul>;
 };
 
+const Quote = ({ children }: remarkProps) => {
+  return (
+    <div className="my-2 pl-4 border-l-4 border-grey border-solid">
+      {children}
+    </div>
+  );
+};
+
+const ExternalLink = ({ href, children }: remarkProps) => {
+  return (
+    <a
+      href={href}
+      rel="noopener noreferrer"
+      target="_blank"
+      className="my-2 leading-loose underline"
+    >
+      {children}
+    </a>
+  );
+};
+
 const processor = remark().use(reactRenderer, {
   sanitize: true,
   prefix: "md-",
@@ -36,6 +59,8 @@ const processor = remark().use(reactRenderer, {
     h2: H2,
     h3: H3,
     ul: List,
+    blockquote: Quote,
+    a: ExternalLink,
   },
 });
 
