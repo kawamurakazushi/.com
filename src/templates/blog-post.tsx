@@ -13,29 +13,29 @@ interface remarkProps {
   children: React.ReactNode;
 }
 
-const Paragraph = ({ children }: remarkProps) => {
-  return <p className="my-4 leading-normal">{children}</p>;
-};
+const Paragraph = ({ children }: remarkProps) => (
+  <p className="my-4 leading-normal">{children}</p>
+);
 
-const H2 = ({ children }: remarkProps) => {
-  return <h2 className="my-2">{children}</h2>;
-};
+const H2 = ({ children }: remarkProps) => <h2 className="my-2">{children}</h2>;
 
-const H3 = ({ children }: remarkProps) => {
-  return <h3 className="my-2">{children}</h3>;
-};
+const H3 = ({ children }: remarkProps) => <h3 className="my-2">{children}</h3>;
 
-const List = ({ children }: remarkProps) => {
-  return <ul className="my-2 leading-normal">{children}</ul>;
-};
+const List = ({ children }: remarkProps) => (
+  <ul className="my-2 leading-normal">{children}</ul>
+);
 
-const Quote = ({ children }: remarkProps) => {
-  return (
-    <div className="my-2 pl-4 border-l-4 border-grey border-solid">
-      {children}
-    </div>
-  );
-};
+const Quote = ({ children }: remarkProps) => (
+  <div className="my-2 pl-4 border-l-4 border-grey border-solid">
+    {children}
+  </div>
+);
+
+const Code = props => (
+  <div className="my-2">
+    <Highlight {...props} />
+  </div>
+);
 
 const ExternalLink = ({ href, children }: remarkProps) => {
   return (
@@ -54,7 +54,7 @@ const processor = remark().use(reactRenderer, {
   sanitize: true,
   prefix: "md-",
   remarkReactComponents: {
-    code: Highlight,
+    code: Code,
     p: Paragraph,
     h2: H2,
     h3: H3,
@@ -70,6 +70,13 @@ interface Props {
       frontmatter: {
         title: string;
         date: string;
+        thumbnail: {
+          childImageSharp: {
+            sizes: {
+              src: string;
+            };
+          };
+        } | null;
       };
       rawMarkdownBody: string;
     };
@@ -85,6 +92,11 @@ export default memo(({ data }: Props) => {
           <h1 className="text-black text-xlg mb-2">{post.frontmatter.title}</h1>
           <div className="w-full h-px bg-grey-lighter my-2" />
           <p className="text-grey text-sm my-2">{post.frontmatter.date}</p>
+          {post.frontmatter.thumbnail && (
+            <div>
+              <img src={post.frontmatter.thumbnail.childImageSharp.sizes.src} />
+            </div>
+          )}
           <div className="post">
             {
               processor.processSync(post.rawMarkdownBody, {
