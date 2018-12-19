@@ -33,7 +33,7 @@ const Quote = ({ children }: remarkProps) => (
 
 const Code = props => (
   <div className="my-2">
-    <Highlight {...props} />
+    <Highlight className="p-4 rounded leading-normal" {...props} />
   </div>
 );
 
@@ -89,7 +89,7 @@ export default memo(({ data }: Props) => {
     <Layout>
       <div className="flex flex-col">
         <div className="mt-1 mb-4">
-          <h1 className="text-black text-xlg mb-2">{post.frontmatter.title}</h1>
+          <h1 className="text-black text-xlg my-5">{post.frontmatter.title}</h1>
           <div className="w-full h-px bg-grey-lighter my-2" />
           <p className="text-grey text-sm my-2">{post.frontmatter.date}</p>
           {post.frontmatter.thumbnail && (

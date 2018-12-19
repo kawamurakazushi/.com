@@ -7,8 +7,8 @@ import favicon from "../../assets/images/favicon.ico";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import "../tailwind.css";
 import "highlight.js/styles/github.css";
+import "../tailwind.css";
 
 interface Props {
   children: React.ReactNode;
@@ -35,8 +35,8 @@ const Layout = memo(({ children }: Props) => (
           </Helmet>
           <div className="flex flex-col min-h-screen">
             <Header siteTitle={data.site.siteMetadata.title} />
-            <div className="flex justify-center py-4 flex-1">
-              <div className="w-4/5">{children}</div>
+            <div className="flex justify-center p-4 flex-1">
+              <div className="w-full md:w-2/3">{children}</div>
             </div>
             <Footer />
           </div>

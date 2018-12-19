@@ -2,11 +2,11 @@
 .cache
 node_modules
 yarn-error.log
+src/tailwind.css
 
 # Build directory
 /public
 /dist
 .DS_Store
 
-
-src/tailwind.css
+.vscode

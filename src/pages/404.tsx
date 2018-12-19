@@ -10,3 +10,4 @@ const NotFoundPage = memo(() => (
 ));
 
 export default NotFoundPage;
+

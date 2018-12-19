@@ -6,8 +6,8 @@ import logo from "../../assets/images/logo.png";
 import avatar from "../../assets/images/avatar.jpg";
 
 const Header = memo(() => (
-  <div className="flex justify-center py-4">
-    <div className="flex items-center max-w-5xl w-4/5">
+  <div className="flex justify-center px-4 py-3 shadow">
+    <div className="flex items-center w-full md:w-4/5">
       <Link
         to="/"
         style={{
