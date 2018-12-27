@@ -8,14 +8,14 @@ thumbnail: "./thumbnail.png"
 
 ## Introduction
 
-In this article I will be creating a dumb and simple API and deploy it to GAE (Google App Engine).  
+In this article I will be creating a dumb and simple API and deploy it to GAE (Google App Engine).
 There is not so much documentation about deploying a crystal app to GAE, so it might be valuable for some developers.
 
 For the web server I will be using [Kemal](https://github.com/kemalcr/kemal). It is a simple web server for Crystal, and very similar to [Sinatra](https://github.com/sinatra/sinatra) in Ruby.
 
 ## Installation
 
-First you will need to install Kemal.  
+First you will need to install Kemal.
 Add _kemalr/kemal_ to your shards.yml file.
 
 _shards.yml_
@@ -85,7 +85,7 @@ Not so interesting, but let's get it up on Google App Engine.
 
 ## Deploy
 
-Theres are two things you have to complete before starting to deploy to GAE.  
+Theres are two things you have to complete before starting to deploy to GAE.
 You should follow google's official documentation for these.
 
 - Create a new Google Cloud Platform project and App Engine application using the Google Cloud Platform Console
@@ -98,7 +98,7 @@ You should follow google's official documentation for these.
 
 ### Requirements
 
-GAE has a lot of support for many languages (Go, PHP, Java, [etc...](https://cloud.google.com/appengine/docs/)), which makes it extremely easy to deploy.  
+GAE has a lot of support for many languages (Go, PHP, Java, [etc...](https://cloud.google.com/appengine/docs/)), which makes it extremely easy to deploy.
 Unfortunately Crystal has no support, so you have to create your own **[custom runtime](https://cloud.google.com/appengine/docs/flexible/custom-runtimes/about-custom-runtimes)**.
 
 To create a custom runtime you must,
@@ -122,7 +122,7 @@ This needs to be stored in the root of the project.
 
 ### Add a Dockerfile, and listens to port 8080.
 
-Provide your Dockerfile to the same path as your app.yaml.  
+Provide your Dockerfile to the same path as your app.yaml.
 And don't forget to name it _Dockerfile_.
 
 ```dockerfile
@@ -157,7 +157,7 @@ After waiting for few minutes, it will be deployed, and can be accessed by _http
 
 ## Summary
 
-At the end it was very simple. The only complexity was configuring the Dockerfile (which was still very simple for a crystal app).  
+At the end it was very simple. The only complexity was configuring the Dockerfile (which was still very simple for a crystal app).
 This method can be applied to any kind of language without support from GAE!
 
 Happy Coding!

@@ -17,9 +17,9 @@ const Paragraph = ({ children }: remarkProps) => (
   <p className="my-4 leading-normal">{children}</p>
 );
 
-const H2 = ({ children }: remarkProps) => <h2 className="my-2">{children}</h2>;
+const H2 = ({ children }: remarkProps) => <h2 className="my-6">{children}</h2>;
 
-const H3 = ({ children }: remarkProps) => <h3 className="my-2">{children}</h3>;
+const H3 = ({ children }: remarkProps) => <h3 className="my-5">{children}</h3>;
 
 const List = ({ children }: remarkProps) => (
   <ul className="my-2 leading-normal">{children}</ul>

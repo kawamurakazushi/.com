@@ -14,28 +14,35 @@ const IndexPage = memo(({ data }) => {
       <h2 className="font-thin my-4">BLOG</h2>
       <div className="flex flex-col">
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <>
-            <Link
-              key={node.fields.slug}
-              className="flex border-b border-grey-lighter py-4"
-              to={node.fields.slug}
-            >
-              <div className="flex-1">
-                <div className="mt-2 text-sm text-grey">
-                  {node.frontmatter.date}
-                </div>
-                <div className="my-3">{node.frontmatter.title}</div>
-                <div className="my-3">
-                  {node.frontmatter.tags.map(tag => (
-                    <span className="py-1 px-2 mr-2 rounded bg-grey-darker text-white text-xs">
-                      {`#${tag}`}
-                    </span>
-                  ))}
-                </div>
+          <Link
+            key={node.fields.slug}
+            className="flex border-b border-grey-lighter py-4"
+            to={node.fields.slug}
+          >
+            <div className="flex-1">
+              <div className="mt-2 text-sm text-grey">
+                {node.frontmatter.date}
               </div>
-            </Link>
-          </>
+              <div className="my-3">{node.frontmatter.title}</div>
+              <div className="my-3">
+                {node.frontmatter.tags.map(tag => (
+                  <span
+                    key={tag}
+                    className="py-1 px-2 mr-2 rounded bg-grey-darker text-white text-xs"
+                  >
+                    {`#${tag}`}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Link>
         ))}
+        <Link
+          to="/blogs"
+          className="my-5 w-full text-center p-4 border-green-dark border-solid border-2 text-green-dark"
+        >
+          SEE MORE
+        </Link>
       </div>
       <h2 className="font-thin my-4">CURRIES</h2>
       <p>Coming Soon</p>
@@ -96,7 +103,10 @@ export default IndexPage;
 
 export const query = graphql`
   query IndexQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: frontmatter___date }) {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: frontmatter___date }
+      limit: 4
+    ) {
       edges {
         node {
           fields {
