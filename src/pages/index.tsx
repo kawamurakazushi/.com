@@ -23,7 +23,7 @@ const IndexPage = memo(({ data }) => {
               <div className="mt-2 text-sm text-grey">
                 {node.frontmatter.date}
               </div>
-              <div className="my-3">{node.frontmatter.title}</div>
+              <div className="my-3 text-xl">{node.frontmatter.title}</div>
               <div className="my-3">
                 {node.frontmatter.tags.map(tag => (
                   <span

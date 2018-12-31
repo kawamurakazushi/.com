@@ -1,5 +1,6 @@
 # Project dependencies
 .cache
+.vscode
 node_modules
 yarn-error.log
 src/tailwind.css
@@ -9,4 +10,6 @@ src/tailwind.css
 /dist
 .DS_Store
 
-.vscode
+# personal
+secrets
+
