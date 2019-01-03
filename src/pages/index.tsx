@@ -4,6 +4,7 @@ import { FaGithub } from "react-icons/fa";
 import { graphql, Link } from "gatsby";
 
 import Layout from "../components/layout";
+import ArticleItem from "../components/articleItem";
 
 import seoEditor from "../../assets/images/seo-editor.png";
 import sketch2trello from "../../assets/images/sketch2trello.png";
@@ -14,28 +15,13 @@ const IndexPage = memo(({ data }) => {
       <h2 className="font-thin my-4">BLOG</h2>
       <div className="flex flex-col">
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <Link
+          <ArticleItem
             key={node.fields.slug}
-            className="flex border-b border-grey-lighter py-4"
             to={node.fields.slug}
-          >
-            <div className="flex-1">
-              <div className="mt-2 text-sm text-grey">
-                {node.frontmatter.date}
-              </div>
-              <div className="my-3 text-xl">{node.frontmatter.title}</div>
-              <div className="my-3">
-                {node.frontmatter.tags.map(tag => (
-                  <span
-                    key={tag}
-                    className="py-1 px-2 mr-2 rounded bg-grey-darker text-white text-xs"
-                  >
-                    {`#${tag}`}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </Link>
+            date={node.frontmatter.date}
+            tags={node.frontmatter.tags}
+            title={node.frontmatter.title}
+          />
         ))}
         <Link
           to="/blogs"
