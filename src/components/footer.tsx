@@ -1,6 +1,5 @@
-import * as React from "react";
-import { memo } from "react";
 import { Link } from "gatsby";
+import React, { memo } from "react";
 
 const Header = memo(({}) => (
   <div className="flex justify-center py-4 bg-grey-darkest">

@@ -1,6 +1,5 @@
-import * as React from "react";
-import { memo } from "react";
 import { graphql } from "gatsby";
+import React, { memo } from "react";
 
 import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";

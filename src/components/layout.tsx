@@ -1,11 +1,10 @@
-import * as React from "react";
-import { memo } from "react";
+import { graphql, StaticQuery } from "gatsby";
+import React, { memo } from "react";
 import Helmet from "react-helmet";
-import { StaticQuery, graphql } from "gatsby";
 
 import favicon from "../../assets/images/favicon.ico";
-import Header from "../components/header";
 import Footer from "../components/footer";
+import Header from "../components/header";
 
 import "highlight.js/styles/github.css";
 import "../tailwind.css";

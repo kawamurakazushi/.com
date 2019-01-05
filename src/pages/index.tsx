@@ -1,10 +1,9 @@
-import * as React from "react";
-import { memo } from "react";
-import { FaGithub } from "react-icons/fa";
 import { graphql, Link } from "gatsby";
+import React, { memo } from "react";
+import { FaGithub } from "react-icons/fa";
 
-import Layout from "../components/layout";
 import ArticleItem from "../components/articleItem";
+import Layout from "../components/layout";
 
 import seoEditor from "../../assets/images/seo-editor.png";
 import sketch2trello from "../../assets/images/sketch2trello.png";

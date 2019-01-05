@@ -32,14 +32,16 @@
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "install": "yarn css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "tslint -c tslint.json 'src/**/*.tsx'"
   },
   "devDependencies": {
     "@types/highlight.js": "^9.12.3",
     "@types/react": "^16.7.17",
     "@types/react-helmet": "^5.0.7",
     "prettier": "^1.15.3",
-    "tailwindcss": "^0.7.3"
+    "tailwindcss": "^0.7.3",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-plugin-prettier": "^2.0.1"
   },
   "repository": {
     "type": "git",

@@ -1,31 +1,29 @@
 import { graphql } from "gatsby";
-import * as React from "react";
-import { memo } from "react";
+import React, { memo } from "react";
+import Highlight from "react-highlight";
 import remark from "remark";
 import reactRenderer from "remark-react";
-import Highlight from "react-highlight";
 
 import Layout from "../components/layout";
-import { Link } from "@reach/router";
 
-interface remarkProps {
+interface RemarkProps {
   href?: string;
   children: React.ReactNode;
 }
 
-const Paragraph = ({ children }: remarkProps) => (
+const Paragraph = ({ children }: RemarkProps) => (
   <p className="my-4 leading-normal">{children}</p>
 );
 
-const H2 = ({ children }: remarkProps) => <h2 className="my-6">{children}</h2>;
+const H2 = ({ children }: RemarkProps) => <h2 className="my-6">{children}</h2>;
 
-const H3 = ({ children }: remarkProps) => <h3 className="my-5">{children}</h3>;
+const H3 = ({ children }: RemarkProps) => <h3 className="my-5">{children}</h3>;
 
-const List = ({ children }: remarkProps) => (
+const List = ({ children }: RemarkProps) => (
   <ul className="my-2 leading-normal">{children}</ul>
 );
 
-const Quote = ({ children }: remarkProps) => (
+const Quote = ({ children }: RemarkProps) => (
   <div className="my-2 pl-4 border-l-4 border-grey border-solid">
     {children}
   </div>
@@ -37,7 +35,7 @@ const Code = props => (
   </div>
 );
 
-const ExternalLink = ({ href, children }: remarkProps) => {
+const ExternalLink = ({ href, children }: RemarkProps) => {
   return (
     <a
       href={href}
@@ -51,17 +49,17 @@ const ExternalLink = ({ href, children }: remarkProps) => {
 };
 
 const processor = remark().use(reactRenderer, {
-  sanitize: true,
   prefix: "md-",
   remarkReactComponents: {
+    a: ExternalLink,
+    blockquote: Quote,
     code: Code,
-    p: Paragraph,
     h2: H2,
     h3: H3,
+    p: Paragraph,
     ul: List,
-    blockquote: Quote,
-    a: ExternalLink,
   },
+  sanitize: true,
 });
 
 interface Props {
@@ -100,8 +98,8 @@ export default memo(({ data }: Props) => {
           <div className="post">
             {
               processor.processSync(post.rawMarkdownBody, {
-                gfm: true,
                 breaks: true,
+                gfm: true,
                 yaml: false,
               }).contents
             }

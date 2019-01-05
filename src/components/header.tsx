@@ -1,9 +1,8 @@
-import * as React from "react";
-import { memo } from "react";
 import Link from "gatsby-link";
+import React, { memo } from "react";
 
-import logo from "../../assets/images/logo.png";
 import avatar from "../../assets/images/avatar.jpg";
+import logo from "../../assets/images/logo.png";
 
 const Header = memo(() => (
   <div className="flex justify-center px-4 py-3 shadow">
