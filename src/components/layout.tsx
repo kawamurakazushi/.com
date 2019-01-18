@@ -6,7 +6,8 @@ import favicon from "../../assets/images/favicon.ico";
 import Footer from "../components/footer";
 import Header from "../components/header";
 
-import "highlight.js/styles/github.css";
+// import "highlight.js/styles/github.css";
+import "highlight.js/styles/monokai-sublime.css";
 import "../tailwind.css";
 
 interface Props {
