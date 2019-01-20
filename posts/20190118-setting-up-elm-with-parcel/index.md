@@ -45,7 +45,7 @@ yarn add -D parcel-bundler
 
 ## Code
 
-The first file you create will be _src/index.html_. This will the entry point of the application, and parcel will be responsible for resolving any dependencies that is contained in this file.
+The first file you create will be _src/index.html_. This will be the entry point of the application, and parcel will be responsible for resolving any dependencies that is contained in this file.
 
 ```html
 <!DOCTYPE html>
@@ -60,7 +60,7 @@ The first file you create will be _src/index.html_. This will the entry point of
 </html>
 ```
 
-Next will the the elm applicationc ode. Let's copy and paste the incrementing number app from the [elm guide](https://guide.elm-lang.org/) and save it as _src/Main.elm_.
+Next will the the elm application code. Let's copy and paste the incrementing number app from the [elm guide](https://guide.elm-lang.org/) and save it as _src/Main.elm_.
 
 ```elm
 import Browser
@@ -110,7 +110,7 @@ yarn parcel src/index.html
 
 The initial load will take a little longer, since it also installs the dependencies of elm, and also the missing dependencies in yarn.
 
-Installed dependencies:
+These are the installed dependencies that parcel has automatically detected:
 
 ```
 "elm-hot": "^1.0.1",
