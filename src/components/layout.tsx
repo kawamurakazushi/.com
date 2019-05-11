@@ -35,10 +35,12 @@ const Layout = memo(({ children }: Props) => (
           </Helmet>
           <div className="flex flex-col min-h-screen">
             <Header />
-            <div className="flex justify-center p-4 flex-1">
-              <div className="w-full md:w-2/3">{children}</div>
+            <div className="flex-1">
+              <div className="flex justify-center p-4 flex-1">
+                <div className="w-full md:w-2/3">{children}</div>
+              </div>
+              <Footer />
             </div>
-            <Footer />
           </div>
         </>
       )}

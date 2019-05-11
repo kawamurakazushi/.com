@@ -15,7 +15,9 @@ const Paragraph = ({ children }: RemarkProps) => (
   <p className="my-3 leading-normal">{children}</p>
 );
 
-const H2 = ({ children }: RemarkProps) => <h2 className="my-6">{children}</h2>;
+const H2 = ({ children }: RemarkProps) => (
+  <h2 className="my-6 font-normal">{children}</h2>
+);
 
 const H3 = ({ children }: RemarkProps) => <h3 className="my-6">{children}</h3>;
 
