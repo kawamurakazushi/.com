@@ -7,6 +7,7 @@ import Layout from "../components/layout";
 
 import seoEditor from "../../assets/images/seo-editor.png";
 import sketch2trello from "../../assets/images/sketch2trello.png";
+import spiceBlending from "../../assets/images/spice-blending-puzzle.png";
 
 const IndexPage = memo(({ data }) => {
   return (
@@ -34,7 +35,31 @@ const IndexPage = memo(({ data }) => {
       <h2 className="font-thin my-4">PROJECTS</h2>
       <div className="flex mt-3">
         <div className="w-1/3">
-          <img alt="seo editor" src={seoEditor} />
+          <img className="shadow" alt="seo editor" src={spiceBlending} />
+        </div>
+        <div className="ml-4">
+          <div className="text-2xl text-black">Spice Blending Puzzle</div>
+          <div className="text-sm mt-3 text-grey-darkest">
+            An Application to blend you favorite spice with ease.
+          </div>
+          <div className="mt-2 flex items-center">
+            <span className="text-xs bg-purple py-1 px-2 text-white rounded-sm">
+              #elm
+            </span>
+            <a
+              className="flex ml-2"
+              href="https://github.com/kawamurakazushi/spice-blending-puzzle"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="flex mt-3">
+        <div className="w-1/3">
+          <img className="shadow" alt="seo editor" src={seoEditor} />
         </div>
         <div className="ml-4">
           <div className="text-2xl text-black">SEO Editor</div>
@@ -58,7 +83,7 @@ const IndexPage = memo(({ data }) => {
       </div>
       <div className="flex mt-3">
         <div className="w-1/3">
-          <img alt="sketch2trello" src={sketch2trello} />
+          <img className="shadow" alt="sketch2trello" src={sketch2trello} />
         </div>
         <div className="ml-4">
           <div className="text-2xl text-black">Sketch2Trello</div>
