@@ -33,15 +33,15 @@ const Layout = memo(({ children }: Props) => (
             <title>{data.site.siteMetadata.title}</title>
             <link rel="shortcut icon" href={favicon} />
           </Helmet>
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-screen md:w-2/3 mx-auto">
             <Header />
             <div className="flex-1">
               <div className="flex justify-center p-4 flex-1">
-                <div className="w-full md:w-2/3">{children}</div>
+                <div className="w-full">{children}</div>
               </div>
-              <Footer />
             </div>
           </div>
+          <Footer />
         </>
       )}
     />

@@ -34,11 +34,8 @@ const IndexPage = memo(({ data }) => {
       <p>Coming Soon</p>
       <h2 className="font-thin my-4">PROJECTS</h2>
       <div className="flex mt-3">
-        <div className="w-1/3">
-          <img className="shadow" alt="seo editor" src={spiceBlending} />
-        </div>
-        <div className="ml-4">
-          <div className="text-2xl text-black">Spice Blending Puzzle</div>
+        <div className="mb-3">
+          <div className="text-xl text-black">Spice Blending Puzzle</div>
           <div className="text-sm mt-3 text-grey-darkest">
             An Application to blend you favorite spice with ease.
           </div>
@@ -58,11 +55,8 @@ const IndexPage = memo(({ data }) => {
         </div>
       </div>
       <div className="flex mt-3">
-        <div className="w-1/3">
-          <img className="shadow" alt="seo editor" src={seoEditor} />
-        </div>
-        <div className="ml-4">
-          <div className="text-2xl text-black">SEO Editor</div>
+        <div className="mb-3">
+          <div className="text-xl text-black">SEO Editor</div>
           <div className="text-sm mt-3 text-grey-darkest">
             An Editor to write articles.
           </div>
@@ -82,11 +76,8 @@ const IndexPage = memo(({ data }) => {
         </div>
       </div>
       <div className="flex mt-3">
-        <div className="w-1/3">
-          <img className="shadow" alt="sketch2trello" src={sketch2trello} />
-        </div>
-        <div className="ml-4">
-          <div className="text-2xl text-black">Sketch2Trello</div>
+        <div className="mb-3">
+          <div className="text-xl text-black">Sketch2Trello</div>
           <div className="text-sm mt-3 text-grey-darkest">
             Exports Sketch Artboards to Trello.
           </div>
