@@ -86,6 +86,7 @@ interface Props {
         } | null;
       };
       rawMarkdownBody: string;
+      html: string;
     };
   };
 }
@@ -104,7 +105,12 @@ export default memo(({ data }: Props) => {
               <img src={post.frontmatter.thumbnail.childImageSharp.sizes.src} />
             </div>
           )}
-          <div className="post">
+          <div
+            className="post"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+
+          {/* <div className="post">
             {
               processor.processSync(post.rawMarkdownBody, {
                 breaks: true,
@@ -112,7 +118,7 @@ export default memo(({ data }: Props) => {
                 yaml: false,
               }).contents
             }
-          </div>
+          </div> */}
         </div>
       </div>
     </Layout>
@@ -122,6 +128,7 @@ export default memo(({ data }: Props) => {
 export const query = graphql`
   query BlogPostQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
+      html
       rawMarkdownBody
       frontmatter {
         title
