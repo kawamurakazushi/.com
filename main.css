@@ -38,12 +38,4 @@ a:hover {
   margin: 32px 0;
 }
 
-.post pre {
-  border: 1px solid lightgrey;
-  padding: 8px;
-  border-radius: 4px;
-  margin: 16px 0;
-  overflow-x: auto;
-}
-
 @tailwind utilities;

@@ -92,9 +92,10 @@ Click on "Deploy site" and you're done.
 
 ## Setting up redirects
 
-One last things that you'll need to set up the redirects for SPA. Since all the routing is done by the client side, and it's only hosted on the root.
+One last things that you'll need to set up is the redirects for SPA.
+Since all the routing is done by the client side, the server needs to redirect to the root for every request.
 
-So all the path needs to be redirected to index.html.
+Which means all the path needs to be redirected to index.html.
 
 To configure you'll need to create _netlify.toml_ file on the root of the project, and write as follows:
 
@@ -115,6 +116,6 @@ The pricing is great for hosting personal projects, hobby sites, or experiments.
 
 This blog is also hosted on Netlify :D
 
-you can check for details of the pricing hereL
+you can check for details of the pricing here:
 
 [https://www.netlify.com/pricing/](https://www.netlify.com/pricing/)

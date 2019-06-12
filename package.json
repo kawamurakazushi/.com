@@ -39,7 +39,9 @@
     "@types/highlight.js": "^9.12.3",
     "@types/react": "^16.8.14",
     "@types/react-helmet": "^5.0.8",
+    "gatsby-remark-prismjs": "^3.2.11",
     "prettier": "^1.17.0",
+    "prismjs": "^1.16.0",
     "tailwindcss": "^0.7.4",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1"
