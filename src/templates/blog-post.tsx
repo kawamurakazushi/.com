@@ -1,75 +1,7 @@
 import { graphql } from "gatsby";
 import React, { memo } from "react";
-import Highlight from "react-highlight";
-import remark from "remark";
-import reactRenderer from "remark-react";
 
 import Layout from "../components/layout";
-
-interface RemarkProps {
-  href?: string;
-  children: React.ReactNode;
-}
-
-const Paragraph = ({ children }: RemarkProps) => (
-  <p className="my-3 leading-normal">{children}</p>
-);
-
-const H2 = ({ children }: RemarkProps) => (
-  <h2 className="my-6 font-normal">{children}</h2>
-);
-
-const H3 = ({ children }: RemarkProps) => <h3 className="my-6">{children}</h3>;
-
-const List = ({ children }: RemarkProps) => (
-  <ul className="my-3 leading-normal">{children}</ul>
-);
-
-const Quote = ({ children }: RemarkProps) => (
-  <div className="my-3 pl-4 border-l-4 border-grey border-solid">
-    {children}
-  </div>
-);
-
-const Code = props => (
-  <div className="my-3">
-    <Highlight className="p-4 rounded leading-normal" {...props} />
-  </div>
-);
-
-const Em = ({ children }: RemarkProps) => (
-  <span className="px-1  rounded-sm text-sm bg-grey-lighter text-grey-darker">
-    {children}
-  </span>
-);
-
-const ExternalLink = ({ href, children }: RemarkProps) => {
-  return (
-    <a
-      href={href}
-      rel="noopener noreferrer"
-      target="_blank"
-      className="my-2 leading-loose underline"
-    >
-      {children}
-    </a>
-  );
-};
-
-const processor = remark().use(reactRenderer, {
-  prefix: "md-",
-  remarkReactComponents: {
-    a: ExternalLink,
-    blockquote: Quote,
-    code: Code,
-    em: Em,
-    h2: H2,
-    h3: H3,
-    p: Paragraph,
-    ul: List,
-  },
-  sanitize: true,
-});
 
 interface Props {
   data: {

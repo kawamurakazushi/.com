@@ -18,10 +18,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
-    "react-highlight": "^0.12.0",
     "react-icons": "^3.6.1",
-    "remark": "^10.0.1",
-    "remark-react": "^5.0.1",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
   },
@@ -36,7 +33,6 @@
     "lint": "tslint -c tslint.json 'src/**/*.tsx'"
   },
   "devDependencies": {
-    "@types/highlight.js": "^9.12.3",
     "@types/react": "^16.8.14",
     "@types/react-helmet": "^5.0.8",
     "gatsby-remark-prismjs": "^3.2.11",
