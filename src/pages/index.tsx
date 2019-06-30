@@ -5,14 +5,10 @@ import { FaGithub } from "react-icons/fa";
 import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";
 
-import seoEditor from "../../assets/images/seo-editor.png";
-import sketch2trello from "../../assets/images/sketch2trello.png";
-import spiceBlending from "../../assets/images/spice-blending-puzzle.png";
-
 const IndexPage = memo(({ data }) => {
   return (
     <Layout>
-      <h2 className="font-thin my-4">BLOG</h2>
+      <h2 className="font-bold my-3">BLOG</h2>
       <div className="flex flex-col">
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <ArticleItem
@@ -23,24 +19,26 @@ const IndexPage = memo(({ data }) => {
             title={node.frontmatter.title}
           />
         ))}
-        <Link
-          to="/blogs"
-          className="my-5 w-full text-center p-4 border-green-dark border-solid border-2 text-green-dark"
-        >
-          SEE MORE
-        </Link>
+        <div className="my-5 flex justify-center">
+          <Link
+            to="/blogs"
+            className="text-center px-2 border-green-900 border-solid border-b text-green-900"
+          >
+            MORE
+          </Link>
+        </div>
       </div>
-      <h2 className="font-thin my-4">CURRIES</h2>
+      <h2 className="font-bold my-3">CURRIES</h2>
       <p>Coming Soon</p>
-      <h2 className="font-thin my-4">PROJECTS</h2>
+      <h2 className="font-bold my-3">PROJECTS</h2>
       <div className="flex mt-3">
         <div className="mb-3">
           <div className="text-xl text-black">Spice Blending Puzzle</div>
-          <div className="text-sm mt-3 text-grey-darkest">
+          <div className="text-sm mt-3 text-gray-900">
             An Application to blend you favorite spice with ease.
           </div>
           <div className="mt-2 flex items-center">
-            <span className="text-xs bg-purple py-1 px-2 text-white rounded-sm">
+            <span className="text-xs bg-purple-600 py-1 px-2 text-white rounded">
               #elm
             </span>
             <a
@@ -57,11 +55,11 @@ const IndexPage = memo(({ data }) => {
       <div className="flex mt-3">
         <div className="mb-3">
           <div className="text-xl text-black">SEO Editor</div>
-          <div className="text-sm mt-3 text-grey-darkest">
+          <div className="text-sm mt-3 text-gray-900">
             An Editor to write articles.
           </div>
           <div className="mt-2 flex items-center">
-            <span className="text-xs bg-purple py-1 px-2 text-white rounded-sm">
+            <span className="text-xs bg-purple-600 py-1 px-2 text-white rounded">
               #elm
             </span>
             <a
@@ -78,11 +76,11 @@ const IndexPage = memo(({ data }) => {
       <div className="flex mt-3">
         <div className="mb-3">
           <div className="text-xl text-black">Sketch2Trello</div>
-          <div className="text-sm mt-3 text-grey-darkest">
+          <div className="text-sm mt-3 text-gray-900">
             Exports Sketch Artboards to Trello.
           </div>
           <div className="mt-2 flex items-center">
-            <span className="text-xs bg-pink py-1 px-2 text-white rounded-sm">
+            <span className="text-xs bg-pink-600 py-1 px-2 text-white rounded">
               #cocoascript
             </span>
             <a

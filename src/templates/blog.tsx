@@ -30,8 +30,8 @@ export default memo(({ data }: Props) => {
       <div className="flex flex-col">
         <div className="mt-1 mb-4">
           <h1 className="text-black text-xlg my-5">{post.frontmatter.title}</h1>
-          <div className="w-full h-px bg-grey-lighter my-2" />
-          <p className="text-grey text-sm my-2">{post.frontmatter.date}</p>
+          <div className="w-full h-px bg-gray-100 my-2" />
+          <p className="text-gray-600 text-sm my-2">{post.frontmatter.date}</p>
           {post.frontmatter.thumbnail && (
             <div>
               <img src={post.frontmatter.thumbnail.childImageSharp.sizes.src} />
@@ -41,16 +41,6 @@ export default memo(({ data }: Props) => {
             className="post"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
-
-          {/* <div className="post">
-            {
-              processor.processSync(post.rawMarkdownBody, {
-                breaks: true,
-                gfm: true,
-                yaml: false,
-              }).contents
-            }
-          </div> */}
         </div>
       </div>
     </Layout>

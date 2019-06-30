@@ -1,4 +1,4 @@
-@tailwind preflight;
+@tailwind base;
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Pragati+Narrow:400,700");
 
@@ -38,4 +38,5 @@ a:hover {
   margin: 32px 0;
 }
 
+@tailwind components;
 @tailwind utilities;

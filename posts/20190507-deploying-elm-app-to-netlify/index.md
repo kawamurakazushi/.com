@@ -36,11 +36,11 @@ git push origin master
 
 ## Making the build scripts
 
-You'll have to create a build script, to generate _html_, _js_ and _css_ from the elm code.
+You'll have to create a build script, to generate `html` , `js` and `css` from the elm code.
 
-If you are using parcel it is very simple: _yarn parcel build src/index.html_, and you're done.
+If you are using parcel it is very simple: `yarn parcel build src/index.html`, and you're done.
 
-It is a good practice to add it to your _package.json_'s scripts. It will look like as follows:
+It is a good practice to add it to your `package.json`'s scripts. It will look like as follows:
 
 ```
 {
@@ -80,11 +80,11 @@ Then last but not least, you have to add two configuration.
 
 1 - Build commands
 
-For this you will write the script that you have wrote on _package.json_ , which is _yarn build_
+For this you will write the script that you have wrote on `package.json` , which is `yarn build`
 
 2 - Publish directory
 
-Parcel will build inside _dist_ directory by default, so just write _dist_.
+Parcel will build inside `dist` directory by default, so just write `dist`.
 
 ![Step3](step3.png)
 
@@ -97,7 +97,7 @@ Since all the routing is done by the client side, the server needs to redirect t
 
 Which means all the path needs to be redirected to index.html.
 
-To configure you'll need to create _netlify.toml_ file on the root of the project, and write as follows:
+To configure you'll need to create `netlify.toml` file on the root of the project, and write as follows:
 
 ```
 [[redirects]]
