@@ -11,6 +11,8 @@ module.exports = {
         path: `${__dirname}/posts/`,
       },
     },
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -47,8 +49,6 @@ module.exports = {
         ],
       },
     },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
