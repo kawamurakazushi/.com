@@ -1,9 +1,9 @@
-import { graphql } from "gatsby";
+import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 
 import Layout from "../components/layout";
 
-interface Props {
+interface Props extends ReplaceComponentRendererArgs {
   data: {
     markdownRemark: {
       frontmatter: {
@@ -21,9 +21,11 @@ interface Props {
       html: string;
     };
   };
+  slug: string;
 }
 
-export default memo(({ data }: Props) => {
+export default memo((props: Props) => {
+  const { data } = props;
   const post = data.markdownRemark;
   return (
     <Layout>

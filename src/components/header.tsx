@@ -4,7 +4,7 @@ import React, { memo } from "react";
 import avatar from "../../assets/images/avatar.jpg";
 
 const Header = memo(() => (
-  <div className="flex justify-center items-center px-4 py-3 w-full bg-white">
+  <div className="flex justify-center items-center px-8 py-6 w-full bg-white">
     <div className="flex-1">
       <Link to="/" className="no-underline">
         kawamura

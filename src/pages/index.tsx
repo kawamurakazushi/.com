@@ -8,7 +8,6 @@ import Layout from "../components/layout";
 const IndexPage = memo(({ data }) => {
   return (
     <Layout>
-      <h2 className="font-bold my-3">BLOG</h2>
       <div className="flex flex-col">
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <ArticleItem
@@ -17,6 +16,7 @@ const IndexPage = memo(({ data }) => {
             date={node.frontmatter.date}
             tags={node.frontmatter.tags}
             title={node.frontmatter.title}
+            excerpt={node.excerpt}
           />
         ))}
         <div className="my-5 flex justify-center">
@@ -28,72 +28,26 @@ const IndexPage = memo(({ data }) => {
           </Link>
         </div>
       </div>
-      <h2 className="font-bold my-3">CURRIES</h2>
-      <p>Coming Soon</p>
       <h2 className="font-bold my-3">PROJECTS</h2>
-      <div className="flex mt-3">
-        <div className="mb-3">
-          <div className="text-xl text-black">Spice Blending Puzzle</div>
-          <div className="text-sm mt-3 text-gray-900">
-            An Application to blend you favorite spice with ease.
-          </div>
-          <div className="mt-2 flex items-center">
-            <span className="text-xs bg-purple-600 py-1 px-2 text-white rounded">
-              #elm
-            </span>
-            <a
+      {data.allProject.edges.map(({ node }) => (
+        <div key={node.id} className="mb-5">
+          <Link
+            to={`/${node.name}`}
+            className="text-l font-medium hover:bg-black hover:text-white"
+          >
+            {node.name}
+          </Link>
+          <div className="text-xs mt-2">{node.description}</div>
+          {/* <a
               className="flex ml-2"
-              href="https://github.com/kawamurakazushi/spice-blending-puzzle"
+              href={node.url}
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaGithub />
-            </a>
-          </div>
+            </a> */}
         </div>
-      </div>
-      <div className="flex mt-3">
-        <div className="mb-3">
-          <div className="text-xl text-black">SEO Editor</div>
-          <div className="text-sm mt-3 text-gray-900">
-            An Editor to write articles.
-          </div>
-          <div className="mt-2 flex items-center">
-            <span className="text-xs bg-purple-600 py-1 px-2 text-white rounded">
-              #elm
-            </span>
-            <a
-              className="flex ml-2"
-              href="https://github.com/kawamurakazushi/seo-editor"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub />
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="flex mt-3">
-        <div className="mb-3">
-          <div className="text-xl text-black">Sketch2Trello</div>
-          <div className="text-sm mt-3 text-gray-900">
-            Exports Sketch Artboards to Trello.
-          </div>
-          <div className="mt-2 flex items-center">
-            <span className="text-xs bg-pink-600 py-1 px-2 text-white rounded">
-              #cocoascript
-            </span>
-            <a
-              className="flex ml-2"
-              href="https://github.com/kawamurakazushi/sketch2trello"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub />
-            </a>
-          </div>
-        </div>
-      </div>
+      ))}
     </Layout>
   );
 });
@@ -102,6 +56,15 @@ export default IndexPage;
 
 export const query = graphql`
   query IndexQuery {
+    allProject {
+      edges {
+        node {
+          name
+          url
+          description
+        }
+      }
+    }
     allMarkdownRemark(
       sort: { order: DESC, fields: frontmatter___date }
       limit: 4
@@ -124,7 +87,7 @@ export const query = graphql`
               }
             }
           }
-          excerpt
+          excerpt(format: PLAIN)
         }
       }
     }
