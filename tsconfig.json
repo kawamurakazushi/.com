@@ -9,5 +9,6 @@
     "lib": ["dom", "es2015", "es2017"],
     "esModuleInterop": true
   },
-  "include": ["./src/**/*", "./definitions/*"]
+  // "exclude": ["./node_modules"],
+  "include": ["./src/**/*", "./definitions/*", "./gatsby-*.ts"]
 }

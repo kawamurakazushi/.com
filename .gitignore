@@ -9,6 +9,7 @@ src/tailwind.css
 /public
 /dist
 .DS_Store
+gatsby-node.js
 
 # personal
 secrets

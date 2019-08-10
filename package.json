@@ -27,15 +27,18 @@
   "license": "MIT",
   "scripts": {
     "css": "tailwind build main.css -c ./tailwind.js -o src/tailwind.css",
-    "build": "yarn css && gatsby build",
-    "develop": "gatsby develop",
+    "build:config": "tsc gatsby-node.ts",
+    "build": "yarn css && yarn build:config && gatsby build",
+    "develop": "yarn css && yarn build:config && gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
-    "install": "yarn css",
+    "install": "yarn css && yarn build:config",
     "lint": "tslint -c tslint.json 'src/**/*.tsx'"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.5.0",
     "@types/react": "^16.8.25",
     "@types/react-helmet": "^5.0.9",
+    "decoders": "^1.15.0",
     "gatsby-remark-prismjs": "^3.3.4",
     "prettier": "^1.17.0",
     "prismjs": "^1.17.1",

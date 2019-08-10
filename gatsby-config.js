@@ -1,47 +1,47 @@
 module.exports = {
-  siteMetadata: {
-    title: "kawamurakazushi.com",
-  },
   plugins: [
     "gatsby-plugin-react-helmet",
     {
-      resolve: "gatsby-source-filesystem",
       options: {
         name: "src",
         path: `${__dirname}/posts/`,
       },
+      resolve: "gatsby-source-filesystem",
     },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {
-      resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 960,
             },
+            resolve: `gatsby-remark-images`,
           },
           {
-            resolve: `gatsby-remark-prismjs`,
             options: {
-              inlineCodeMarker: "`",
               aliases: {},
-              showLineNumbers: false,
+              inlineCodeMarker: "`",
               noInlineHighlight: false,
+              showLineNumbers: false,
             },
+            resolve: `gatsby-remark-prismjs`,
           },
         ],
       },
+      resolve: `gatsby-transformer-remark`,
     },
     {
-      resolve: "gatsby-plugin-google-tagmanager",
       options: {
         id: "GTM-5TGK2TM",
         includeInDevelopment: false,
       },
+      resolve: "gatsby-plugin-google-tagmanager",
     },
     "gatsby-plugin-typescript",
   ],
+  siteMetadata: {
+    title: "kawamurakazushi.com",
+  },
 };
