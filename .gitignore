@@ -13,4 +13,5 @@ gatsby-node.js
 
 # personal
 secrets
+.env
 

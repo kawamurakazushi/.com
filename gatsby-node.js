@@ -75,6 +75,7 @@ exports.sourceNodes = function (_a) {
         var createNode, nodes;
         var _this = this;
         return __generator(this, function (_b) {
+            require("dotenv").config();
             createNode = actions.createNode;
             nodes = [
                 "spice-blending-puzzle",
@@ -92,7 +93,7 @@ exports.sourceNodes = function (_a) {
                             client = new apollo_boost_1["default"]({
                                 fetch: node_fetch_1["default"],
                                 headers: {
-                                    Authorization: "Bearer 3f638977f156ed4c4181b75d1ac1649d91e181dc"
+                                    Authorization: "Bearer " + process.env.GITHUB_API_KEY
                                 },
                                 uri: "https://api.github.com/graphql"
                             });

@@ -28,6 +28,7 @@ export const sourceNodes = async ({
   createNodeId,
   createContentDigest,
 }: SourceNodesArgs) => {
+  require("dotenv").config();
   const { createNode } = actions;
 
   const nodes = [
@@ -42,7 +43,7 @@ export const sourceNodes = async ({
     const client = new ApolloClient({
       fetch,
       headers: {
-        Authorization: "Bearer 3f638977f156ed4c4181b75d1ac1649d91e181dc",
+        Authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
       },
       uri: "https://api.github.com/graphql",
     });
