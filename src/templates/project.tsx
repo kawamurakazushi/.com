@@ -3,10 +3,34 @@ import React, { memo } from "react";
 
 import Layout from "../components/layout";
 
-interface Props extends ReplaceComponentRendererArgs {}
+// TODO Create decoder
+const decode = null;
+
+interface Props extends ReplaceComponentRendererArgs {
+  data: {
+    project: {
+      readme: {
+        childMarkdownRemark: {
+          html: string;
+        };
+      };
+    };
+  };
+}
 
 export default memo(({ data }: Props) => {
-  return <Layout>{JSON.stringify(data)}</Layout>;
+  return (
+    <Layout>
+      <div>
+        <div
+          className="post"
+          dangerouslySetInnerHTML={{
+            __html: data.project.readme.childMarkdownRemark.html,
+          }}
+        />
+      </div>
+    </Layout>
+  );
 });
 
 export const query = graphql`
@@ -19,8 +43,13 @@ export const query = graphql`
         name
         color
       }
-      readme
       url
+      readme {
+        id
+        childMarkdownRemark {
+          html
+        }
+      }
     }
   }
 `;

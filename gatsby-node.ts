@@ -1,5 +1,5 @@
 import ApolloClient from "apollo-boost";
-import { array, guard, object, string } from "decoders";
+import { array, guard, object, string, nullable } from "decoders";
 import {
   CreateNodeArgs,
   CreatePagesArgs,
@@ -7,13 +7,17 @@ import {
   SourceNodesArgs,
 } from "gatsby";
 import { createFilePath } from "gatsby-source-filesystem";
-import fetch from "node-fetch";
 import gql from "graphql-tag";
 import * as path from "path";
 
 export const onCreateNode = ({ node, getNode, actions }: CreateNodeArgs) => {
   const { createNodeField } = actions;
-  if (node.internal.type === "MarkdownRemark") {
+
+  // Create slug only if it is a markdown from File
+  if (
+    node.internal.type === "MarkdownRemark" &&
+    getNode(node.parent).internal.type === `File`
+  ) {
     const slug = createFilePath({ node, getNode, basePath: "pages" });
     createNodeField({
       name: "slug",
@@ -41,14 +45,14 @@ export const sourceNodes = async ({
     "vscode-grep",
   ].map(async p => {
     const client = new ApolloClient({
-      fetch,
+      fetch: require("node-fetch"),
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
       },
       uri: "https://api.github.com/graphql",
     });
 
-    const d = await client.query({
+    const response = await client.query({
       query: gql`
         query Repository($name: String!) {
           repository(owner: "kawamurakazushi", name: $name) {
@@ -90,32 +94,59 @@ export const sourceNodes = async ({
       })
     );
 
-    const data = decode(d.data);
+    const repository = decode(response.data).repository;
+
+    const parentId = createNodeId(`project/${repository.name}`);
+    const readmeId = createNodeId(`project/${repository.name}/readme`);
 
     const nodeData = {
-      description: data.repository.description,
-      languages: data.repository.languages.edges.map(({ node }) => node),
-      name: data.repository.name,
-      readme: data.repository.object.text,
-      url: data.repository.url,
+      description: repository.description,
+      languages: repository.languages.edges.map(({ node }) => node),
+      name: repository.name,
+      url: repository.url,
     };
 
-    const nodeMeta: NodeInput = {
+    const parentNode: NodeInput = {
       children: [],
-      id: createNodeId(`project/${p}`),
+      id: parentId,
       internal: {
-        content: JSON.stringify(nodeData),
         contentDigest: createContentDigest(nodeData),
         type: "project",
       },
       parent: null,
+      readme___NODE: readmeId,
+      ...nodeData,
     };
-    return { ...nodeData, ...nodeMeta };
+
+    const readme = repository.object.text.replace(
+      /!\[(.*?)\]\((.*?)\)/g,
+      (match, alt, img) => {
+        if (img.includes("http")) {
+          return match;
+        }
+        return `![${alt}](https://raw.githubusercontent.com/kawamurakazushi/${repository.name}/master/${img})`;
+      }
+    );
+
+    const readmeNode: NodeInput = {
+      children: [],
+      id: readmeId,
+      internal: {
+        content: readme,
+        contentDigest: createContentDigest(readme),
+        mediaType: `text/markdown`,
+        type: "projectReadme",
+      },
+      parent: parentId,
+    };
+
+    return [parentNode, readmeNode];
   });
 
   return new Promise(async (resolve, _) => {
-    for (const node of await Promise.all(nodes)) {
-      createNode(node);
+    for (const [parentNode, readmeNode] of await Promise.all(nodes)) {
+      createNode(parentNode);
+      createNode(readmeNode);
     }
     resolve();
   });
@@ -123,10 +154,11 @@ export const sourceNodes = async ({
 
 export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
   const { createPage } = actions;
+
   return new Promise((resolve, _) => {
     graphql(`
       {
-        allMarkdownRemark {
+        allMarkdownRemark(filter: { fields: { slug: { ne: null } } }) {
           edges {
             node {
               fields {

@@ -27,7 +27,10 @@ export default BlogsPage;
 
 export const query = graphql`
   query BlogsQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: frontmatter___date }) {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: frontmatter___date }
+      filter: { fields: { slug: { ne: null } } }
+    ) {
       edges {
         node {
           fields {

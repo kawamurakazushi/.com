@@ -1,11 +1,10 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
-import { FaGithub } from "react-icons/fa";
 
 import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";
 
-const IndexPage = memo(() => {
+export default memo(() => {
   const data = useStaticQuery(
     graphql`
       query IndexQuery {
@@ -21,6 +20,7 @@ const IndexPage = memo(() => {
         allMarkdownRemark(
           sort: { order: DESC, fields: frontmatter___date }
           limit: 4
+          filter: { fields: { slug: { ne: null } } }
         ) {
           edges {
             node {
@@ -80,18 +80,8 @@ const IndexPage = memo(() => {
             {node.name}
           </Link>
           <div className="text-xs mt-2">{node.description}</div>
-          {/* <a
-              className="flex ml-2"
-              href={node.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub />
-            </a> */}
         </div>
       ))}
     </Layout>
   );
 });
-
-export default IndexPage;

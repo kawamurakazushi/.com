@@ -54,13 +54,14 @@ exports.__esModule = true;
 var apollo_boost_1 = require("apollo-boost");
 var decoders_1 = require("decoders");
 var gatsby_source_filesystem_1 = require("gatsby-source-filesystem");
-var node_fetch_1 = require("node-fetch");
 var graphql_tag_1 = require("graphql-tag");
 var path = require("path");
 exports.onCreateNode = function (_a) {
     var node = _a.node, getNode = _a.getNode, actions = _a.actions;
     var createNodeField = actions.createNodeField;
-    if (node.internal.type === "MarkdownRemark") {
+    // Create slug only if it is a markdown from File
+    if (node.internal.type === "MarkdownRemark" &&
+        getNode(node.parent).internal.type === "File") {
         var slug = gatsby_source_filesystem_1.createFilePath({ node: node, getNode: getNode, basePath: "pages" });
         createNodeField({
             name: "slug",
@@ -86,12 +87,12 @@ exports.sourceNodes = function (_a) {
                 "figma-sort-it",
                 "vscode-grep",
             ].map(function (p) { return __awaiter(_this, void 0, void 0, function () {
-                var client, d, decode, data, nodeData, nodeMeta;
+                var client, response, decode, repository, parentId, readmeId, nodeData, parentNode, readme, readmeNode;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             client = new apollo_boost_1["default"]({
-                                fetch: node_fetch_1["default"],
+                                fetch: require("node-fetch"),
                                 headers: {
                                     Authorization: "Bearer " + process.env.GITHUB_API_KEY
                                 },
@@ -102,7 +103,7 @@ exports.sourceNodes = function (_a) {
                                     variables: { name: p }
                                 })];
                         case 1:
-                            d = _a.sent();
+                            response = _a.sent();
                             decode = decoders_1.guard(decoders_1.object({
                                 repository: decoders_1.object({
                                     description: decoders_1.string,
@@ -114,46 +115,61 @@ exports.sourceNodes = function (_a) {
                                     url: decoders_1.string
                                 })
                             }));
-                            data = decode(d.data);
+                            repository = decode(response.data).repository;
+                            parentId = createNodeId("project/" + repository.name);
+                            readmeId = createNodeId("project/" + repository.name + "/readme");
                             nodeData = {
-                                description: data.repository.description,
-                                languages: data.repository.languages.edges.map(function (_a) {
+                                description: repository.description,
+                                languages: repository.languages.edges.map(function (_a) {
                                     var node = _a.node;
                                     return node;
                                 }),
-                                name: data.repository.name,
-                                readme: data.repository.object.text,
-                                url: data.repository.url
+                                name: repository.name,
+                                url: repository.url
                             };
-                            nodeMeta = {
-                                children: [],
-                                id: createNodeId("project/" + p),
-                                internal: {
-                                    content: JSON.stringify(nodeData),
+                            parentNode = __assign({ children: [], id: parentId, internal: {
                                     contentDigest: createContentDigest(nodeData),
                                     type: "project"
+                                }, parent: null, readme___NODE: readmeId }, nodeData);
+                            readme = repository.object.text.replace(/!\[(.*?)\]\((.*?)\)/g, function (match, alt, img) {
+                                // console.log(img);
+                                if (img.includes("http")) {
+                                    return match;
+                                }
+                                return "![" + alt + "](https://raw.githubusercontent.com/kawamurakazushi/" + repository.name + "/master/" + img + ")";
+                            });
+                            console.log(readme);
+                            readmeNode = {
+                                children: [],
+                                id: readmeId,
+                                internal: {
+                                    content: readme,
+                                    contentDigest: createContentDigest(readme),
+                                    mediaType: "text/markdown",
+                                    type: "projectReadme"
                                 },
-                                parent: null
+                                parent: parentId
                             };
-                            return [2 /*return*/, __assign({}, nodeData, nodeMeta)];
+                            return [2 /*return*/, [parentNode, readmeNode]];
                     }
                 });
             }); });
             return [2 /*return*/, new Promise(function (resolve, _) { return __awaiter(_this, void 0, void 0, function () {
-                    var _i, _a, node;
-                    return __generator(this, function (_b) {
-                        switch (_b.label) {
+                    var _i, _a, _b, parentNode, readmeNode;
+                    return __generator(this, function (_c) {
+                        switch (_c.label) {
                             case 0:
                                 _i = 0;
                                 return [4 /*yield*/, Promise.all(nodes)];
                             case 1:
-                                _a = _b.sent();
-                                _b.label = 2;
+                                _a = _c.sent();
+                                _c.label = 2;
                             case 2:
                                 if (!(_i < _a.length)) return [3 /*break*/, 4];
-                                node = _a[_i];
-                                createNode(node);
-                                _b.label = 3;
+                                _b = _a[_i], parentNode = _b[0], readmeNode = _b[1];
+                                createNode(parentNode);
+                                createNode(readmeNode);
+                                _c.label = 3;
                             case 3:
                                 _i++;
                                 return [3 /*break*/, 2];
@@ -170,7 +186,7 @@ exports.createPages = function (_a) {
     var graphql = _a.graphql, actions = _a.actions;
     var createPage = actions.createPage;
     return new Promise(function (resolve, _) {
-        graphql("\n      {\n        allMarkdownRemark {\n          edges {\n            node {\n              fields {\n                slug\n              }\n            }\n          }\n        }\n        allProject {\n          edges {\n            node {\n              id\n              name\n            }\n          }\n        }\n      }\n    ").then(function (result) {
+        graphql("\n      {\n        allMarkdownRemark(filter: { fields: { slug: { ne: null } } }) {\n          edges {\n            node {\n              fields {\n                slug\n              }\n            }\n          }\n        }\n        allProject {\n          edges {\n            node {\n              id\n              name\n            }\n          }\n        }\n      }\n    ").then(function (result) {
             var decode = decoders_1.guard(decoders_1.object({
                 allMarkdownRemark: decoders_1.object({
                     edges: decoders_1.array(decoders_1.object({ node: decoders_1.object({ fields: decoders_1.object({ slug: decoders_1.string }) }) }))
