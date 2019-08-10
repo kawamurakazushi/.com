@@ -24,8 +24,7 @@ interface Props extends ReplaceComponentRendererArgs {
   slug: string;
 }
 
-export default memo((props: Props) => {
-  const { data } = props;
+export default memo(({ data }: Props) => {
   const post = data.markdownRemark;
   return (
     <Layout>

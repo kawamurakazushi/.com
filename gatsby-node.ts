@@ -1,3 +1,5 @@
+import ApolloClient from "apollo-boost";
+import { array, guard, object, string } from "decoders";
 import {
   CreateNodeArgs,
   CreatePagesArgs,
@@ -5,9 +7,9 @@ import {
   SourceNodesArgs,
 } from "gatsby";
 import { createFilePath } from "gatsby-source-filesystem";
-import nodeFetch from "node-fetch";
+import fetch from "node-fetch";
+import gql from "graphql-tag";
 import * as path from "path";
-import { guard, number, object, string, array } from "decoders";
 
 export const onCreateNode = ({ node, getNode, actions }: CreateNodeArgs) => {
   const { createNodeField } = actions;
@@ -37,27 +39,77 @@ export const sourceNodes = async ({
     "figma-sort-it",
     "vscode-grep",
   ].map(async p => {
-    const d = await (await nodeFetch(
-      `https://api.github.com/repos/kawamurakazushi/${p}`
-    )).json();
+    const client = new ApolloClient({
+      fetch,
+      headers: {
+        Authorization: "Bearer 3f638977f156ed4c4181b75d1ac1649d91e181dc",
+      },
+      uri: "https://api.github.com/graphql",
+    });
 
-    const data = {
-      description: d.description,
-      name: p,
-      url: `https://github.com/kawamurakazushi/${p}`,
+    const d = await client.query({
+      query: gql`
+        query Repository($name: String!) {
+          repository(owner: "kawamurakazushi", name: $name) {
+            name
+            description
+            url
+            object(expression: "master:README.md") {
+              ... on Blob {
+                text
+              }
+            }
+            languages(first: 5) {
+              edges {
+                node {
+                  name
+                  color
+                }
+              }
+            }
+          }
+        }
+      `,
+      variables: { name: p },
+    });
+
+    const decode = guard(
+      object({
+        repository: object({
+          description: string,
+          languages: object({
+            edges: array(
+              object({ node: object({ name: string, color: string }) })
+            ),
+          }),
+          name: string,
+          object: object({ text: string }),
+          url: string,
+        }),
+      })
+    );
+
+    const data = decode(d.data);
+
+    const nodeData = {
+      description: data.repository.description,
+      languages: data.repository.languages.edges.map(({ node }) => node),
+      name: data.repository.name,
+      readme: data.repository.object.text,
+      url: data.repository.url,
     };
 
     const nodeMeta: NodeInput = {
       children: [],
       id: createNodeId(`project/${p}`),
       internal: {
-        content: JSON.stringify(data),
-        contentDigest: createContentDigest(data),
+        content: JSON.stringify(nodeData),
+        contentDigest: createContentDigest(nodeData),
         type: "project",
       },
       parent: null,
     };
-    return { ...data, ...nodeMeta };
+    return { ...nodeData, ...nodeMeta };
   });
 
   return new Promise(async (resolve, _) => {
@@ -85,9 +137,8 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
         allProject {
           edges {
             node {
+              id
               name
-              url
-              description
             }
           }
         }
@@ -104,9 +155,8 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
             edges: array(
               object({
                 node: object({
-                  description: string,
+                  id: string,
                   name: string,
-                  url: string,
                 }),
               })
             ),
@@ -129,7 +179,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
         createPage({
           component: path.resolve(`./src/templates/project.tsx`),
           context: {
-            // id: node.id,
+            id: node.id,
           },
           path: node.name,
         });

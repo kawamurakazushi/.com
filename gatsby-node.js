@@ -1,4 +1,8 @@
 "use strict";
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -47,10 +51,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 exports.__esModule = true;
+var apollo_boost_1 = require("apollo-boost");
+var decoders_1 = require("decoders");
 var gatsby_source_filesystem_1 = require("gatsby-source-filesystem");
 var node_fetch_1 = require("node-fetch");
+var graphql_tag_1 = require("graphql-tag");
 var path = require("path");
-var decoders_1 = require("decoders");
 exports.onCreateNode = function (_a) {
     var node = _a.node, getNode = _a.getNode, actions = _a.actions;
     var createNodeField = actions.createNodeField;
@@ -79,29 +85,56 @@ exports.sourceNodes = function (_a) {
                 "figma-sort-it",
                 "vscode-grep",
             ].map(function (p) { return __awaiter(_this, void 0, void 0, function () {
-                var d, data, nodeMeta;
+                var client, d, decode, data, nodeData, nodeMeta;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, node_fetch_1["default"]("https://api.github.com/repos/kawamurakazushi/" + p)];
-                        case 1: return [4 /*yield*/, (_a.sent()).json()];
-                        case 2:
+                        case 0:
+                            client = new apollo_boost_1["default"]({
+                                fetch: node_fetch_1["default"],
+                                headers: {
+                                    Authorization: "Bearer 3f638977f156ed4c4181b75d1ac1649d91e181dc"
+                                },
+                                uri: "https://api.github.com/graphql"
+                            });
+                            return [4 /*yield*/, client.query({
+                                    query: graphql_tag_1["default"](templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        query Repository($name: String!) {\n          repository(owner: \"kawamurakazushi\", name: $name) {\n            name\n            description\n            url\n            object(expression: \"master:README.md\") {\n              ... on Blob {\n                text\n              }\n            }\n            languages(first: 5) {\n              edges {\n                node {\n                  name\n                  color\n                }\n              }\n            }\n          }\n        }\n      "], ["\n        query Repository($name: String!) {\n          repository(owner: \"kawamurakazushi\", name: $name) {\n            name\n            description\n            url\n            object(expression: \"master:README.md\") {\n              ... on Blob {\n                text\n              }\n            }\n            languages(first: 5) {\n              edges {\n                node {\n                  name\n                  color\n                }\n              }\n            }\n          }\n        }\n      "]))),
+                                    variables: { name: p }
+                                })];
+                        case 1:
                             d = _a.sent();
-                            data = {
-                                description: d.description,
-                                name: p,
-                                url: "https://github.com/kawamurakazushi/" + p
+                            decode = decoders_1.guard(decoders_1.object({
+                                repository: decoders_1.object({
+                                    description: decoders_1.string,
+                                    languages: decoders_1.object({
+                                        edges: decoders_1.array(decoders_1.object({ node: decoders_1.object({ name: decoders_1.string, color: decoders_1.string }) }))
+                                    }),
+                                    name: decoders_1.string,
+                                    object: decoders_1.object({ text: decoders_1.string }),
+                                    url: decoders_1.string
+                                })
+                            }));
+                            data = decode(d.data);
+                            nodeData = {
+                                description: data.repository.description,
+                                languages: data.repository.languages.edges.map(function (_a) {
+                                    var node = _a.node;
+                                    return node;
+                                }),
+                                name: data.repository.name,
+                                readme: data.repository.object.text,
+                                url: data.repository.url
                             };
                             nodeMeta = {
                                 children: [],
                                 id: createNodeId("project/" + p),
                                 internal: {
-                                    content: JSON.stringify(data),
-                                    contentDigest: createContentDigest(data),
+                                    content: JSON.stringify(nodeData),
+                                    contentDigest: createContentDigest(nodeData),
                                     type: "project"
                                 },
                                 parent: null
                             };
-                            return [2 /*return*/, __assign({}, data, nodeMeta)];
+                            return [2 /*return*/, __assign({}, nodeData, nodeMeta)];
                     }
                 });
             }); });
@@ -135,8 +168,8 @@ exports.sourceNodes = function (_a) {
 exports.createPages = function (_a) {
     var graphql = _a.graphql, actions = _a.actions;
     var createPage = actions.createPage;
-    return new Promise(function (resolve, reject) {
-        graphql("\n      {\n        allMarkdownRemark {\n          edges {\n            node {\n              fields {\n                slug\n              }\n            }\n          }\n        }\n        allProject {\n          edges {\n            node {\n              name\n              url\n              description\n            }\n          }\n        }\n      }\n    ").then(function (result) {
+    return new Promise(function (resolve, _) {
+        graphql("\n      {\n        allMarkdownRemark {\n          edges {\n            node {\n              fields {\n                slug\n              }\n            }\n          }\n        }\n        allProject {\n          edges {\n            node {\n              id\n              name\n            }\n          }\n        }\n      }\n    ").then(function (result) {
             var decode = decoders_1.guard(decoders_1.object({
                 allMarkdownRemark: decoders_1.object({
                     edges: decoders_1.array(decoders_1.object({ node: decoders_1.object({ fields: decoders_1.object({ slug: decoders_1.string }) }) }))
@@ -144,9 +177,8 @@ exports.createPages = function (_a) {
                 allProject: decoders_1.object({
                     edges: decoders_1.array(decoders_1.object({
                         node: decoders_1.object({
-                            description: decoders_1.string,
-                            name: decoders_1.string,
-                            url: decoders_1.string
+                            id: decoders_1.string,
+                            name: decoders_1.string
                         })
                     }))
                 })
@@ -167,7 +199,7 @@ exports.createPages = function (_a) {
                 createPage({
                     component: path.resolve("./src/templates/project.tsx"),
                     context: {
-                    // id: node.id,
+                        id: node.id
                     },
                     path: node.name
                 });
@@ -176,3 +208,4 @@ exports.createPages = function (_a) {
         });
     });
 };
+var templateObject_1;

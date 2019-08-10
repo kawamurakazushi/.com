@@ -1,11 +1,53 @@
-import { graphql, Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 import { FaGithub } from "react-icons/fa";
 
 import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";
 
-const IndexPage = memo(({ data }) => {
+const IndexPage = memo(() => {
+  const data = useStaticQuery(
+    graphql`
+      query IndexQuery {
+        allProject {
+          edges {
+            node {
+              name
+              url
+              description
+            }
+          }
+        }
+        allMarkdownRemark(
+          sort: { order: DESC, fields: frontmatter___date }
+          limit: 4
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                date(formatString: "YYYY.MM.DD")
+                tags
+                category
+                thumbnail {
+                  childImageSharp {
+                    sizes(maxWidth: 600) {
+                      src
+                    }
+                  }
+                }
+              }
+              excerpt(format: PLAIN)
+            }
+          }
+        }
+      }
+    `
+  );
+
   return (
     <Layout>
       <div className="flex flex-col">
@@ -53,43 +95,3 @@ const IndexPage = memo(({ data }) => {
 });
 
 export default IndexPage;
-
-export const query = graphql`
-  query IndexQuery {
-    allProject {
-      edges {
-        node {
-          name
-          url
-          description
-        }
-      }
-    }
-    allMarkdownRemark(
-      sort: { order: DESC, fields: frontmatter___date }
-      limit: 4
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            date(formatString: "YYYY.MM.DD")
-            tags
-            category
-            thumbnail {
-              childImageSharp {
-                sizes(maxWidth: 600) {
-                  src
-                }
-              }
-            }
-          }
-          excerpt(format: PLAIN)
-        }
-      }
-    }
-  }
-`;
