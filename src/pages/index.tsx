@@ -74,7 +74,7 @@ export default memo(() => {
       {data.allProject.edges.map(({ node }) => (
         <div key={node.id} className="mb-5">
           <Link
-            to={`/${node.name}`}
+            to={`/projects/${node.name}`}
             className="text-l font-medium hover:bg-black hover:text-white"
           >
             {node.name}

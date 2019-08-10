@@ -39,7 +39,7 @@ export default memo(({ data }: Props) => {
             </div>
           )}
           <div
-            className="post"
+            className="remark"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
         </div>

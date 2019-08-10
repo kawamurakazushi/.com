@@ -214,7 +214,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
           context: {
             id: node.id,
           },
-          path: node.name,
+          path: `projects/${node.name}`,
         });
       });
 

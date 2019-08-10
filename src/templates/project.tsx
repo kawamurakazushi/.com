@@ -23,7 +23,7 @@ export default memo(({ data }: Props) => {
     <Layout>
       <div>
         <div
-          className="post"
+          className="remark"
           dangerouslySetInnerHTML={{
             __html: data.project.readme.childMarkdownRemark.html,
           }}
