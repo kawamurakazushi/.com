@@ -1,3 +1,4 @@
+import { guard, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 
@@ -5,37 +6,33 @@ import Layout from "../components/layout";
 import { GithubIcon } from "../icons/github";
 import { LinkIcon } from "../icons/link";
 
-interface Props extends ReplaceComponentRendererArgs {
-  data: {
-    project: {
-      url: string;
-      homepageUrl: string;
-      name: string;
-      readme: {
-        childMarkdownRemark: {
-          html: string;
-        };
-      };
-    };
-  };
-}
+const decoder = object({
+  project: object({
+    homepageUrl: string,
+    name: string,
+    readme: object({
+      childMarkdownRemark: object({
+        html: string,
+      }),
+    }),
+    url: string,
+  }),
+});
 
-export default memo(({ data }: Props) => {
+export default memo(({ data }: ReplaceComponentRendererArgs) => {
+  const project = guard(decoder)(data).project;
   return (
     <Layout>
       <div>
         <div className="font-light text-gray-400 flex text-xs mb-2">
           <a
-            href={data.project.homepageUrl}
+            href={project.homepageUrl}
             className="mr-3 flex items-center hover:text-black"
           >
             <LinkIcon className="mr-1" size="18" />
             <span>Homepage</span>
           </a>
-          <a
-            className="flex items-center hover:text-black"
-            href={data.project.url}
-          >
+          <a className="flex items-center hover:text-black" href={project.url}>
             <GithubIcon className="mr-1" size="18" />
             <span>View on Github</span>
           </a>
@@ -43,7 +40,7 @@ export default memo(({ data }: Props) => {
         <div
           className="remark"
           dangerouslySetInnerHTML={{
-            __html: data.project.readme.childMarkdownRemark.html,
+            __html: project.readme.childMarkdownRemark.html,
           }}
         />
       </div>

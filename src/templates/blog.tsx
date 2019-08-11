@@ -1,41 +1,47 @@
+import { guard, map, nullable, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 
 import Layout from "../components/layout";
 
-interface Props extends ReplaceComponentRendererArgs {
-  data: {
-    markdownRemark: {
-      frontmatter: {
-        title: string;
-        date: string;
-        thumbnail: {
-          childImageSharp: {
-            sizes: {
-              src: string;
-            };
-          };
-        } | null;
-      };
-      rawMarkdownBody: string;
-      html: string;
+const decoder = map(
+  object({
+    markdownRemark: object({
+      frontmatter: object({
+        date: string,
+        thumbnail: nullable(
+          object({
+            childImageSharp: object({ sizes: object({ src: string }) }),
+          })
+        ),
+        title: string,
+      }),
+      html: string,
+    }),
+  }),
+  ({ markdownRemark }) => {
+    // FIXME: decoders bug?
+    const thumbnail = markdownRemark.frontmatter.thumbnail;
+    return {
+      date: markdownRemark.frontmatter.date,
+      html: markdownRemark.html,
+      thumbnail: thumbnail ? thumbnail.childImageSharp.sizes.src : null,
+      title: markdownRemark.frontmatter.title,
     };
-  };
-  slug: string;
-}
+  }
+);
 
-export default memo(({ data }: Props) => {
-  const post = data.markdownRemark;
+export default memo(({ data }: ReplaceComponentRendererArgs) => {
+  const post = guard(decoder)(data);
   return (
     <Layout>
       <div className="flex flex-col">
         <div className="mt-1 mb-4">
-          <h1 className="text-black text-xlg my-5">{post.frontmatter.title}</h1>
-          <div className="w-full h-px bg-gray-100 my-2" />
-          <p className="text-gray-600 text-sm my-2">{post.frontmatter.date}</p>
-          {post.frontmatter.thumbnail && (
+          <h1 className="font-bold text-xl mb-2 md:text-5xl">{post.title}</h1>
+          <p className="text-gray-600 text-sm mb-2">{post.date}</p>
+          {post.thumbnail && (
             <div>
-              <img src={post.frontmatter.thumbnail.childImageSharp.sizes.src} />
+              <img src={post.thumbnail} />
             </div>
           )}
           <div
@@ -52,7 +58,6 @@ export const query = graphql`
   query BlogPostQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
-      rawMarkdownBody
       frontmatter {
         title
         date(formatString: "YYYY.MM.DD")
