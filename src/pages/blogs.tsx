@@ -16,6 +16,7 @@ const BlogsPage = memo(({ data }) => {
             title={node.frontmatter.title}
             date={node.frontmatter.date}
             tags={node.frontmatter.tags}
+            excerpt=""
           />
         ))}
       </div>
@@ -49,7 +50,7 @@ export const query = graphql`
               }
             }
           }
-          excerpt
+          excerpt(format: PLAIN)
         }
       }
     }

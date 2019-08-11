@@ -98,9 +98,9 @@ export default memo(() => {
         <div className="my-5 flex justify-center">
           <Link
             to="/blogs"
-            className="text-center px-2 border-green-900 border-solid border-b text-green-900"
+            className="text-center px-8 py-1 border-solid border border-black hover:bg-black hover:text-white "
           >
-            MORE
+            See More
           </Link>
         </div>
       </div>

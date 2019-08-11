@@ -7,7 +7,7 @@ const Header = memo(() => (
   <div className="flex justify-center items-center px-8 py-6 w-full bg-white">
     <div className="flex-1">
       <Link to="/" className="no-underline">
-        <img className="w-10 h-10 rounded-full" src={logo} />
+        <img className="w-8 h-8 rounded-full" src={logo} />
       </Link>
     </div>
   </div>

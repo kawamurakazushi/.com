@@ -5,9 +5,6 @@ import Layout from "../components/layout";
 import { GithubIcon } from "../icons/github";
 import { LinkIcon } from "../icons/link";
 
-// TODO Create decoder
-const decode = null;
-
 interface Props extends ReplaceComponentRendererArgs {
   data: {
     project: {
