@@ -1,19 +1,22 @@
+import { array, guard, object, string } from "decoders";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 
 import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";
 
-export default memo(() => {
+const useIndexQuery = () => {
   const data = useStaticQuery(
     graphql`
       query IndexQuery {
         allProject {
           edges {
             node {
+              id
               name
               url
               description
+              topics
             }
           }
         }
@@ -32,13 +35,6 @@ export default memo(() => {
                 date(formatString: "YYYY.MM.DD")
                 tags
                 category
-                thumbnail {
-                  childImageSharp {
-                    sizes(maxWidth: 600) {
-                      src
-                    }
-                  }
-                }
               }
               excerpt(format: PLAIN)
             }
@@ -47,6 +43,44 @@ export default memo(() => {
       }
     `
   );
+
+  const decoder = object({
+    allMarkdownRemark: object({
+      edges: array(
+        object({
+          node: object({
+            excerpt: string,
+            fields: object({ slug: string }),
+            frontmatter: object({
+              category: string,
+              date: string,
+              tags: array(string),
+              title: string,
+            }),
+          }),
+        })
+      ),
+    }),
+    allProject: object({
+      edges: array(
+        object({
+          node: object({
+            description: string,
+            id: string,
+            name: string,
+            topics: array(string),
+            url: string,
+          }),
+        })
+      ),
+    }),
+  });
+
+  return guard(decoder)(data);
+};
+
+export default memo(() => {
+  const data = useIndexQuery();
 
   return (
     <Layout>
@@ -79,7 +113,14 @@ export default memo(() => {
           >
             {node.name}
           </Link>
-          <div className="text-xs mt-2">{node.description}</div>
+          <div className="text-xs mt-2 mb-1">{node.description}</div>
+          <div className="text-xs flex">
+            {node.topics.map(topic => (
+              <div key={topic} className="mr-1">
+                #{topic}
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </Layout>

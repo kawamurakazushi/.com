@@ -16,7 +16,7 @@ export const onCreateNode = ({ node, getNode, actions }: CreateNodeArgs) => {
   // Create slug only if it is a markdown from File
   if (
     node.internal.type === "MarkdownRemark" &&
-    getNode(node.parent).internal.type === `File`
+    getNode(node.parent).internal.type === "File"
   ) {
     const slug = createFilePath({ node, getNode, basePath: "pages" });
     createNodeField({
@@ -59,6 +59,16 @@ export const sourceNodes = async ({
             name
             description
             url
+            homepageUrl
+            repositoryTopics(first: 5) {
+              edges {
+                node {
+                  topic {
+                    name
+                  }
+                }
+              }
+            }
             object(expression: "master:README.md") {
               ... on Blob {
                 text
@@ -82,6 +92,7 @@ export const sourceNodes = async ({
       object({
         repository: object({
           description: string,
+          homepageUrl: string,
           languages: object({
             edges: array(
               object({ node: object({ name: string, color: string }) })
@@ -89,6 +100,11 @@ export const sourceNodes = async ({
           }),
           name: string,
           object: object({ text: string }),
+          repositoryTopics: object({
+            edges: array(
+              object({ node: object({ topic: object({ name: string }) }) })
+            ),
+          }),
           url: string,
         }),
       })
@@ -101,8 +117,12 @@ export const sourceNodes = async ({
 
     const nodeData = {
       description: repository.description,
+      homepageUrl: repository.homepageUrl,
       languages: repository.languages.edges.map(({ node }) => node),
       name: repository.name,
+      topics: repository.repositoryTopics.edges.map(
+        ({ node }) => node.topic.name
+      ),
       url: repository.url,
     };
 
