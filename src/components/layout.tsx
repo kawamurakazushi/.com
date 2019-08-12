@@ -1,5 +1,4 @@
 import { guard, object, string } from "decoders";
-import { graphql, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 import Helmet from "react-helmet";
 
@@ -7,46 +6,34 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 
 import "highlight.js/styles/monokai-sublime.css";
-import icon from "../../assets/images/apple-touch-icon-180x180.png";
-import favicon from "../../assets/images/favicon.ico";
-import appleIcon from "../../assets/images/icon-192x192.png";
+import icon from "../../static/images/apple-touch-icon-180x180.png";
+import favicon from "../../static/images/favicon.ico";
+import appleIcon from "../../static/images/icon-192x192.png";
 import "../tailwind.css";
-
-const decoder = object({
-  site: object({
-    siteMetadata: object({
-      title: string,
-    }),
-  }),
-});
 
 interface Props {
   children: React.ReactNode;
 }
 
 const Layout = memo(({ children }: Props) => {
-  const data = useStaticQuery(
-    graphql`
-      query LayoutQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  );
-
-  const title = guard(decoder)(data).site.siteMetadata.title;
-
   return (
-    <div>
+    <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{title}</title>
+        <title>Kazushi Kawamura</title>
         <link rel="shortcut icon" href={favicon} />
         <link rel="apple-touch-icon" type="image/png" href={appleIcon} />
         <link rel="icon" type="image/png" href={icon} />
+        <meta property="og:title" content="Kazushi Kawamura" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://kawamurakazushi.com" />
+        <meta
+          property="og:image"
+          content="https://kawamurakazushi.com/images/og.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:description" content="Hi, I'm Kazushi Kawamura." />
       </Helmet>
       <div className="flex flex-col min-h-screen mx-auto max-w-main">
         <Header />
@@ -57,7 +44,7 @@ const Layout = memo(({ children }: Props) => {
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 });
 

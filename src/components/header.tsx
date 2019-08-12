@@ -1,7 +1,7 @@
 import Link from "gatsby-link";
 import React, { memo } from "react";
 
-import logo from "../../assets/images/logo.png";
+import logo from "../../static/images/logo.png";
 
 const Header = memo(() => (
   <div className="flex justify-center items-center px-8 py-6 w-full bg-white">
