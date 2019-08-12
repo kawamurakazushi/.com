@@ -20,7 +20,6 @@ const decoder = map(
     }),
   }),
   ({ markdownRemark }) => {
-    // FIXME: decoders bug?
     const thumbnail = markdownRemark.frontmatter.thumbnail;
     return {
       date: markdownRemark.frontmatter.date,

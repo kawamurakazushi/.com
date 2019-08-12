@@ -7,8 +7,8 @@
     "target": "esnext",
     "jsx": "react",
     "lib": ["dom", "es2015", "es2017"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strictNullChecks": true
   },
-  // "exclude": ["./node_modules"],
   "include": ["./src/**/*", "./definitions/*", "./gatsby-*.ts"]
 }
