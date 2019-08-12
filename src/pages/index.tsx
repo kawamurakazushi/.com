@@ -106,13 +106,15 @@ export default memo(() => {
       </div>
       <h2 className="font-bold my-3">PROJECTS</h2>
       {data.allProject.edges.map(({ node }) => (
-        <div key={node.id} className="mb-5">
-          <Link
-            to={`/projects/${node.name}`}
-            className="text-l font-medium hover:bg-black hover:text-white"
-          >
+        <Link
+          to={`/projects/${node.name}`}
+          key={node.id}
+          className="mb-5 block
+          "
+        >
+          <span className="text-l font-medium hover:bg-black hover:text-white">
             {node.name}
-          </Link>
+          </span>
           <div className="text-xs mt-2 mb-1">{node.description}</div>
           <div className="text-xs flex">
             {node.topics.map(topic => (
@@ -121,7 +123,7 @@ export default memo(() => {
               </div>
             ))}
           </div>
-        </div>
+        </Link>
       ))}
     </Layout>
   );
