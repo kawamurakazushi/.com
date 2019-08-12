@@ -37,12 +37,13 @@ export const sourceNodes = async ({
 
   const nodes = [
     "spice-blending-puzzle",
-    "seo-editor",
     "figma-map-maker",
     "figma-walker",
     "figma-format",
     "figma-sort-it",
     "vscode-grep",
+    "seo-editor",
+    "thyme",
   ].map(async p => {
     const client = new ApolloClient({
       fetch: require("node-fetch"),
