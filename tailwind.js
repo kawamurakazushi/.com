@@ -224,7 +224,7 @@ module.exports = {
       "5xl": "64rem",
       "6xl": "72rem",
       full: "100%",
-      main: "720px",
+      main: "780px",
     },
     minHeight: {
       "0": "0",
