@@ -105,6 +105,7 @@ module.exports = {
       wait: "wait",
       text: "text",
       move: "move",
+      help: "help",
       "not-allowed": "not-allowed",
     },
     fill: {

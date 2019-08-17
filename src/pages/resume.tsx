@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import Helmet from "react-helmet";
 
 import { GithubIcon } from "../icons/github";
@@ -10,30 +10,59 @@ const header = "font-semibold text-lg border-b border-black mt-2 mb-2";
 const accent = "font-semibold mt-1";
 const italic = "italic";
 
+const Achievement = ({
+  content,
+  notes,
+}: {
+  content: string;
+  notes?: string;
+}) => {
+  const [hover, setHover] = useState(false);
+  return (
+    <div
+      onMouseOut={() => setHover(false)}
+      onMouseOver={() => setHover(true)}
+      className="relative"
+    >
+      <div className="flex">
+        <div className="font-bold mr-1 text-xs">・</div>
+        <div
+          className={`${
+            notes ? "cursor-help hover:text-gray-700" : ""
+          } text-xs`}
+        >
+          {content}
+        </div>
+      </div>
+      {hover && notes && (
+        <div
+          style={{ width: 250, right: -255 }}
+          className="absolute bg-black top-0 text-white text-xs py-2 px-4 rounded shadow-md"
+        >
+          {notes}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Skills = () => (
   <>
     <div className={`${header}`}>Key Skills</div>
     <div>
       <div className={accent}>Programming Languages</div>
-      <div>
-        Typescript / Javascript / Elm / Go / Ruby / OCaml / Dart / Swift
-      </div>
+      <div>Typescript / Node.js / Elm / Go / Ruby / OCaml / Dart / Swift</div>
       <div className={accent}>Frameworks and Libraries</div>
       <div>
-        <span style={{ width: 74 }} className="inline-block italic">
-          Frontend -
-        </span>
-        React / Redux / Jest / Gatsbyjs / webpack / tailwindcss / TEA / Flutter
+        React / Redux / TEA / Gatsbyjs / webpack / tailwindcss / Flutter /
+        Electron / Lerna
       </div>
-      <div>
-        <span style={{ width: 74 }} className=" inline-block italic">
-          Backend -
-        </span>
-        Ruby on Rails / Firebase (Firestore, Functions, Authentication) /
-        GraphQL / REST / SQL
-      </div>
+      <div>Ruby on Rails / GraphQL / REST / SQL</div>
       <div className={accent}>Tools</div>
-      <div>Github / JIRA / CircleCI / Netlify / Vim / Figma</div>
+      <div>
+        Github / JIRA / Firebase Firestore, Functions, Authentication / CircleCI
+        / Netlify / Vim / Figma
+      </div>
     </div>
   </>
 );
@@ -50,18 +79,18 @@ const WorkHistory = () => (
         <div className={`${italic}`}>Full-Stack Web Developer</div>
         <div className={`${italic}`}>Apr 2017 - Present</div>
       </div>
-      <div className="my-2">
+      <div className="my-1">
+        <Achievement content="In charge of frontend development in a team of 4 global engineers, and developed 4 co-related web application with varied technologies including React, Redux, RxJs, Redux loop, Elm." />
+        <Achievement content="Contributed to marketing, but automating repetitive task on Salesforce, and by developing keyword count editor desktop app for writing SEO efficient articles." />
+        <Achievement
+          content="Interviewed over 80 students from Vietnam, invited 6 students as a
+          intern, and hired 2 of them as a full-time employee after their graduation."
+        />
         <div>
-          - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </div>
-        <div>
-          - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </div>
-        <div>
-          - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <Achievement
+            content="Trained over 20 interns, especially for frontend developers, including HTML, CSS, Javascript, and React."
+            notes="This includes creating "
+          />
         </div>
       </div>
     </div>
@@ -74,10 +103,20 @@ const WorkHistory = () => (
         <div className={`${italic}`}>iOS Developer / Web Developer Intern</div>
         <div className={`${italic}`}>Sep 2016 - Mar 2017</div>
       </div>
-      <div className="my-2">
-        <div>- Data aggregating using Redash and SQL.</div>
-        <div>- Landing Page Generator</div>
-        <div>- API Development using Java, and PHP.</div>
+      <div className="my-1">
+        <Achievement
+          content="Proposed and developed a Landing Page generator, and
+          dramatically reduce development time from 1-2 weeks to 30 minutes."
+        />
+        <Achievement content="Complex data aggregating using Redash and SQL." />
+        <Achievement
+          content="Implemented a timeline of new user's post, doubled the number of likes, and reduce exit rate of new users."
+          notes="API Development using Java / Stream API. iOS Development using Objective-C and cocoascript"
+        />
+        <Achievement
+          content="Build a dynamic OG image depending on user information using
+          ImageMajick and PHP."
+        />
       </div>
     </div>
     <div>
@@ -89,12 +128,17 @@ const WorkHistory = () => (
         <div className={`${italic}`}>iOS Developer / Web Developer Intern</div>
         <div className={`${italic}`}>Sep 2015 - Oct 2016</div>
       </div>
-      <div className="my-2">
-        <div>- Developed an iOS Application from scratch using Swift.</div>
-        <div>- Redesign the old API using RESTful API.</div>
-        <div>
-          - Created a provider system but scraping RSS feeds from other media.
-        </div>
+      <div className="my-1">
+        <Achievement
+          content="Renewed an iOS Application from scratch with Swift, with RxSwift
+          and MVVM Architecture."
+        />
+        <Achievement content="Refactored and Redesigned old API using RESTful API." />
+        <Achievement
+          content="Improved development environment, by introducing git flow, and by
+          developing a slack bot to deploy a specific branch to staging servers."
+        />
+        <Achievement content="Created a provider system but scraping RSS feeds from other media." />
       </div>
     </div>
   </>
@@ -202,7 +246,7 @@ export default memo(() => (
     <div style={{}} className="max-w-main text-sm m-auto px-3 py-2">
       <div>
         <div className="text-5xl">
-          Kazushi <span className="font-medium">Kawamura</span>
+          Kazushi <span className="font-semibold">Kawamura</span>
         </div>
         <div className={`${italic}`}>Software Developer</div>
         <div>
