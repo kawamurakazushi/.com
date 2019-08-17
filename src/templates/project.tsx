@@ -1,5 +1,6 @@
 import { guard, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
+import { Helmet } from "react-helmet";
 import React, { memo } from "react";
 
 import Layout from "../components/layout";
@@ -8,6 +9,7 @@ import { LinkIcon } from "../icons/link";
 
 const decoder = object({
   project: object({
+    description: string,
     homepageUrl: string,
     name: string,
     readme: object({
@@ -23,6 +25,11 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
   const project = guard(decoder)(data).project;
   return (
     <Layout>
+      <Helmet>
+        <title>{project.name} | Kazushi Kawamura</title>
+        <meta property="og:title" content={project.name} />
+        <meta property="og:description" content={project.description} />
+      </Helmet>
       <div>
         <div className="font-light text-gray-400 flex text-xs mb-2">
           <a

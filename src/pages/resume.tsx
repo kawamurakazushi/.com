@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Helmet from "react-helmet";
 
 import { GithubIcon } from "../icons/github";
 import { LinkIcon } from "../icons/link";
@@ -193,31 +194,37 @@ const Projects = () => (
 );
 
 export default memo(() => (
-  <div style={{}} className="max-w-main text-sm m-auto px-3 py-2">
-    <div>
-      <div className="text-5xl">
-        Kazushi <span className="font-medium">Kawamura</span>
-      </div>
-      <div className={`${italic}`}>Software Developer</div>
+  <>
+    <Helmet>
+      <title>Resume | Kazushi Kawamura</title>
+      <meta property="og:title" content="Resume" />
+    </Helmet>
+    <div style={{}} className="max-w-main text-sm m-auto px-3 py-2">
       <div>
-        Full-stack web developer, technology agnostic, and functional
-        programming evangelist. I love being committed to a project, and am used
-        to interfacing with the other teams, and easing the communication with
-        the other developers. I'm also an Agile enthusiast, currently working as
-        a part time scrum master.
+        <div className="text-5xl">
+          Kazushi <span className="font-medium">Kawamura</span>
+        </div>
+        <div className={`${italic}`}>Software Developer</div>
+        <div>
+          Full-stack web developer, technology agnostic, and functional
+          programming evangelist. I love being committed to a project, and am
+          used to interfacing with the other teams, and easing the communication
+          with the other developers. I'm also an Agile enthusiast, currently
+          working as a part time scrum master.
+        </div>
       </div>
+      <main className="flex mt-2 flex-row">
+        <section className="mr-3 w-2/3">
+          <Skills />
+          <WorkHistory />
+        </section>
+        <section className="ml-1 w-1/3">
+          <Links />
+          <Education />
+          <Projects />
+          <AdditionalInformation />
+        </section>
+      </main>
     </div>
-    <main className="flex mt-2 flex-row">
-      <section className="mr-3 w-2/3">
-        <Skills />
-        <WorkHistory />
-      </section>
-      <section className="ml-1 w-1/3">
-        <Links />
-        <Education />
-        <Projects />
-        <AdditionalInformation />
-      </section>
-    </main>
-  </div>
+  </>
 ));

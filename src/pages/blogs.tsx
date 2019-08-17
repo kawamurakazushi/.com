@@ -1,5 +1,6 @@
 import { array, guard, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
+import { Helmet } from "react-helmet";
 import React, { memo } from "react";
 
 import ArticleItem from "../components/articleItem";
@@ -26,6 +27,10 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
   const blogs = guard(decoder)(data);
   return (
     <Layout>
+      <Helmet>
+        <title>Blogs | Kazushi Kawamura</title>
+        <meta property="og:title" content="Blogs" />
+      </Helmet>
       <h2 className="font-thin my-4">BLOG</h2>
       <div className="flex flex-col">
         {blogs.allMarkdownRemark.edges.map(({ node }) => (
