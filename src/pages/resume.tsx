@@ -5,9 +5,11 @@ import { GithubIcon } from "../icons/github";
 import { LinkIcon } from "../icons/link";
 import { LinkedInIcon } from "../icons/linkedin";
 import { MailIcon } from "../icons/mail";
+import { MapIcon } from "../icons/map";
+import { PhoneIcon } from "../icons/phone";
 
-const header = "font-semibold text-lg border-b border-black mt-2 mb-2";
-const accent = "font-semibold mt-1";
+const header = "font-semibold text-base border-b border-black mt-2 mb-1";
+const accent = "font-semibold text-xs mt-1 mb-1";
 const italic = "italic";
 
 const Achievement = ({
@@ -25,7 +27,7 @@ const Achievement = ({
       className="relative"
     >
       <div className="flex">
-        <div className="font-bold mr-1 text-xs">・</div>
+        <div className="font-bold mr-1 text-xs ">・</div>
         <div
           className={`${
             notes ? "cursor-help hover:text-gray-700" : ""
@@ -51,17 +53,26 @@ const Skills = () => (
     <div className={`${header}`}>Key Skills</div>
     <div>
       <div className={accent}>Programming Languages</div>
-      <div>Typescript / Node.js / Elm / Go / Ruby / OCaml / Dart / Swift</div>
-      <div className={accent}>Frameworks and Libraries</div>
-      <div>
-        React / Redux / TEA / Gatsbyjs / webpack / tailwindcss / Flutter /
-        Electron / Lerna
+      <div className="flex">
+        <div className="text-xs">
+          Proficient in Typescript, Node.js, Elm, Ruby
+        </div>
       </div>
-      <div>Ruby on Rails / GraphQL / REST / SQL</div>
+      <div className="flex">
+        <div className="text-xs">
+          Experienced in Go, OCaml, Dart, Swift, PHP
+        </div>
+      </div>
+      <div className={accent}>Frameworks and Libraries</div>
+      <div className="text-xs">
+        React, Redux, TEA, Gatsbyjs, webpack, tailwindcss, Flutter, Electron,
+        Lerna
+      </div>
+      <div className="text-xs">Ruby on Rails, GraphQL, REST, SQL</div>
       <div className={accent}>Tools</div>
-      <div>
-        Github / JIRA / Firebase Firestore, Functions, Authentication / CircleCI
-        / Netlify / Vim / Figma
+      <div className="text-xs">
+        Github, JIRA, AWS (EC2, S3, ELB), Firebase (Firestore, Functions,
+        Authentication), CircleCI, Netlify, Docker, Vim, Figma
       </div>
     </div>
   </>
@@ -69,19 +80,22 @@ const Skills = () => (
 
 const WorkHistory = () => (
   <>
-    <div className={`${header}`}>Work History</div>
+    <div className={header}>Experience</div>
     <div>
       <div className="flex justify-between">
-        <div className={`${accent}`}>Scoville Inc.</div>
-        <div className={`${accent}`}>Tokyo, Japan</div>
+        <div className={accent}>Full Stack Web Developer, Scoville Inc.</div>
+        <div className={accent}>Apr 2017 - Present</div>
       </div>
-      <div className="flex justify-between">
-        <div className={`${italic}`}>Full-Stack Web Developer</div>
-        <div className={`${italic}`}>Apr 2017 - Present</div>
+      <div className="text-xs">
+        en-courage (
+        <a className="" href="https://en-courage.com" target="_blank">
+          https://en-courage.com
+        </a>
+        ) - Student platform for job hunting
       </div>
       <div className="my-1">
         <Achievement content="In charge of frontend development in a team of 4 global engineers, and developed 4 co-related web application with varied technologies including React, Redux, RxJs, Redux loop, Elm." />
-        <Achievement content="Contributed to marketing, but automating repetitive task on Salesforce, and by developing keyword count editor desktop app for writing SEO efficient articles." />
+        <Achievement content="Contributed to marketing, but automating repetitive task on Salesforce, and by developing desktop app editor for writing SEO efficient articles." />
         <Achievement
           content="Interviewed over 80 students from Vietnam, invited 6 students as a
           intern, and hired 2 of them as a full-time employee after their graduation."
@@ -96,12 +110,15 @@ const WorkHistory = () => (
     </div>
     <div>
       <div className="flex justify-between">
-        <div className={`${accent}`}>Retty Inc.</div>
-        <div className={`${accent}`}>Tokyo, Japan</div>
+        <div className={accent}>iOS / Web Developer Intern, Retty Inc.</div>
+        <div className={accent}>Sep 2016 - Mar 2017</div>
       </div>
-      <div className="flex justify-between">
-        <div className={`${italic}`}>iOS Developer / Web Developer Intern</div>
-        <div className={`${italic}`}>Sep 2016 - Mar 2017</div>
+      <div className="text-xs">
+        Retty (
+        <a href="https://retty.me" target="_blank">
+          https://retty.me
+        </a>
+        ) - Restaurant recommendation Application
       </div>
       <div className="my-1">
         <Achievement
@@ -121,12 +138,17 @@ const WorkHistory = () => (
     </div>
     <div>
       <div className="flex justify-between">
-        <div className={`${accent}`}>Donuts Co. Ltd.</div>
-        <div className={`${accent}`}>Tokyo, Japan</div>
+        <div className={`${accent}`}>
+          iOS / Web Developer Intern, Donuts Co. Ltd.
+        </div>
+        <div className={`${accent}`}>Sep 2015 - Oct 2016</div>
       </div>
-      <div className="flex justify-between">
-        <div className={`${italic}`}>iOS Developer / Web Developer Intern</div>
-        <div className={`${italic}`}>Sep 2015 - Oct 2016</div>
+      <div className="text-xs">
+        Howcollect (
+        <a href="https://howcollect.jp" target="_blank">
+          https://howcollect.jp
+        </a>
+        ) - Online media targeting young teenagers
       </div>
       <div className="my-1">
         <Achievement
@@ -147,13 +169,15 @@ const WorkHistory = () => (
 const Education = () => (
   <>
     <div className={`${header}`}>Education</div>
-    <div className="mb-3">
-      <div className={`${accent}`}>Sophia University</div>
-      <div className={``}>Tokyo, Japan</div>
-      <div className={`${italic}`}>
+    <div className="">
+      <div className="flex justify-between">
+        <div className={accent}>Sophia University</div>
+        <div className={accent}>2012 - 2017</div>
+      </div>
+      {/* <div className={`text-xs`}>Tokyo, Japan</div> */}
+      <div className={`text-xs ${italic}`}>
         Bachelor of Information and Communication Science
       </div>
-      <div className={`${italic}`}>2012-2017</div>
       {/* <div className="text-xs">
         Researched about statistics and text mining / First prize university
         Hackathon
@@ -161,11 +185,13 @@ const Education = () => (
     </div>
     <div>
       <div className="flex justify-between">
-        <div className={`${accent}`}>University of North Carolina</div>
+        <div className={accent}>University of North Carolina at Charlotte</div>
+        <div className={accent}>2014 - 2015</div>
       </div>
-      <div className="">Charlotte, USA</div>
-      <div className={`${italic}`}>Concentration in Computer Science</div>
-      <div className={`${italic}`}>2014-2015</div>
+      {/* <div className="">Charlotte, USA</div> */}
+      <div className={`text-xs ${italic}`}>
+        Concentration in Computer Science
+      </div>
     </div>
   </>
 );
@@ -174,8 +200,8 @@ const AdditionalInformation = () => (
   <>
     <div className={`${header}`}>Additional Information</div>
     <div className={accent}>Language</div>
-    <div>Japanese - Native</div>
-    <div>English - Proficient</div>
+    <div className="text-xs">Japanese - Native</div>
+    <div className="text-xs">English - Proficient</div>
     <div className="text-xs">TOEIC 945, TOEFL iBT 92</div>
   </>
 );
@@ -189,6 +215,18 @@ const Links = () => (
     >
       <MailIcon className="mr-1" size="12" />
       me@kawamurakazushi.com
+    </a>
+    <a className="flex items-start text-xs">
+      <div style={{ height: 18 }} className="flex items-center">
+        <MapIcon className="mr-1 text-xs" size="12" />
+      </div>
+      <div className="flex-1">
+        A-ban Hills, Room 201, Nakameguro Meguro-ku Tokyo 153-0061, Japan
+      </div>
+    </a>
+    <a className="flex items-center text-xs">
+      <PhoneIcon className="mr-1" size="12" />
+      <div className="flex-1">(+81)8010550667</div>
     </a>
     <div className={`${accent}`}>Links</div>
     <a
@@ -243,13 +281,13 @@ export default memo(() => (
       <title>Resume | Kazushi Kawamura</title>
       <meta property="og:title" content="Resume" />
     </Helmet>
-    <div style={{}} className="max-w-main text-sm m-auto px-3 py-2">
+    <div className="max-w-main text-sm m-auto px-3 py-2">
       <div>
-        <div className="text-5xl">
+        <div style={{ lineHeight: "60px" }} className="text-5xl">
           Kazushi <span className="font-semibold">Kawamura</span>
         </div>
-        <div className={`${italic}`}>Software Developer</div>
-        <div>
+        <div className={italic}>Software Developer</div>
+        <div className="text-xs">
           Full-stack web developer, technology agnostic, and functional
           programming evangelist. I love being committed to a project, and am
           used to interfacing with the other teams, and easing the communication
@@ -257,14 +295,14 @@ export default memo(() => (
           working as a part time scrum master.
         </div>
       </div>
-      <main className="flex mt-2 flex-row">
+      <main className="flex flex-row">
         <section className="mr-3 w-2/3">
           <Skills />
           <WorkHistory />
+          <Education />
         </section>
         <section className="ml-1 w-1/3">
           <Links />
-          <Education />
           <Projects />
           <AdditionalInformation />
         </section>
