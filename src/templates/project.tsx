@@ -32,13 +32,15 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
       </Helmet>
       <div>
         <div className="font-light text-gray-400 flex text-xs mb-2">
-          <a
-            href={project.homepageUrl}
-            className="mr-3 flex items-center hover:text-black"
-          >
-            <LinkIcon className="mr-1" size="18" />
-            <span>Homepage</span>
-          </a>
+          {project.homepageUrl !== "" && (
+            <a
+              href={project.homepageUrl}
+              className="mr-3 flex items-center hover:text-black"
+            >
+              <LinkIcon className="mr-1" size="18" />
+              <span>Homepage</span>
+            </a>
+          )}
           <a className="flex items-center hover:text-black" href={project.url}>
             <GithubIcon className="mr-1" size="18" />
             <span>View on Github</span>
