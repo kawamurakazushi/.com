@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, ReactNode, useState } from "react";
 import Helmet from "react-helmet";
 
 import { GithubIcon } from "../icons/github";
@@ -12,10 +12,10 @@ const header = "font-semibold text-sm border-b border-black mt-2 mb-1";
 const accent = "font-semibold text-xs mt-1 mb-";
 
 const Achievement = ({
-  content,
+  children,
   notes,
 }: {
-  content: string;
+  children: ReactNode;
   notes?: string;
 }) => {
   const [hover, setHover] = useState(false);
@@ -32,7 +32,7 @@ const Achievement = ({
             notes ? "cursor-help hover:text-gray-700" : ""
           } text-xs`}
         >
-          {content}
+          {children}
         </div>
       </div>
       {hover && notes && (
@@ -94,17 +94,35 @@ const WorkHistory = () => (
       </div>
       <div className="text-xs italic">Full Stack Web Developer</div>
       <div className="my-1">
-        <Achievement content="In charge of frontend development in a team of 4 global engineers, and developed 4 co-related web application with varied technologies including React, Redux, RxJs, Redux loop, Elm." />
-        <Achievement content="Create a website builder targeting restaurant, developed using Go, and React" />
-        <Achievement content="Online Media, developed using Elixir/Phoenix, and Javascript/React" />
-        <Achievement content="Contributed to marketing, but automating repetitive task on Salesforce, and by developing desktop app editor for writing SEO efficient articles." />
-        <Achievement
-          content="Interviewed over 80 students from Vietnam, invited 6 students as a
-          intern, and hired 2 of them as a full-time employee after their graduation."
-        />
-        <div>
-          <Achievement content="Trained over 20 interns, especially for frontend developers, including HTML, CSS, Javascript, and React." />
-        </div>
+        <Achievement>
+          In charge of frontend development in a team of 4 global engineers, and
+          developed 4 co-related web application with varied technologies
+          including <i>React</i>, <i>Redux</i>, <i>RxJs</i>, <i>Redux loop</i>,
+          <i> Elm</i>.
+        </Achievement>
+        <Achievement>
+          Create a website builder targeting restaurant, developed using
+          <i>Go</i>, and
+          <i>React</i>
+        </Achievement>
+        <Achievement>
+          Online Media, developed using <i>Elixir</i>/<i>Phoenix</i>, and
+          <i> Javascript</i>/<i>React</i>
+        </Achievement>
+        <Achievement>
+          Contributed to marketing, but automating repetitive task on
+          Salesforce, and by developing desktop app editor for writing SEO
+          efficient articles.
+        </Achievement>
+        <Achievement>
+          Interviewed over 80 students from Vietnam, invited 6 students as a
+          intern, and hired 2 of them as a full-time employee after their
+          graduation
+        </Achievement>
+        <Achievement>
+          Trained over 20 interns, especially for frontend developers, including
+          HTML, CSS, Javascript, and React.
+        </Achievement>
       </div>
     </div>
     <div>
@@ -118,19 +136,21 @@ const WorkHistory = () => (
       </div>
       <div className="text-xs italic">iOS / Web Developer Intern</div>
       <div className="my-1">
-        <Achievement
-          content="Proposed and developed a Landing Page generator, and
-          dramatically reduce development time from 1-2 weeks to 30 minutes."
-        />
-        <Achievement content="Complex data aggregating using Redash and SQL." />
-        <Achievement
-          content="Implemented a timeline of new user's post, doubled the number of likes, and reduce exit rate of new users."
-          notes="API Development using Java / Stream API. iOS Development using Objective-C and cocoascript"
-        />
-        <Achievement
-          content="Build a dynamic OG image depending on user information using
-          ImageMajick and PHP."
-        />
+        <Achievement>
+          Proposed and developed a Landing Page generator, and dramatically
+          reduce development time from 1-2 weeks to 30 minutes.
+        </Achievement>
+        <Achievement>
+          Complex data aggregating using <i>Redash</i> and <i>SQL</i>.
+        </Achievement>
+        <Achievement>
+          Implemented a timeline of new user's post, doubled the number of
+          likes, and reduce exit rate of new users.
+        </Achievement>
+        <Achievement>
+          Build a dynamic OG image depending on user information using
+          <i> ImageMajick</i> and <i>PHP</i>.
+        </Achievement>
       </div>
     </div>
     <div>
@@ -144,16 +164,21 @@ const WorkHistory = () => (
       </div>
       <div className="text-xs italic">iOS / Web Developer Intern</div>
       <div className="my-1">
-        <Achievement
-          content="Renewed an iOS Application from scratch with Swift, with RxSwift
-          and MVVM Architecture."
-        />
-        <Achievement content="Refactored and Redesigned old API using RESTful API." />
-        <Achievement
-          content="Improved development environment, by introducing git flow, and by
-          developing a slack bot to deploy a specific branch to staging servers."
-        />
-        <Achievement content="Created a provider system but scraping RSS feeds from other media." />
+        <Achievement>
+          Renewed an iOS Application from scratch with <i>Swift</i>, with
+          <i> RxSwift</i> and
+          <i> MVVM Architecture</i>.
+        </Achievement>
+        <Achievement>
+          Refactored and Redesigned old API using <i>RESTful API</i>.
+        </Achievement>
+        <Achievement>
+          Improved development environment, by introducing git flow, and by
+          developing a slack bot to deploy a specific branch to staging servers.
+        </Achievement>
+        <Achievement>
+          Created a provider system but scraping RSS feeds from other media.
+        </Achievement>
       </div>
     </div>
   </>
@@ -171,10 +196,6 @@ const Education = () => (
       <div className="italic text-xs">
         Bachelor of Information and Communication Science
       </div>
-      {/* <div className="text-xs">
-        Researched about statistics and text mining / First prize university
-        Hackathon
-      </div> */}
     </div>
     <div>
       <div className="flex justify-between">
