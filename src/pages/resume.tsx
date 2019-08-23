@@ -8,9 +8,8 @@ import { MailIcon } from "../icons/mail";
 import { MapIcon } from "../icons/map";
 import { PhoneIcon } from "../icons/phone";
 
-const header = "font-semibold text-base border-b border-black mt-2 mb-1";
-const accent = "font-semibold text-xs mt-1 mb-1";
-const italic = "italic";
+const header = "font-semibold text-sm border-b border-black mt-2 mb-1";
+const accent = "font-semibold text-xs mt-1 mb-";
 
 const Achievement = ({
   content,
@@ -50,17 +49,17 @@ const Achievement = ({
 
 const Skills = () => (
   <>
-    <div className={`${header}`}>Key Skills</div>
+    <div className={`${header}`}>Technical Skills</div>
     <div>
       <div className={accent}>Programming Languages</div>
       <div className="flex">
         <div className="text-xs">
-          Proficient in Typescript, Node.js, Elm, Ruby
+          Proficient in Typescript, Node.js, Elm, Go
         </div>
       </div>
       <div className="flex">
         <div className="text-xs">
-          Experienced in Go, OCaml, Dart, Swift, PHP
+          Experienced in Ruby, Dart, OCaml, Elixir, Swift, PHP
         </div>
       </div>
       <div className={accent}>Frameworks and Libraries</div>
@@ -74,6 +73,8 @@ const Skills = () => (
         Github, JIRA, AWS (EC2, S3, ELB), Firebase (Firestore, Functions,
         Authentication), CircleCI, Netlify, Docker, Vim, Figma
       </div>
+      <div className={accent}>Methodology</div>
+      <div className="text-xs">Agile, Scrum, Pair Programming</div>
     </div>
   </>
 );
@@ -83,43 +84,39 @@ const WorkHistory = () => (
     <div className={header}>Experience</div>
     <div>
       <div className="flex justify-between">
-        <div className={accent}>Full Stack Web Developer, Scoville Inc.</div>
+        <div className={accent}>
+          <a target="_blank" href="https://sc0ville.com/index.html?lang=en">
+            Scoville Inc
+          </a>
+          .
+        </div>
         <div className={accent}>Apr 2017 - Present</div>
       </div>
-      <div className="text-xs">
-        en-courage (
-        <a className="" href="https://en-courage.com" target="_blank">
-          https://en-courage.com
-        </a>
-        ) - Student platform for job hunting
-      </div>
+      <div className="text-xs italic">Full Stack Web Developer</div>
       <div className="my-1">
         <Achievement content="In charge of frontend development in a team of 4 global engineers, and developed 4 co-related web application with varied technologies including React, Redux, RxJs, Redux loop, Elm." />
+        <Achievement content="Create a website builder targeting restaurant, developed using Go, and React" />
+        <Achievement content="Online Media, developed using Elixir/Phoenix, and Javascript/React" />
         <Achievement content="Contributed to marketing, but automating repetitive task on Salesforce, and by developing desktop app editor for writing SEO efficient articles." />
         <Achievement
           content="Interviewed over 80 students from Vietnam, invited 6 students as a
           intern, and hired 2 of them as a full-time employee after their graduation."
         />
         <div>
-          <Achievement
-            content="Trained over 20 interns, especially for frontend developers, including HTML, CSS, Javascript, and React."
-            notes="This includes creating "
-          />
+          <Achievement content="Trained over 20 interns, especially for frontend developers, including HTML, CSS, Javascript, and React." />
         </div>
       </div>
     </div>
     <div>
       <div className="flex justify-between">
-        <div className={accent}>iOS / Web Developer Intern, Retty Inc.</div>
+        <div className={accent}>
+          <a target="_blank" href="https://retty.me">
+            Retty Inc.
+          </a>
+        </div>
         <div className={accent}>Sep 2016 - Mar 2017</div>
       </div>
-      <div className="text-xs">
-        Retty (
-        <a href="https://retty.me" target="_blank">
-          https://retty.me
-        </a>
-        ) - Restaurant recommendation Application
-      </div>
+      <div className="text-xs italic">iOS / Web Developer Intern</div>
       <div className="my-1">
         <Achievement
           content="Proposed and developed a Landing Page generator, and
@@ -139,17 +136,13 @@ const WorkHistory = () => (
     <div>
       <div className="flex justify-between">
         <div className={`${accent}`}>
-          iOS / Web Developer Intern, Donuts Co. Ltd.
+          <a target="_blank" href="https://www.donuts.ne.jp/">
+            Donuts Co. Ltd.
+          </a>
         </div>
         <div className={`${accent}`}>Sep 2015 - Oct 2016</div>
       </div>
-      <div className="text-xs">
-        Howcollect (
-        <a href="https://howcollect.jp" target="_blank">
-          https://howcollect.jp
-        </a>
-        ) - Online media targeting young teenagers
-      </div>
+      <div className="text-xs italic">iOS / Web Developer Intern</div>
       <div className="my-1">
         <Achievement
           content="Renewed an iOS Application from scratch with Swift, with RxSwift
@@ -175,7 +168,7 @@ const Education = () => (
         <div className={accent}>2012 - 2017</div>
       </div>
       {/* <div className={`text-xs`}>Tokyo, Japan</div> */}
-      <div className={`text-xs ${italic}`}>
+      <div className="italic text-xs">
         Bachelor of Information and Communication Science
       </div>
       {/* <div className="text-xs">
@@ -185,13 +178,11 @@ const Education = () => (
     </div>
     <div>
       <div className="flex justify-between">
-        <div className={accent}>University of North Carolina at Charlotte</div>
+        <div className={accent}>University of North Carolina</div>
         <div className={accent}>2014 - 2015</div>
       </div>
       {/* <div className="">Charlotte, USA</div> */}
-      <div className={`text-xs ${italic}`}>
-        Concentration in Computer Science
-      </div>
+      <div className="text-xs italic">Concentration in Computer Science</div>
     </div>
   </>
 );
@@ -203,6 +194,9 @@ const AdditionalInformation = () => (
     <div className="text-xs">Japanese - Native</div>
     <div className="text-xs">English - Proficient</div>
     <div className="text-xs">TOEIC 945, TOEFL iBT 92</div>
+    <div className={accent}>Awards</div>
+    <div className="text-xs">1st place at Sophia University Hackathon.</div>
+    <div className="text-xs">Awarded at ZenHack Hackathon</div>
   </>
 );
 
@@ -210,18 +204,18 @@ const Links = () => (
   <>
     <div className={`${header}`}>Contacts</div>
     <a
-      href="mailto:me@kawamurakazushi.com"
+      href="mailto:kawamurakazushi@gmail.com"
       className="flex items-center text-xs"
     >
       <MailIcon className="mr-1" size="12" />
-      me@kawamurakazushi.com
+      kawamurakazushi@gmail.com
     </a>
     <a className="flex items-start text-xs">
       <div style={{ height: 18 }} className="flex items-center">
         <MapIcon className="mr-1 text-xs" size="12" />
       </div>
       <div className="flex-1">
-        A-ban Hills, Room 201, Nakameguro Meguro-ku Tokyo 153-0061, Japan
+        Urban Hills, Room 201, Nakameguro Meguro-ku Tokyo 153-0061, Japan
       </div>
     </a>
     <a className="flex items-center text-xs">
@@ -280,29 +274,33 @@ export default memo(() => (
     <Helmet>
       <title>Resume | Kazushi Kawamura</title>
       <meta property="og:title" content="Resume" />
+      <meta name="robots" content="noindex" />
     </Helmet>
     <div className="max-w-main text-sm m-auto px-3 py-2">
       <div>
         <div style={{ lineHeight: "60px" }} className="text-5xl">
           Kazushi <span className="font-semibold">Kawamura</span>
         </div>
-        <div className={italic}>Software Developer</div>
+        <div className="italic text-xs">Software Developer</div>
         <div className="text-xs">
-          Full-stack web developer, technology agnostic, and functional
+          {/* Full-stack web developer, technology agnostic, and functional
           programming evangelist. I love being committed to a project, and am
           used to interfacing with the other teams, and easing the communication
           with the other developers. I'm also an Agile enthusiast, currently
-          working as a part time scrum master.
+          working as a part time scrum master. */}
+          Versatile Full-Stack Developer with 3+ years of experience developing,
+          and managing small to large web services, to mobile application.
+          Currently specializing in Frontend development.
         </div>
       </div>
       <main className="flex flex-row">
         <section className="mr-3 w-2/3">
-          <Skills />
           <WorkHistory />
-          <Education />
+          <Skills />
         </section>
         <section className="ml-1 w-1/3">
           <Links />
+          <Education />
           <Projects />
           <AdditionalInformation />
         </section>
