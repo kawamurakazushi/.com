@@ -134,7 +134,7 @@ export const sourceNodes = async ({
         contentDigest: createContentDigest(nodeData),
         type: "project",
       },
-      parent: null,
+      parent: undefined,
       readme___NODE: readmeId,
       ...nodeData,
     };
@@ -179,7 +179,10 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
   return new Promise((resolve, _) => {
     graphql(`
       {
-        allMarkdownRemark(filter: { fields: { slug: { ne: null } } }) {
+        allMarkdownRemark(
+          sort: { order: ASC, fields: frontmatter___date }
+          filter: { fields: { slug: { ne: null } } }
+        ) {
           edges {
             node {
               fields {
@@ -219,10 +222,13 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
       );
       const data = decode(result.data);
 
-      data.allMarkdownRemark.edges.forEach(({ node }) => {
+      const posts = data.allMarkdownRemark.edges;
+      posts.forEach(({ node }, i) => {
         createPage({
           component: path.resolve(`./src/templates/blog.tsx`),
           context: {
+            next: i === posts.length - 1 ? null : posts[i + 1].node.fields.slug,
+            prev: i === 0 ? null : posts[i - 1].node.fields.slug,
             slug: node.fields.slug,
           },
           path: node.fields.slug,

@@ -1,9 +1,11 @@
 import { guard, map, nullable, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
-import { Helmet } from "react-helmet";
 import React, { memo } from "react";
+import { Helmet } from "react-helmet";
 
 import Layout from "../components/layout";
+import { ArrowLeftIcon } from "../icons/arrowLeft";
+import { ArrowRightIcon } from "../icons/arrowRight";
 
 const decoder = map(
   object({
@@ -33,8 +35,14 @@ const decoder = map(
   }
 );
 
-export default memo(({ data }: ReplaceComponentRendererArgs) => {
+const contextDecoder = object({
+  next: nullable(string),
+  prev: nullable(string),
+});
+
+export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
   const post = guard(decoder)(data);
+  const context = guard(contextDecoder)(pageContext);
   return (
     <Layout>
       <Helmet>
@@ -55,6 +63,30 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
             className="remark"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+          <div className="flex justify-between mt-8">
+            <div>
+              {context.prev && (
+                <a
+                  className="flex items-center text-sm hover:bg-black hover:text-white"
+                  href={context.prev}
+                >
+                  <ArrowLeftIcon size="18" />
+                  Previous Article
+                </a>
+              )}
+            </div>
+            <div>
+              {context.next && (
+                <a
+                  className="flex items-center text-sm hover:bg-black hover:text-white"
+                  href={context.next}
+                >
+                  Next Article
+                  <ArrowRightIcon size="18" />
+                </a>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

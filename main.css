@@ -26,6 +26,10 @@ a {
   overflow-wrap: break-word;
 }
 
+.remark a {
+  text-decoration: underline;
+}
+
 .remark p {
   margin: 12px 0;
   font-size: 14px;

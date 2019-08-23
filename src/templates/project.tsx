@@ -1,7 +1,7 @@
 import { guard, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
-import { Helmet } from "react-helmet";
 import React, { memo } from "react";
+import { Helmet } from "react-helmet";
 
 import Layout from "../components/layout";
 import { GithubIcon } from "../icons/github";

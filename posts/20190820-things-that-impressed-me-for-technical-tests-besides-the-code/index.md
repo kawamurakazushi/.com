@@ -3,7 +3,6 @@ title: "Things that impressed me for Technical Tests beside the Code."
 date: "2019-08-20"
 tags: ["interview"]
 category: "tech"
-# thumbnail: "./thumbnail.jpg"
 ---
 
 Recently in our company we have been giving technical assignments for candidate who are web engineers.
