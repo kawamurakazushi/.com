@@ -235,6 +235,7 @@ module.exports = {
     minWidth: {
       "0": "0",
       full: "100%",
+      main: "780px",
     },
     objectPosition: {
       bottom: "bottom",
@@ -307,6 +308,7 @@ module.exports = {
       "11/12": "91.666667%",
       full: "100%",
       screen: "100vw",
+      main: "780px",
     }),
     zIndex: {
       auto: "auto",

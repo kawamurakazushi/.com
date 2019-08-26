@@ -102,8 +102,7 @@ const WorkHistory = () => (
         </Achievement>
         <Achievement>
           Create a website builder targeting restaurant, developed using
-          <i>Go</i>, and
-          <i>React</i>
+          <i>Go</i>, and <i>React</i>
         </Achievement>
         <Achievement>
           Online Media, developed using <i>Elixir</i>/<i>Phoenix</i>, and
@@ -276,12 +275,12 @@ const Projects = () => (
     <div className={`${header}`}>Personal Projects</div>
     <div className={`${accent}`}>Currylife</div>
     <div className="text-xs">
-      An iOS/Android App for Curry lovers, developed using Flutter.
+      An iOS/Android App for Curry lovers, developed using Dart/Flutter.
     </div>
-    <div className={`${accent}`}>Figma Walker</div>
+    <div className={`${accent}`}>Figma Map Maker</div>
     <div className="text-xs">
-      A Launcher Plugin for Figma. Walkthrough you project without lifting your
-      keyboard.
+      A map making plugin for Figma, that was featured as #5 product of the day
+      on Product Hunt and TechCrunch.
     </div>
     <div className={`${accent}`}>monkeyml</div>
     <div className="text-xs">
@@ -304,11 +303,6 @@ export default memo(() => (
         </div>
         <div className="italic text-xs">Software Developer</div>
         <div className="text-xs">
-          {/* Full-stack web developer, technology agnostic, and functional
-          programming evangelist. I love being committed to a project, and am
-          used to interfacing with the other teams, and easing the communication
-          with the other developers. I'm also an Agile enthusiast, currently
-          working as a part time scrum master. */}
           Versatile Full-Stack Developer with 3+ years of experience developing,
           and managing small to large web services, to mobile application.
           Currently specializing in Frontend development.

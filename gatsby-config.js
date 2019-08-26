@@ -1,3 +1,77 @@
+require("dotenv").config();
+
+const postQuery = `
+{
+  posts: allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/posts/"}}) {
+    edges {
+      node {
+        objectID: id
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+        }
+        excerpt(pruneLength: 5000)
+      }
+    }
+  }
+}
+`;
+
+const projectQuery = `
+{
+  projects: allProject {
+    edges {
+      node {
+        objectID: id
+        name
+        readme {
+          childMarkdownRemark {
+            excerpt(pruneLength: 5000)
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
+const settings = { attributesToSnippet: ["excerpt:20"] };
+const queries = [
+  {
+    query: projectQuery,
+    transformer: ({ data }) =>
+      data.projects.edges.map(({ node: { name, readme, ...rest } }) => ({
+        title: name,
+        path: `/projects/${name}`,
+        ...readme.childMarkdownRemark,
+        ...rest,
+      })),
+    indexName: "kawamurakazushi_projects",
+    settings,
+  },
+  {
+    query: postQuery,
+    transformer: ({ data }) =>
+      data.posts.edges.map(
+        ({
+          node: {
+            frontmatter,
+            fields: { slug },
+            ...rest
+          },
+        }) => ({
+          path: slug,
+          ...frontmatter,
+          ...rest,
+        })
+      ),
+    indexName: "kawamurakazushi_posts",
+    settings,
+  },
+];
+
 module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
@@ -40,6 +114,15 @@ module.exports = {
       resolve: "gatsby-plugin-google-tagmanager",
     },
     "gatsby-plugin-typescript",
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
+        queries,
+        chunkSize: 10000, // default: 1000
+      },
+    },
   ],
   siteMetadata: {
     title: "kawamurakazushi.com",
