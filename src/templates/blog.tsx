@@ -2,6 +2,7 @@ import { guard, map, nullable, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 import { Helmet } from "react-helmet";
+import { DiscussionEmbed } from "disqus-react";
 
 import Layout from "../components/layout";
 import { ArrowLeftIcon } from "../icons/arrowLeft";
@@ -11,6 +12,9 @@ const decoder = map(
   object({
     markdownRemark: object({
       excerpt: string,
+      fields: object({
+        slug: string,
+      }),
       frontmatter: object({
         date: string,
         thumbnail: nullable(
@@ -28,6 +32,7 @@ const decoder = map(
     return {
       date: markdownRemark.frontmatter.date,
       excerpt: markdownRemark.excerpt,
+      slug: markdownRemark.fields.slug,
       html: markdownRemark.html,
       thumbnail: thumbnail ? thumbnail.childImageSharp.sizes.src : null,
       title: markdownRemark.frontmatter.title,
@@ -43,6 +48,7 @@ const contextDecoder = object({
 export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
   const post = guard(decoder)(data);
   const context = guard(contextDecoder)(pageContext);
+
   return (
     <Layout>
       <Helmet>
@@ -63,7 +69,7 @@ export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
             className="remark"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
-          <div className="flex justify-between mt-8">
+          <div className="flex justify-between my-8">
             <div>
               {context.prev && (
                 <a
@@ -87,6 +93,14 @@ export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
               )}
             </div>
           </div>
+          <DiscussionEmbed
+            shortname="kawamurakazushi"
+            config={{
+              url: `https://kawamurakazushi.com/${post.slug}`,
+              identifier: post.slug,
+              title: post.title,
+            }}
+          />
         </div>
       </div>
     </Layout>
@@ -98,6 +112,9 @@ export const query = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       excerpt(format: PLAIN)
+      fields {
+        slug
+      }
       frontmatter {
         title
         date(formatString: "YYYY.MM.DD")
