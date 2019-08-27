@@ -5,7 +5,7 @@ interface Props {
   to: string;
   date: string;
   title: string;
-  excerpt: string;
+  excerpt?: string;
   tags?: string[];
 }
 

@@ -202,7 +202,9 @@ const Education = () => (
         <div className={accent}>2014 - 2015</div>
       </div>
       {/* <div className="">Charlotte, USA</div> */}
-      <div className="text-xs italic">Concentration in Computer Science</div>
+      <div className="text-xs italic">
+        Study Abroad focusing on Computer Science
+      </div>
     </div>
   </>
 );

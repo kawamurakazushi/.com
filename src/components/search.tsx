@@ -1,4 +1,5 @@
 import algoliasearch from "algoliasearch/lite";
+import { Link } from "gatsby";
 import React, { memo, useState } from "react";
 import {
   Configure,
@@ -40,7 +41,7 @@ const HitResults = connectStateResults(
 
 const Hit = ({ hit }: { hit: { path: string } }) => {
   return (
-    <a href={hit.path} className="text-sm mb-2 block hover:bg-gray-100">
+    <Link to={hit.path} className="text-sm mb-2 block hover:bg-gray-100">
       <Highlight
         tagName="mark"
         className="text-sm text-gray-500"
@@ -50,7 +51,7 @@ const Hit = ({ hit }: { hit: { path: string } }) => {
       <div>
         <Snippet attribute="excerpt" hit={hit} tagName="mark" />
       </div>
-    </a>
+    </Link>
   );
 };
 

@@ -1,5 +1,5 @@
 import ApolloClient from "apollo-boost";
-import { array, guard, object, string, nullable } from "decoders";
+import { array, guard, object, string } from "decoders";
 import {
   CreateNodeArgs,
   CreatePagesArgs,
@@ -227,8 +227,9 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
         createPage({
           component: path.resolve(`./src/templates/blog.tsx`),
           context: {
-            next: i === posts.length - 1 ? null : posts[i + 1].node.fields.slug,
-            prev: i === 0 ? null : posts[i - 1].node.fields.slug,
+            nextSlug:
+              i === posts.length - 1 ? "" : posts[i + 1].node.fields.slug, // FiXME: make it null instead of an empty string
+            prevSlug: i === 0 ? "" : posts[i - 1].node.fields.slug,
             slug: node.fields.slug,
           },
           path: node.fields.slug,

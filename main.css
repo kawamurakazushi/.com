@@ -96,7 +96,7 @@ mark {
   font-size: 18px;
   margin: 32px 0 16px;
 }
-.remark img {
+.remark .gatsby-resp-image-wrapper {
   margin: 16px 0;
 }
 

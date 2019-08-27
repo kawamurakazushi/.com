@@ -1,16 +1,28 @@
 import { guard, map, nullable, object, string } from "decoders";
+import { DiscussionEmbed } from "disqus-react";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 import { Helmet } from "react-helmet";
-import { DiscussionEmbed } from "disqus-react";
 
+import ArticleItem from "../components/articleItem";
+import Author from "../components/author";
 import Layout from "../components/layout";
-import { ArrowLeftIcon } from "../icons/arrowLeft";
-import { ArrowRightIcon } from "../icons/arrowRight";
 
 const decoder = map(
   object({
-    markdownRemark: object({
+    nextPost: nullable(
+      object({
+        excerpt: string,
+        fields: object({
+          slug: string,
+        }),
+        frontmatter: object({
+          date: string,
+          title: string,
+        }),
+      })
+    ),
+    post: object({
       excerpt: string,
       fields: object({
         slug: string,
@@ -21,27 +33,50 @@ const decoder = map(
       }),
       html: string,
     }),
+    prevPost: nullable(
+      object({
+        excerpt: string,
+        fields: object({
+          slug: string,
+        }),
+        frontmatter: object({
+          date: string,
+          title: string,
+        }),
+      })
+    ),
   }),
-  ({ markdownRemark }) => {
+  ({ post, prevPost, nextPost }) => {
     return {
-      date: markdownRemark.frontmatter.date,
-      excerpt: markdownRemark.excerpt,
-      slug: markdownRemark.fields.slug,
-      html: markdownRemark.html,
-      // thumbnail: thumbnail ? thumbnail.childImageSharp.sizes.src : null,
-      title: markdownRemark.frontmatter.title,
+      nextPost: nextPost
+        ? {
+            date: nextPost.frontmatter.date,
+            excerpt: nextPost.excerpt,
+            slug: nextPost.fields.slug,
+            title: nextPost.frontmatter.title,
+          }
+        : null,
+      post: {
+        date: post.frontmatter.date,
+        excerpt: post.excerpt,
+        html: post.html,
+        slug: post.fields.slug,
+        title: post.frontmatter.title,
+      },
+      prevPost: prevPost
+        ? {
+            date: prevPost.frontmatter.date,
+            excerpt: prevPost.excerpt,
+            slug: prevPost.fields.slug,
+            title: prevPost.frontmatter.title,
+          }
+        : null,
     };
   }
 );
 
-const contextDecoder = object({
-  next: nullable(string),
-  prev: nullable(string),
-});
-
 export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
-  const post = guard(decoder)(data);
-  const context = guard(contextDecoder)(pageContext);
+  const { post, prevPost, nextPost } = guard(decoder)(data);
 
   return (
     <Layout>
@@ -50,61 +85,74 @@ export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
       </Helmet>
-      <div className="flex flex-col">
-        <div className="mt-1 mb-4">
-          <h1 className="font-bold text-xl mb-2 md:text-5xl">{post.title}</h1>
-          <p className="text-gray-600 text-sm mb-2">{post.date}</p>
-          {/* {post.thumbnail && (
-            <div>
-              <img src={post.thumbnail} />
-            </div>
-          )} */}
-          <div
-            className="remark"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
-          <div className="flex justify-between my-8">
-            <div>
-              {context.prev && (
-                <a
-                  className="flex items-center text-sm hover:bg-black hover:text-white"
-                  href={context.prev}
-                >
-                  <ArrowLeftIcon size="18" />
-                  Previous Article
-                </a>
-              )}
-            </div>
-            <div>
-              {context.next && (
-                <a
-                  className="flex items-center text-sm hover:bg-black hover:text-white"
-                  href={context.next}
-                >
-                  Next Article
-                  <ArrowRightIcon size="18" />
-                </a>
-              )}
-            </div>
+      <div className="flex flex-col mt-1 mb-4">
+        <h1 className="font-bold text-xl mb-2 md:text-5xl">{post.title}</h1>
+        <p className="text-gray-600 text-sm mb-2">{post.date}</p>
+        <div
+          className="remark mb-16"
+          dangerouslySetInnerHTML={{ __html: post.html }}
+        />
+        <Author />
+        <div className="my-8">
+          <h3 className="mt-1 mb-4 font-bold">You Might also like...</h3>
+          <div>
+            {prevPost && (
+              <ArticleItem
+                to={prevPost.slug}
+                date={prevPost.date}
+                excerpt={prevPost.excerpt}
+                title={prevPost.title}
+              />
+            )}
           </div>
-          <DiscussionEmbed
-            shortname="kawamurakazushi"
-            config={{
-              url: `https://kawamurakazushi.com/${post.slug}`,
-              identifier: post.slug,
-              title: post.title,
-            }}
-          />
+          <div>
+            {nextPost && (
+              <ArticleItem
+                to={nextPost.slug}
+                date={nextPost.date}
+                excerpt={nextPost.excerpt}
+                title={nextPost.title}
+              />
+            )}
+          </div>
         </div>
+        <DiscussionEmbed
+          config={{
+            identifier: post.slug,
+            title: post.title,
+            url: `https://kawamurakazushi.com/${post.slug}`,
+          }}
+          shortname="kawamurakazushi"
+        />
       </div>
     </Layout>
   );
 });
 
 export const query = graphql`
-  query BlogPostQuery($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+  query BlogPostQuery($slug: String!, $prevSlug: String, $nextSlug: String) {
+    post: markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      excerpt(format: PLAIN)
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+        date(formatString: "YYYY.MM.DD")
+      }
+    }
+    prevPost: markdownRemark(fields: { slug: { eq: $prevSlug } }) {
+      excerpt(format: PLAIN)
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+        date(formatString: "YYYY.MM.DD")
+      }
+    }
+    nextPost: markdownRemark(fields: { slug: { eq: $nextSlug } }) {
       excerpt(format: PLAIN)
       fields {
         slug
