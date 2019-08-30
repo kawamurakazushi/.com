@@ -25,7 +25,7 @@ const Achievement = ({
       onMouseOver={() => setHover(true)}
       className="relative"
     >
-      <div className="flex">
+      <div className="flex  font-light">
         <div className="font-bold mr-1 text-xs ">・</div>
         <div
           className={`${
@@ -53,28 +53,30 @@ const Skills = () => (
     <div>
       <div className={accent}>Programming Languages</div>
       <div className="flex">
-        <div className="text-xs">
+        <div className="text-xs font-light">
           Proficient in Typescript, Node.js, Elm, Go
         </div>
       </div>
       <div className="flex">
-        <div className="text-xs">
+        <div className="text-xs font-light">
           Experienced in Ruby, Dart, OCaml, Elixir, Swift, PHP
         </div>
       </div>
       <div className={accent}>Frameworks and Libraries</div>
-      <div className="text-xs">
+      <div className="text-xs font-light">
         React, Redux, TEA, Gatsbyjs, webpack, tailwindcss, Flutter, Electron,
         Lerna
       </div>
-      <div className="text-xs">Ruby on Rails, GraphQL, REST, SQL</div>
+      <div className="text-xs font-light">
+        Ruby on Rails, GraphQL, REST, SQL
+      </div>
       <div className={accent}>Tools</div>
-      <div className="text-xs">
+      <div className="text-xs font-light">
         Github, JIRA, AWS (EC2, S3, ELB), Firebase (Firestore, Functions,
         Authentication), CircleCI, Netlify, Docker, Vim, Figma
       </div>
       <div className={accent}>Methodology</div>
-      <div className="text-xs">Agile, Scrum, Pair Programming</div>
+      <div className="text-xs font-light">Agile, Scrum, Pair Programming</div>
     </div>
   </>
 );
@@ -92,7 +94,10 @@ const WorkHistory = () => (
         </div>
         <div className={accent}>Apr 2017 - Present</div>
       </div>
-      <div className="text-xs italic">Full Stack Web Developer</div>
+      <div className="flex justify-between">
+        <div className="text-xs italic">Full Stack Web Developer</div>
+        <div className="text-xs italic">Tokyo, Japan</div>
+      </div>
       <div className="my-1">
         <Achievement>
           In charge of frontend development in a team of 4 global engineers, and
@@ -133,7 +138,10 @@ const WorkHistory = () => (
         </div>
         <div className={accent}>Sep 2016 - Mar 2017</div>
       </div>
-      <div className="text-xs italic">iOS / Web Developer Intern</div>
+      <div className="flex justify-between">
+        <div className="text-xs italic">iOS / Web Developer Intern</div>
+        <div className="text-xs italic">Tokyo, Japan</div>
+      </div>
       <div className="my-1">
         <Achievement>
           Proposed and developed a Landing Page generator, and dramatically
@@ -161,7 +169,10 @@ const WorkHistory = () => (
         </div>
         <div className={`${accent}`}>Sep 2015 - Oct 2016</div>
       </div>
-      <div className="text-xs italic">iOS / Web Developer Intern</div>
+      <div className="flex justify-between">
+        <div className="text-xs italic">iOS / Web Developer Intern</div>
+        <div className="text-xs italic">Tokyo, Japan</div>
+      </div>
       <div className="my-1">
         <Achievement>
           Renewed an iOS Application from scratch with <i>Swift</i>, with
@@ -192,7 +203,7 @@ const Education = () => (
         <div className={accent}>2012 - 2017</div>
       </div>
       {/* <div className={`text-xs`}>Tokyo, Japan</div> */}
-      <div className="italic text-xs">
+      <div className="italic text-xs font-light">
         Bachelor of Information and Communication Science
       </div>
     </div>
@@ -202,8 +213,8 @@ const Education = () => (
         <div className={accent}>2014 - 2015</div>
       </div>
       {/* <div className="">Charlotte, USA</div> */}
-      <div className="text-xs italic">
-        Study Abroad focusing on Computer Science
+      <div className="text-xs italic font-light">
+        Exchange Student, focusing on Computer Science
       </div>
     </div>
   </>
@@ -213,18 +224,22 @@ const AdditionalInformation = () => (
   <>
     <div className={`${header}`}>Additional Information</div>
     <div className={accent}>Language</div>
-    <div className="text-xs">Japanese - Native</div>
-    <div className="text-xs">English - Proficient</div>
-    <div className="text-xs">TOEIC 945, TOEFL iBT 92</div>
+    <div className="font-light">
+      <div className="text-xs">Japanese - Native</div>
+      <div className="text-xs">English - Proficient</div>
+      <div className="text-xs">TOEIC 945, TOEFL iBT 92</div>
+    </div>
     <div className={accent}>Awards</div>
-    <div className="text-xs">1st place at Sophia University Hackathon.</div>
-    <div className="text-xs">Awarded at ZenHack Hackathon</div>
+    <div className="font-light">
+      <div className="text-xs">1st place at Sophia University Hackathon.</div>
+      <div className="text-xs">Awarded at ZenHack Hackathon</div>
+    </div>
   </>
 );
 
 const Links = () => (
-  <>
-    <div className={`${header}`}>Contacts</div>
+  <div className="font-light">
+    <div className={header}>Contacts</div>
     <a
       href="mailto:kawamurakazushi@gmail.com"
       className="flex items-center text-xs"
@@ -244,7 +259,7 @@ const Links = () => (
       <PhoneIcon className="mr-1" size="12" />
       <div className="flex-1">(+81)8010550667</div>
     </a>
-    <div className={`${accent}`}>Links</div>
+    <div className={accent}>Links</div>
     <a
       target="_blank"
       href="https://kawamurakazushi.com"
@@ -269,23 +284,23 @@ const Links = () => (
       <LinkedInIcon className="mr-1" size="12" />
       www.linkedin.com/in/kawamurakazushi
     </a>
-  </>
+  </div>
 );
 
 const Projects = () => (
   <>
     <div className={`${header}`}>Personal Projects</div>
     <div className={`${accent}`}>Currylife</div>
-    <div className="text-xs">
+    <div className="text-xs font-light">
       An iOS/Android App for Curry lovers, developed using Dart/Flutter.
     </div>
     <div className={`${accent}`}>Figma Map Maker</div>
-    <div className="text-xs">
+    <div className="text-xs font-light">
       A map making plugin for Figma, that was featured as #5 product of the day
       on Product Hunt and TechCrunch.
     </div>
     <div className={`${accent}`}>monkeyml</div>
-    <div className="text-xs">
+    <div className="text-xs font-light">
       Interpreter for Monkey Language written in OCaml.
     </div>
   </>
@@ -301,10 +316,10 @@ export default memo(() => (
     <div className="max-w-main text-sm m-auto px-3 py-2">
       <div>
         <div style={{ lineHeight: "60px" }} className="text-5xl">
-          Kazushi <span className="font-semibold">Kawamura</span>
+          Kazushi Kawamura
         </div>
-        <div className="italic text-xs">Software Developer</div>
-        <div className="text-xs">
+        <div className="italic text-xs font-semibold">Software Developer</div>
+        <div className="text-xs font-light">
           Versatile Full-Stack Developer with 3+ years of experience developing,
           and managing small to large web services, to mobile application.
           Currently specializing in Frontend development.
