@@ -7,6 +7,7 @@ import { LinkedInIcon } from "../icons/linkedin";
 import { MailIcon } from "../icons/mail";
 import { MapIcon } from "../icons/map";
 import { PhoneIcon } from "../icons/phone";
+import { CloseIcon } from "../icons/close";
 
 const header = "font-semibold text-sm border-b border-black mt-2 mb-1";
 const accent = "font-semibold text-xs mt-1 mb-";
@@ -16,31 +17,46 @@ const Achievement = ({
   notes,
 }: {
   children: ReactNode;
-  notes?: string;
+  notes?: ReactNode;
 }) => {
-  const [hover, setHover] = useState(false);
+  const [modal, setModal] = useState(false);
+
   return (
-    <div
-      onMouseOut={() => setHover(false)}
-      onMouseOver={() => setHover(true)}
-      className="relative"
-    >
-      <div className="flex  font-light">
-        <div className="font-bold mr-1 text-xs ">・</div>
+    <div className="">
+      <div className="flex font-light">
+        <div className="font-bold mr-1 text-xs">・</div>
         <div
           className={`${
             notes ? "cursor-help hover:text-gray-700" : ""
           } text-xs`}
+          onClick={() => {
+            setModal(true);
+          }}
         >
           {children}
         </div>
       </div>
-      {hover && notes && (
-        <div
-          style={{ width: 250, right: -255 }}
-          className="absolute bg-black top-0 text-white text-xs py-2 px-4 rounded shadow-md"
-        >
-          {notes}
+      {modal && notes && (
+        <div className="fixed flex justify-center items-center left-0 top-0 text-xs w-full h-full">
+          <div
+            onClick={() => {
+              setModal(false);
+            }}
+            className="absolute w-full h-full bg-black opacity-25"
+          ></div>
+          <div className="z-30 w-2/3 min-w-64 py-4 px-4 bg-white text-black shadow-md rounded">
+            <div className="flex flex-row-reverse mb-1">
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  setModal(false);
+                }}
+              >
+                <CloseIcon size="20" />
+              </div>
+            </div>
+            {notes}
+          </div>
         </div>
       )}
     </div>
@@ -49,7 +65,7 @@ const Achievement = ({
 
 const Skills = () => (
   <>
-    <div className={`${header}`}>Technical Skills</div>
+    <div className={header}>Technical Skills</div>
     <div>
       <div className={accent}>Programming Languages</div>
       <div className="flex">
@@ -99,7 +115,44 @@ const WorkHistory = () => (
         <div className="text-xs italic">Tokyo, Japan</div>
       </div>
       <div className="my-1">
-        <Achievement>
+        <Achievement
+          notes={
+            <div>
+              <div className="mb-1">
+                <div className="font-bold">1. en-courage.com </div>
+                <div>
+                  A platform for job-hunting students.
+                  <br /> Register to events hosted by companies, and get an
+                  offer
+                </div>
+              </div>
+              <div className="mb-1">
+                <div className="font-bold">2. en-courage for Admins</div>
+                <div>
+                  Managing the whole system. <br />
+                  Hosting an Event, Interviewing System, User Management,
+                  Clients Management
+                </div>
+              </div>
+              <div className="mb-1">
+                <div className="font-bold">3. en-courage for Clients</div>
+                <div>
+                  Client's Application. <br />
+                  Hosting an Event, Analyzing the participant of the events.
+                </div>
+              </div>
+              <div className="mb-1">
+                <div className="font-bold">4. CMS</div>
+                <div>
+                  Create Article for en-courage.com
+                  <br />
+                  Complex data types (Image, Video, Quotation, Twitter embeds),
+                  Medium like UI, Reviewing and Publishing System.
+                </div>
+              </div>
+            </div>
+          }
+        >
           In charge of frontend development in a team of 4 global engineers, and
           developed 4 co-related web application with varied technologies
           including <i>React</i>, <i>Redux</i>, <i>RxJs</i>, <i>Redux loop</i>,
@@ -107,7 +160,7 @@ const WorkHistory = () => (
         </Achievement>
         <Achievement>
           Create a website builder targeting restaurant, developed using
-          <i>Go</i>, and <i>React</i>
+          <i> Go</i>, and <i>React</i>
         </Achievement>
         <Achievement>
           Online Media, developed using <i>Elixir</i>/<i>Phoenix</i>, and
@@ -321,8 +374,8 @@ export default memo(() => (
         <div className="italic text-xs font-semibold">Software Developer</div>
         <div className="text-xs font-light">
           Versatile Full-Stack Developer with 3+ years of experience developing,
-          and managing small to large web services, to mobile application.
-          Currently specializing in Frontend development.
+          and managing small to large web services, to mobile application in a
+          startup environment. Currently specializing in Frontend development.
         </div>
       </div>
       <main className="flex flex-row">
