@@ -32,7 +32,7 @@
   "keywords": [],
   "license": "MIT",
   "scripts": {
-    "css": "tailwind build main.css -c ./tailwind.config.js -o src/tailwind.css",
+    "css": "tailwind build tailwind.config.css -c ./tailwind.config.js -o src/tailwind.css",
     "build:config": "tsc gatsby-node.ts",
     "build": "yarn css && yarn build:config && gatsby build",
     "develop": "yarn css && yarn build:config && gatsby develop",
