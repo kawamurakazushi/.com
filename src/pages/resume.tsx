@@ -342,7 +342,7 @@ const Links = () => (
 
 const Projects = () => (
   <>
-    <div className={`${header}`}>Personal Projects</div>
+    <div className={`${header}`}>Side Projects</div>
     <div className={`${accent}`}>Currylife</div>
     <div className="text-xs font-light">
       An iOS/Android App for Curry lovers, developed using Dart/Flutter.
@@ -373,7 +373,7 @@ export default memo(() => (
         </div>
         <div className="italic text-xs font-semibold">Software Developer</div>
         <div className="text-xs font-light">
-          Versatile Full-Stack Developer with 3+ years of experience developing,
+          Versatile Full-Stack Developer with 4+ years of experience developing,
           and managing small to large web services, to mobile application in a
           startup environment. Currently specializing in Frontend development.
         </div>

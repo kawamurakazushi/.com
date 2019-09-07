@@ -1,5 +1,4 @@
 import { guard, map, nullable, object, string } from "decoders";
-import { DiscussionEmbed } from "disqus-react";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 import { Helmet } from "react-helmet";
@@ -116,14 +115,6 @@ export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
             )}
           </div>
         </div>
-        <DiscussionEmbed
-          config={{
-            identifier: post.slug,
-            title: post.title,
-            url: `https://kawamurakazushi.com/${post.slug}`,
-          }}
-          shortname="kawamurakazushi"
-        />
       </div>
     </Layout>
   );

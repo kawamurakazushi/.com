@@ -100,5 +100,32 @@ mark {
   margin: 16px 0;
 }
 
+/* .gatsby-highlight-code-line {
+  display: block;
+  margin-left: -14px;
+  padding-left: 10px;
+  border-left: 3px solid #ffa7c4;
+} */
+.gatsby-highlight-code-line {
+  background-color: beige;
+  display: block;
+  margin-right: -1em;
+  margin-left: -1em;
+  padding-right: 1em;
+  padding-left: 0.75em;
+  border-left: 0.25em solid #013120;
+}
+
+.gatsby-highlight {
+  /* background-color: #fdf6e3; */
+  border-radius: 0.3em;
+  margin: 0.5em 0;
+  overflow: auto;
+}
+
+.gatsby-highlight pre[class*="language-"].line-numbers {
+  padding-left: 2.8em; /* 3 */
+}
+
 @tailwind components;
 @tailwind utilities;
