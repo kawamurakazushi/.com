@@ -24,7 +24,8 @@
     "develop": "yarn css && yarn build:config && gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "install": "yarn css && yarn build:config",
-    "lint": "tslint -c tslint.json 'src/**/*.tsx'"
+    "lint": "tslint -c tslint.json 'src/**/*.tsx'",
+    "create-post": "bin/create-post"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",

@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const fs = require("fs");
+const path = require("path");
+
+const d = new Date();
+const year = d.getFullYear();
+const month =
+  d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : `${d.getMonth()}`;
+const date = d.getDate() < 10 ? `0${d.getgetDate()}` : `${d.getDate()}`;
+
+const dir = `posts/${year}${month}${date}-`;
+const fileName = "index.md";
+const content = `---
+title: Hello World
+date: "${year}-${month}-${date}"
+tags: []
+category: "tech"
+---
+`;
+
+fs.mkdirSync(dir);
+fs.writeFileSync(path.join(dir, fileName), content);
