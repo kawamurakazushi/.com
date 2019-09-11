@@ -20,9 +20,9 @@ const ArticleItem = memo(({ to, date, title, tags, excerpt }: Props) => (
         {tags && (
           <>
             {tags.map(tag => (
-              <span key={tag} className="text-xs mr-1">
+              <Link key={tag} to={`/tags/${tag}`} className="text-xs mr-1">
                 {`#${tag}`}
-              </span>
+              </Link>
             ))}
           </>
         )}

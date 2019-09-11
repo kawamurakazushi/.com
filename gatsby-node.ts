@@ -199,6 +199,11 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
             }
           }
         }
+        tags: allMarkdownRemark(limit: 2000) {
+          group(field: frontmatter___tags) {
+            fieldValue
+          }
+        }
       }
     `).then(result => {
       const decode = guard(
@@ -218,10 +223,14 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
               })
             ),
           }),
+          tags: object({
+            group: array(object({ fieldValue: string })),
+          }),
         })
       );
       const data = decode(result.data);
 
+      // create /posts pages
       const posts = data.allMarkdownRemark.edges;
       posts.forEach(({ node }, i) => {
         createPage({
@@ -236,6 +245,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
         });
       });
 
+      // create /projects pages
       data.allProject.edges.forEach(({ node }) => {
         createPage({
           component: path.resolve(`./src/templates/project.tsx`),
@@ -243,6 +253,17 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
             id: node.id,
           },
           path: `projects/${node.name}`,
+        });
+      });
+
+      // create /tags pages
+      data.tags.group.forEach(({ fieldValue }) => {
+        createPage({
+          component: path.resolve(`./src/templates/tag.tsx`),
+          context: {
+            tag: fieldValue,
+          },
+          path: `tags/${fieldValue}`,
         });
       });
 
