@@ -12,7 +12,7 @@ const date = d.getDate() < 10 ? `0${d.getgetDate()}` : `${d.getDate()}`;
 const dir = `posts/${year}${month}${date}-`;
 const fileName = "index.md";
 const content = `---
-title: Hello World
+title: "Hello World"
 date: "${year}-${month}-${date}"
 tags: []
 category: "tech"
