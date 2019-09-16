@@ -179,14 +179,18 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
   return new Promise((resolve, _) => {
     graphql(`
       {
-        allMarkdownRemark(
-          sort: { order: ASC, fields: frontmatter___date }
-          filter: { fields: { slug: { ne: null } } }
+        posts: allFile(
+          filter: {
+            sourceInstanceName: { eq: "posts" }
+            internal: { mediaType: { eq: "text/markdown" } }
+          }
         ) {
           edges {
             node {
-              fields {
-                slug
+              childMarkdownRemark {
+                fields {
+                  slug
+                }
               }
             }
           }
@@ -204,13 +208,26 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
             fieldValue
           }
         }
+        galleries: allFile(
+          filter: { sourceInstanceName: { eq: "galleries" } }
+        ) {
+          group(field: relativeDirectory) {
+            fieldValue
+          }
+        }
       }
     `).then(result => {
       const decode = guard(
         object({
-          allMarkdownRemark: object({
+          posts: object({
             edges: array(
-              object({ node: object({ fields: object({ slug: string }) }) })
+              object({
+                node: object({
+                  childMarkdownRemark: object({
+                    fields: object({ slug: string }),
+                  }),
+                }),
+              })
             ),
           }),
           allProject: object({
@@ -226,22 +243,28 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
           tags: object({
             group: array(object({ fieldValue: string })),
           }),
+          galleries: object({
+            group: array(object({ fieldValue: string })),
+          }),
         })
       );
       const data = decode(result.data);
 
       // create /posts pages
-      const posts = data.allMarkdownRemark.edges;
+      const posts = data.posts.edges;
       posts.forEach(({ node }, i) => {
         createPage({
           component: path.resolve(`./src/templates/blog.tsx`),
           context: {
             nextSlug:
-              i === posts.length - 1 ? "" : posts[i + 1].node.fields.slug, // FiXME: make it null instead of an empty string
-            prevSlug: i === 0 ? "" : posts[i - 1].node.fields.slug,
-            slug: node.fields.slug,
+              i === posts.length - 1
+                ? ""
+                : posts[i + 1].node.childMarkdownRemark.fields.slug, // FiXME: make it null instead of an empty string
+            prevSlug:
+              i === 0 ? "" : posts[i - 1].node.childMarkdownRemark.fields.slug,
+            slug: node.childMarkdownRemark.fields.slug,
           },
-          path: node.fields.slug,
+          path: node.childMarkdownRemark.fields.slug,
         });
       });
 
@@ -264,6 +287,17 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
             tag: fieldValue,
           },
           path: `tags/${fieldValue}`,
+        });
+      });
+
+      // create /galleries pages
+      data.galleries.group.forEach(({ fieldValue }) => {
+        createPage({
+          component: path.resolve(`./src/templates/gallery.tsx`),
+          context: {
+            name: fieldValue,
+          },
+          path: `galleries/${fieldValue}`,
         });
       });
 

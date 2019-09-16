@@ -1,5 +1,7 @@
 @tailwind base;
 
+/* Common */
+
 @import url("https://rsms.me/inter/inter.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap");
 
@@ -30,6 +32,19 @@ a {
   overflow-wrap: break-word;
 }
 
+/* Components */
+.heading {
+  @apply font-bold;
+  @apply text-xl;
+}
+
+@screen md {
+  .heading {
+    @apply text-5xl;
+  }
+}
+
+/* Blog */
 mark {
   background-color: rgba(119, 221, 119, 0.5);
   border-radius: 4px;
@@ -100,12 +115,6 @@ mark {
   margin: 16px 0;
 }
 
-/* .gatsby-highlight-code-line {
-  display: block;
-  margin-left: -14px;
-  padding-left: 10px;
-  border-left: 3px solid #ffa7c4;
-} */
 .gatsby-highlight-code-line {
   background-color: beige;
   display: block;

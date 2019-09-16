@@ -38,7 +38,7 @@ const Layout = memo(({ children }: Props) => {
       <div className="flex flex-col min-h-screen mx-auto max-w-main">
         <Header />
         <div className="flex-1">
-          <div className="flex justify-center px-8 flex-1">
+          <div className="flex justify-center px-6 flex-1">
             <div className="w-full">{children}</div>
           </div>
         </div>

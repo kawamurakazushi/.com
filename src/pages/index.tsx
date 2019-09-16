@@ -4,11 +4,19 @@ import React, { memo } from "react";
 
 import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";
+import { ArrowRightIcon } from "../icons/arrowRight";
 
 const useIndexQuery = () => {
   const data = useStaticQuery(
     graphql`
       query IndexQuery {
+        galleries: allFile(
+          filter: { sourceInstanceName: { eq: "galleries" } }
+        ) {
+          group(field: relativeDirectory) {
+            fieldValue
+          }
+        }
         allProject {
           edges {
             node {
@@ -74,6 +82,9 @@ const useIndexQuery = () => {
         })
       ),
     }),
+    galleries: object({
+      group: array(object({ fieldValue: string })),
+    }),
   });
 
   return guard(decoder)(data);
@@ -84,6 +95,7 @@ export default memo(() => {
 
   return (
     <Layout>
+      <h2 className="heading my-2">Blog Post</h2>
       <div className="flex flex-col">
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <ArticleItem
@@ -95,16 +107,18 @@ export default memo(() => {
             excerpt={node.excerpt}
           />
         ))}
-        <div className="my-5 flex justify-center">
+        <div className="mt-1 mb-2 flex flex-row-reverse">
           <Link
             to="/blogs"
-            className="text-center px-8 py-1 border-solid border border-black hover:bg-black hover:text-white "
+            // className="px-2 py-1 text-sm border-solid border hover:text-black hover:bg-white border-black bg-black text-white "
+            className="text-xs flex items-center hover:text-white hover:bg-black"
           >
-            See More
+            SEE ALL BLOGS
+            <ArrowRightIcon size="16" />
           </Link>
         </div>
       </div>
-      <h2 className="font-bold my-3">PROJECTS</h2>
+      <h2 className="heading my-2">Projects</h2>
       {data.allProject.edges.map(({ node }) => (
         <Link
           to={`/projects/${node.name}`}
@@ -125,6 +139,24 @@ export default memo(() => {
           </div>
         </Link>
       ))}
+      <h2 className="heading my-2">Gallery</h2>
+      <div className="flex">
+        {data.galleries.group.map(({ fieldValue }) => {
+          return (
+            <Link
+              className="flex flex-col justify-center items-center rounded md:w-1/3 w-full h-48"
+              to={`/galleries/${fieldValue}`}
+              style={{
+                background:
+                  "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://images.unsplash.com/photo-1472073707371-aed1a89bfcaa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80')",
+              }}
+            >
+              <div className="text-white">{fieldValue}</div>
+              <div className="h-px w-8 bg-white mt-2"></div>
+            </Link>
+          );
+        })}
+      </div>
     </Layout>
   );
 });
