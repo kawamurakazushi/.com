@@ -59,7 +59,8 @@ mark {
   font-size: 14px;
 }
 
-.remark ol {
+.remark ol,
+.remark ul {
   list-style: inherit;
   margin-left: 16px;
 }
