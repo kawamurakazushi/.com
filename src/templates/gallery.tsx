@@ -31,7 +31,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
       <div className="flex flex-wrap">
         {images.map(({ node }) => {
           return (
-            <div className="w-1/3 p-1" key={node.id}>
+            <div className="w-full md:w-1/3 pb-2 md:p-1" key={node.id}>
               <img className="rounded" src={node.childImageSharp.fixed.src} />
             </div>
           );
@@ -53,7 +53,7 @@ export const query = graphql`
         node {
           id
           childImageSharp {
-            fixed(width: 300, height: 300) {
+            fixed(width: 1000, height: 1000) {
               srcSet
               src
             }

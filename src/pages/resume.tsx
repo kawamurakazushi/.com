@@ -242,6 +242,9 @@ const WorkHistory = () => (
         <Achievement>
           Created a provider system but scraping RSS feeds from other media.
         </Achievement>
+        <Achievement>
+          Push notification functionality for iOS using <i>Amazon SNS</i>.
+        </Achievement>
       </div>
     </div>
   </>
@@ -304,9 +307,7 @@ const Links = () => (
       <div style={{ height: 18 }} className="flex items-center">
         <MapIcon className="mr-1 text-xs" size="12" />
       </div>
-      <div className="flex-1">
-        Urban Hills, Room 201, Nakameguro Meguro-ku Tokyo 153-0061, Japan
-      </div>
+      <div className="flex-1">Tokyo, Japan</div>
     </a>
     <a className="flex items-center text-xs">
       <PhoneIcon className="mr-1" size="12" />
@@ -368,7 +369,7 @@ export default memo(() => (
     </Helmet>
     <div className="max-w-main text-sm m-auto px-3 py-2">
       <div>
-        <div style={{ lineHeight: "60px" }} className="text-5xl">
+        <div style={{ lineHeight: "60px" }} className="text-4xl font-semibold">
           Kazushi Kawamura
         </div>
         <div className="italic text-xs font-semibold">Software Developer</div>

@@ -144,15 +144,10 @@ export default memo(() => {
         {data.galleries.group.map(({ fieldValue }) => {
           return (
             <Link
-              className="flex flex-col justify-center items-center rounded md:w-1/3 w-full h-48"
+              className="text-l font-medium hover:bg-black hover:text-white"
               to={`/galleries/${fieldValue}`}
-              style={{
-                background:
-                  "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://images.unsplash.com/photo-1472073707371-aed1a89bfcaa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80')",
-              }}
             >
-              <div className="text-white">{fieldValue}</div>
-              <div className="h-px w-8 bg-white mt-2"></div>
+              <div className="">{fieldValue}</div>
             </Link>
           );
         })}
