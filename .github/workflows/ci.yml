@@ -1,0 +1,27 @@
+name: kawamurakazushi.com CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [11.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install yarn
+        run: npm install -g yarn
+      - name: Install dependencies
+        run: yarn
+      - name: Build
+        env:
+          GATSBY_ALGOLIA_ADMIN_KEY: ${{ secrets.GATSBY_ALGOLIA_ADMIN_KEY }}
+          GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
+          GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
+          GITHUB_API_KEY: ${{ secrets.GITHUB_API_KEY }}
+        run: yarn build
