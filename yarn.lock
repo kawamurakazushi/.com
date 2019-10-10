@@ -5797,11 +5797,11 @@ gatsby-plugin-algolia@^0.3.4:
     lodash.chunk "^4.2.0"
 
 gatsby-plugin-google-tagmanager@^2.1.12:
-  version "2.1.12"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-tagmanager/-/gatsby-plugin-google-tagmanager-2.1.12.tgz#0c282b12b29053fdc4a9db2a832babf5c1f3617d"
-  integrity sha512-cTW5d+QBrQWgX1aEJ1EJo/ecNkq3xmVr5Wkau/GyQ3ZQcFZYbuwa+8rbe5N+JD90y4Jpg6aCkLztoHmBLMHskw==
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-tagmanager/-/gatsby-plugin-google-tagmanager-2.1.13.tgz#3062a624430a9bbeac640e70aae34386d1c3ba60"
+  integrity sha512-0sJyaTUWWs0iaVY7A6GZnghGxTJVgVp9gswPxB7P2txAStEMlpIlERBhdPhjY8Bjz33Cg18A2as5xv7gp+EN4A==
   dependencies:
-    "@babel/runtime" "^7.6.2"
+    "@babel/runtime" "^7.6.3"
 
 gatsby-plugin-page-creator@^2.1.24:
   version "2.1.24"
