@@ -40,7 +40,7 @@ a {
 
 @screen md {
   .heading {
-    @apply text-5xl;
+    @apply text-6xl;
   }
 }
 

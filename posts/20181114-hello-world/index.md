@@ -2,7 +2,7 @@
 title: "About my blog."
 date: "2018-11-14"
 tags: []
-category: "general"
+category: "blog"
 thumbnail: "./thumbnail.jpg"
 ---
 

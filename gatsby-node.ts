@@ -40,8 +40,8 @@ export const sourceNodes = async ({
     "figma-map-maker",
     "figma-walker",
     "figma-format",
-    "figma-sort-it",
     "vscode-grep",
+    "figma-sort-it",
     "seo-editor",
     "thyme",
   ].map(async p => {

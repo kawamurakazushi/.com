@@ -3,6 +3,7 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 
 import ArticleItem from "../components/articleItem";
+import ProjectItem from "../components/projectItem";
 import Layout from "../components/layout";
 import { ArrowRightIcon } from "../icons/arrowRight";
 
@@ -17,7 +18,7 @@ const useIndexQuery = () => {
             fieldValue
           }
         }
-        allProject {
+        allProject(limit: 5) {
           edges {
             node {
               id
@@ -30,7 +31,7 @@ const useIndexQuery = () => {
         }
         allMarkdownRemark(
           sort: { order: DESC, fields: frontmatter___date }
-          limit: 4
+          limit: 5
           filter: { fields: { slug: { ne: null } } }
         ) {
           edges {
@@ -90,67 +91,56 @@ const useIndexQuery = () => {
   return guard(decoder)(data);
 };
 
+const MoreLink = ({ to, label }: { to: string; label: string }) => {
+  return (
+    <Link
+      to={to}
+      className="text-xs font-normal flex items-center hover:text-white hover:bg-black"
+    >
+      {label}
+      <ArrowRightIcon size="16" />
+    </Link>
+  );
+};
+
 export default memo(() => {
   const data = useIndexQuery();
 
   return (
     <Layout>
-      <h2 className="heading my-2">Blog Post</h2>
-      <div className="flex flex-col">
-        {data.allMarkdownRemark.edges.map(({ node }) => (
-          <ArticleItem
-            key={node.fields.slug}
-            to={node.fields.slug}
-            date={node.frontmatter.date}
-            tags={node.frontmatter.tags}
-            title={node.frontmatter.title}
-            excerpt={node.excerpt}
-          />
-        ))}
-        <div className="mt-1 mb-2 flex flex-row-reverse">
-          <Link
-            to="/blogs"
-            // className="px-2 py-1 text-sm border-solid border hover:text-black hover:bg-white border-black bg-black text-white "
-            className="text-xs flex items-center hover:text-white hover:bg-black"
-          >
-            SEE ALL BLOGS
-            <ArrowRightIcon size="16" />
-          </Link>
+      <div className="mb-8">
+        <h2 className="heading my-2">Writings</h2>
+        <div className="flex flex-col">
+          {data.allMarkdownRemark.edges.map(({ node }) => (
+            <ArticleItem
+              key={node.fields.slug}
+              to={node.fields.slug}
+              date={node.frontmatter.date}
+              tags={node.frontmatter.tags}
+              title={node.frontmatter.title}
+              excerpt={node.excerpt}
+            />
+          ))}
+        </div>
+        <div className="flex mt-2">
+          <MoreLink to="/blogs" label="VIEW MORE WRITINGS" />
         </div>
       </div>
-      <h2 className="heading my-2">Projects</h2>
-      {data.allProject.edges.map(({ node }) => (
-        <Link
-          to={`/projects/${node.name}`}
-          key={node.id}
-          className="mb-5 block
-          "
-        >
-          <span className="text-l font-medium hover:bg-black hover:text-white">
-            {node.name}
-          </span>
-          <div className="text-xs mt-2 mb-1">{node.description}</div>
-          <div className="text-xs flex">
-            {node.topics.map(topic => (
-              <div key={topic} className="mr-1">
-                #{topic}
-              </div>
-            ))}
-          </div>
-        </Link>
-      ))}
-      <h2 className="heading my-2">Gallery</h2>
-      <div className="flex">
-        {data.galleries.group.map(({ fieldValue }) => {
-          return (
-            <Link
-              className="text-l font-medium hover:bg-black hover:text-white"
-              to={`/galleries/${fieldValue}`}
-            >
-              <div className="">{fieldValue}</div>
-            </Link>
-          );
-        })}
+      <div className="mb-4">
+        <h2 className="heading my-2">Projects</h2>
+        {data.allProject.edges.map(({ node }) => (
+          <ProjectItem
+            key={node.id}
+            name={node.name}
+            to={node.name}
+            description={node.description}
+            topics={node.topics}
+            url={node.url}
+          />
+        ))}
+        <div className="flex mt-2">
+          <MoreLink to="/projects" label="VIEW MORE PROJECTS" />
+        </div>
       </div>
     </Layout>
   );

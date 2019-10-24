@@ -31,15 +31,16 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
         <title>Blogs | Kazushi Kawamura</title>
         <meta property="og:title" content="Blogs" />
       </Helmet>
-      <h2 className="font-bold text-xl mb-2 md:text-5xl">Blogs</h2>
+      <h2 className="font-bold mb-4 heading">Writing</h2>
       <div className="flex flex-col">
         {blogs.allMarkdownRemark.edges.map(({ node }) => (
           <ArticleItem
+            type="simple"
             key={node.fields.slug}
             to={node.fields.slug}
             title={node.frontmatter.title}
             date={node.frontmatter.date}
-            tags={node.frontmatter.tags}
+            tags={[]}
             excerpt=""
           />
         ))}
