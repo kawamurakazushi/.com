@@ -66,7 +66,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
         <title>Blogs | Kazushi Kawamura</title>
         <meta property="og:title" content="Blogs" />
       </Helmet>
-      <h2 className="font-bold mb-4 heading">Writing</h2>
+      <h2 className="mt-4 heading">Writing</h2>
       <div className="flex flex-col">
         {Object.keys(blogsByYear)
           .reverse()
@@ -75,7 +75,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
               <div>
                 <div className="flex items-center">
                   <h3 className="font-medium my-4 mr-2">{year}</h3>
-                  <div className="flex-1 h-px bg-gray-100" />
+                  <div className="flex-1 h-px bg-gray-200" />
                 </div>
                 {blogsByYear[year].map(blog => (
                   <ArticleItem

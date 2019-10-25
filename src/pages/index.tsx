@@ -174,7 +174,7 @@ export default memo(() => {
           <MoreLink to="/projects" label="VIEW MORE PROJECTS" />
         </div>
       </div>
-      <div className="mb-4">
+      <div id="books" className="mb-4">
         <h2 className="heading my-2">Book Reviews</h2>
         {data.allGoodreadsReview.edges.map(({ node }) => (
           <div className="flex mb-3">

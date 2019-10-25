@@ -18,7 +18,7 @@ const SearchInput = connectSearchBox(({ refine }) => {
   return (
     <input
       autoFocus
-      className="w-full bg-gray-200 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:bg-white"
+      className="text-white w-full bg-black border border-gray-300 rounded px-3 py-2 focus:outline-none"
       placeholder="Search the website"
       onChange={e => refine(e.target.value)}
     />
@@ -41,7 +41,10 @@ const HitResults = connectStateResults(
 
 const Hit = ({ hit }: { hit: { path: string } }) => {
   return (
-    <Link to={hit.path} className="text-sm mb-2 block hover:bg-gray-100">
+    <Link
+      to={hit.path}
+      className="text-sm mb-2 block hover:bg-white hover:text-black"
+    >
       <Highlight
         tagName="mark"
         className="text-sm text-gray-500"
@@ -88,7 +91,7 @@ const Search = memo(() => {
               ))}
             </>
           )}
-          <div className="flex flex-row-reverse items-center text-xs border-t py-4 mt-4">
+          <div className="flex flex-row-reverse items-center text-xs py-4 mt-4">
             <a target="_blank" href="https://www.algolia.com/">
               <AlgoliaLogo />
             </a>
