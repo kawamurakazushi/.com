@@ -18,6 +18,22 @@ const useIndexQuery = () => {
             fieldValue
           }
         }
+        allGoodreadsReview {
+          edges {
+            node {
+              body
+              readAt: read_at
+              book {
+                title
+                isbn
+                imageUrl: image_url
+                authors {
+                  name
+                }
+              }
+            }
+          }
+        }
         allProject(limit: 5) {
           edges {
             node {
@@ -54,6 +70,22 @@ const useIndexQuery = () => {
   );
 
   const decoder = object({
+    allGoodreadsReview: object({
+      edges: array(
+        object({
+          node: object({
+            body: string,
+            book: object({
+              authors: array(object({ name: string })),
+              imageUrl: string,
+              isbn: string,
+              title: string,
+            }),
+            readAt: string,
+          }),
+        })
+      ),
+    }),
     allMarkdownRemark: object({
       edges: array(
         object({
@@ -143,7 +175,27 @@ export default memo(() => {
         </div>
       </div>
       <div className="mb-4">
-        <h2 className="heading my-2">Books</h2>
+        <h2 className="heading my-2">Book Reviews</h2>
+        {data.allGoodreadsReview.edges.map(({ node }) => (
+          <div className="flex mb-3">
+            <img className="w-10" src={node.book.imageUrl} />
+            <div className="flex flex-col ml-2">
+              <div className="flex text-sm">
+                <div className="font-medium mr-2">{node.book.title}</div>
+                <div className="font-thin">
+                  {node.book.authors.map(({ name }) => name).join(", ")}
+                </div>
+              </div>
+              <div className="text-xs mt-1">
+                {node.readAt === "" ? (
+                  <div className="italic">reading...</div>
+                ) : (
+                  <div className="font-medium">read!</div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </Layout>
   );
