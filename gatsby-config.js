@@ -130,6 +130,13 @@ module.exports = {
         chunkSize: 10000,
       },
     },
+    {
+      resolve: "@jamesdanylik/gatsby-source-goodreads",
+      options: {
+        key: "IG9rQNF0jEf1BnpsfSPOA",
+        id: "57054219",
+      },
+    },
   ],
   siteMetadata: {
     title: "kawamurakazushi.com",
