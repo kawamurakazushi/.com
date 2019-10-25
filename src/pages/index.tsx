@@ -3,8 +3,8 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 
 import ArticleItem from "../components/articleItem";
-import ProjectItem from "../components/projectItem";
 import Layout from "../components/layout";
+import ProjectItem from "../components/projectItem";
 import { ArrowRightIcon } from "../icons/arrowRight";
 
 const useIndexQuery = () => {
@@ -141,6 +141,9 @@ export default memo(() => {
         <div className="flex mt-2">
           <MoreLink to="/projects" label="VIEW MORE PROJECTS" />
         </div>
+      </div>
+      <div className="mb-4">
+        <h2 className="heading my-2">Books</h2>
       </div>
     </Layout>
   );

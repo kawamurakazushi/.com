@@ -16,6 +16,7 @@ const decoder = object({
             date: string,
             tags: array(string),
             title: string,
+            year: string,
           }),
         }),
       })
@@ -23,8 +24,42 @@ const decoder = object({
   }),
 });
 
+interface BlogByYear {
+  [year: string]: Array<{
+    title: string;
+    date: string;
+    slug: string;
+    tags: string[];
+  }>;
+}
+
 export default memo(({ data }: ReplaceComponentRendererArgs) => {
   const blogs = guard(decoder)(data);
+  const blogsByYear = blogs.allMarkdownRemark.edges.reduce<BlogByYear>(
+    (acc, cur) => {
+      const year = cur.node.frontmatter.year;
+      const accByYear = acc[year];
+
+      const node = cur.node;
+      const b = {
+        date: node.frontmatter.date,
+        slug: node.fields.slug,
+        tags: node.frontmatter.tags,
+        title: node.frontmatter.title,
+      };
+
+      if (accByYear) {
+        return {
+          ...acc,
+          [year]: [...accByYear, b],
+        };
+      }
+
+      return { ...acc, [year]: [b] };
+    },
+    {}
+  );
+
   return (
     <Layout>
       <Helmet>
@@ -33,17 +68,29 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
       </Helmet>
       <h2 className="font-bold mb-4 heading">Writing</h2>
       <div className="flex flex-col">
-        {blogs.allMarkdownRemark.edges.map(({ node }) => (
-          <ArticleItem
-            type="simple"
-            key={node.fields.slug}
-            to={node.fields.slug}
-            title={node.frontmatter.title}
-            date={node.frontmatter.date}
-            tags={[]}
-            excerpt=""
-          />
-        ))}
+        {Object.keys(blogsByYear)
+          .reverse()
+          .map(year => {
+            return (
+              <div>
+                <div className="flex items-center">
+                  <h3 className="font-medium my-4 mr-2">{year}</h3>
+                  <div className="flex-1 h-px bg-gray-100" />
+                </div>
+                {blogsByYear[year].map(blog => (
+                  <ArticleItem
+                    type="simple"
+                    key={blog.slug}
+                    to={blog.slug}
+                    title={blog.title}
+                    date={blog.date}
+                    tags={blog.tags}
+                    excerpt=""
+                  />
+                ))}
+              </div>
+            );
+          })}
       </div>
     </Layout>
   );
@@ -62,7 +109,8 @@ export const query = graphql`
           }
           frontmatter {
             title
-            date(formatString: "YYYY.MM.DD")
+            date(formatString: "MMM. DD")
+            year: date(formatString: "YYYY")
             tags
           }
           excerpt(format: PLAIN)
