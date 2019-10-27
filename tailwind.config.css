@@ -51,6 +51,7 @@ mark {
 }
 
 .remark a {
+  display: inline-block;
   text-decoration: underline;
 }
 

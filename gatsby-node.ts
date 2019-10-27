@@ -1,5 +1,5 @@
 import ApolloClient from "apollo-boost";
-import { array, guard, object, string } from "decoders";
+import { array, guard, nullable, object, string } from "decoders";
 import {
   CreateNodeArgs,
   CreatePagesArgs,
@@ -39,8 +39,9 @@ export const sourceNodes = async ({
     "spice-blending-puzzle",
     "figma-map-maker",
     "figma-walker",
-    "figma-format",
+    "react-native-loader2",
     "vscode-grep",
+    "figma-format",
     "figma-sort-it",
     "seo-editor",
     "thyme",
@@ -93,7 +94,7 @@ export const sourceNodes = async ({
       object({
         repository: object({
           description: string,
-          homepageUrl: string,
+          homepageUrl: nullable(string),
           languages: object({
             edges: array(
               object({ node: object({ name: string, color: string }) })

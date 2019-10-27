@@ -1,4 +1,4 @@
-import { guard, object, string } from "decoders";
+import { guard, nullable, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 import { Helmet } from "react-helmet";
@@ -10,7 +10,7 @@ import { LinkIcon } from "../icons/link";
 const decoder = object({
   project: object({
     description: string,
-    homepageUrl: string,
+    homepageUrl: nullable(string),
     name: string,
     readme: object({
       childMarkdownRemark: object({
@@ -32,7 +32,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
       </Helmet>
       <div>
         <div className="font-light text-gray-400 flex text-xs mb-2">
-          {project.homepageUrl !== "" && (
+          {project.homepageUrl && project.homepageUrl !== "" && (
             <a
               href={project.homepageUrl}
               className="mr-3 flex items-center hover:text-black"
