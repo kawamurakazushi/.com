@@ -48,7 +48,10 @@ const useIndexQuery = () => {
         allMarkdownRemark(
           sort: { order: DESC, fields: frontmatter___date }
           limit: 5
-          filter: { fields: { slug: { ne: null } } }
+          filter: {
+            fields: { slug: { ne: null } }
+            frontmatter: { status: { ne: "draft" } }
+          }
         ) {
           edges {
             node {
@@ -175,7 +178,7 @@ export default memo(() => {
         </div>
       </div>
       <div id="books" className="mb-4">
-        <h2 className="heading my-2">Book Reviews</h2>
+        <h2 className="heading my-2">Books</h2>
         {data.allGoodreadsReview.edges.map(({ node }) => (
           <div className="flex mb-3">
             <div className="w-10">

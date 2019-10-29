@@ -1,8 +1,10 @@
 ---
-title: "var/let/const with examples"
+title: "#01 var/let/const with examples - Questions Series"
 date: "2019-09-11"
 tags: ["questions-series", "javascript"]
 category: "tech"
+status: "draft"
 ---
 
-**Questions Series** is a series me answering to basic to advance technical questions.
+
+## draft

@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "kawamurakazushi.com",
+  "description": "My Portfolio.",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Kazushi Kawamura <wakaka2277@gmail.com>",
   "dependencies": {
     "@jamesdanylik/gatsby-source-goodreads": "^0.1.0",
     "algoliasearch": "^3.35.0",

@@ -16,6 +16,7 @@ title: "Hello World"
 date: "${year}-${month}-${date}"
 tags: []
 category: "tech"
+status: "draft"
 ---
 `;
 
