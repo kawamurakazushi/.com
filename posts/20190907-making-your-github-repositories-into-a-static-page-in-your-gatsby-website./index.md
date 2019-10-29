@@ -261,7 +261,7 @@ export const sourceNodes = async ({
         content: readme,
         contentDigest: createContentDigest(readme),
         mediaType: `text/markdown`,
-        type: "projectReadme",
+        type: "ProjectReadme",
       },
       parent: parentId,
     };

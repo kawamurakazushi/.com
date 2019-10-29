@@ -82,13 +82,20 @@ module.exports = {
       },
       resolve: "gatsby-source-filesystem",
     },
+    // {
+    //   options: {
+    //     name: "galleries",
+    //     path: `${__dirname}/galleries/`,
+    //   },
+    //   resolve: "gatsby-source-filesystem",
+    // },
     {
       options: {
-        name: "galleries",
-        path: `${__dirname}/galleries/`,
+        path: `${__dirname}/data/`,
       },
       resolve: "gatsby-source-filesystem",
     },
+    "gatsby-transformer-yaml",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {
@@ -128,13 +135,6 @@ module.exports = {
         apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
         queries,
         chunkSize: 10000,
-      },
-    },
-    {
-      resolve: "@jamesdanylik/gatsby-source-goodreads",
-      options: {
-        key: "IG9rQNF0jEf1BnpsfSPOA",
-        id: "57054219",
       },
     },
   ],

@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "author": "Kazushi Kawamura <wakaka2277@gmail.com>",
   "dependencies": {
-    "@jamesdanylik/gatsby-source-goodreads": "^0.1.0",
     "algoliasearch": "^3.35.0",
     "gatsby": "^2.17.6",
     "gatsby-image": "^2.2.30",
@@ -46,6 +45,7 @@
     "gatsby-source-filesystem": "^2.1.35",
     "gatsby-transformer-remark": "^2.6.32",
     "gatsby-transformer-sharp": "^2.3.1",
+    "gatsby-transformer-yaml": "^2.2.15",
     "node-fetch": "^2.6.0",
     "prettier": "^1.17.0",
     "prismjs": "^1.17.1",

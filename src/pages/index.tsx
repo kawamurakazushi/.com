@@ -11,29 +11,6 @@ const useIndexQuery = () => {
   const data = useStaticQuery(
     graphql`
       query IndexQuery {
-        galleries: allFile(
-          filter: { sourceInstanceName: { eq: "galleries" } }
-        ) {
-          group(field: relativeDirectory) {
-            fieldValue
-          }
-        }
-        allGoodreadsReview {
-          edges {
-            node {
-              body
-              readAt: read_at
-              book {
-                title
-                isbn
-                imageUrl: image_url
-                authors {
-                  name
-                }
-              }
-            }
-          }
-        }
         allProject(limit: 5) {
           edges {
             node {
@@ -73,22 +50,6 @@ const useIndexQuery = () => {
   );
 
   const decoder = object({
-    allGoodreadsReview: object({
-      edges: array(
-        object({
-          node: object({
-            body: string,
-            book: object({
-              authors: array(object({ name: string })),
-              imageUrl: string,
-              isbn: string,
-              title: string,
-            }),
-            readAt: string,
-          }),
-        })
-      ),
-    }),
     allMarkdownRemark: object({
       edges: array(
         object({
@@ -117,9 +78,6 @@ const useIndexQuery = () => {
           }),
         })
       ),
-    }),
-    galleries: object({
-      group: array(object({ fieldValue: string })),
     }),
   });
 
@@ -179,7 +137,7 @@ export default memo(() => {
       </div>
       <div id="books" className="mb-4">
         <h2 className="heading my-2">Books</h2>
-        {data.allGoodreadsReview.edges.map(({ node }) => (
+        {/* {data.allGoodreadsReview.edges.map(({ node }) => (
           <div className="flex mb-3">
             <div className="w-10">
               <img src={node.book.imageUrl} />
@@ -200,7 +158,7 @@ export default memo(() => {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
     </Layout>
   );

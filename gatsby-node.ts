@@ -3,17 +3,25 @@ import { array, guard, nullable, object, string } from "decoders";
 import {
   CreateNodeArgs,
   CreatePagesArgs,
+  Node,
   NodeInput,
   SourceNodesArgs,
 } from "gatsby";
 import { createFilePath } from "gatsby-source-filesystem";
 import gql from "graphql-tag";
+import fetch from "node-fetch";
 import * as path from "path";
 
-export const onCreateNode = ({ node, getNode, actions }: CreateNodeArgs) => {
-  const { createNodeField } = actions;
+export const onCreateNode = async ({
+  node,
+  getNode,
+  actions,
+  createNodeId,
+  createContentDigest,
+}: CreateNodeArgs) => {
+  const { createNodeField, createNode, createParentChildLink } = actions;
 
-  // Create slug only if it is a markdown from File
+  // Create slug only if it is a markdown from File. It might be from README.md
   if (
     node.internal.type === "MarkdownRemark" &&
     getNode(node.parent).internal.type === "File"
@@ -24,6 +32,31 @@ export const onCreateNode = ({ node, getNode, actions }: CreateNodeArgs) => {
       node,
       value: slug,
     });
+  }
+
+  if (node.internal.type === "BooksYaml") {
+    const isbn = node.isbn;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.items.length > 0) {
+      const book = data.items[0].volumeInfo;
+
+      const bookNode: Node = {
+        ...book,
+        children: [],
+        id: createNodeId(isbn),
+        internal: {
+          contentDigest: createContentDigest(book),
+          owner: "",
+          type: "Book",
+        },
+        parent: node.id,
+      };
+
+      createNode(bookNode);
+      createParentChildLink({ parent: node, child: bookNode });
+    }
   }
 };
 
@@ -157,7 +190,7 @@ export const sourceNodes = async ({
         content: readme,
         contentDigest: createContentDigest(readme),
         mediaType: `text/markdown`,
-        type: "projectReadme",
+        type: "ProjectReadme",
       },
       parent: parentId,
     };
