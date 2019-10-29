@@ -6,6 +6,7 @@ import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";
 import ProjectItem from "../components/projectItem";
 import { ArrowRightIcon } from "../icons/arrowRight";
+import { GithubIcon } from "../icons/github";
 
 const useIndexQuery = () => {
   const data = useStaticQuery(
@@ -129,6 +130,22 @@ export default memo(() => {
 
   return (
     <Layout>
+      <div className="mb-8">
+        <h2 className="heading my-2">About Me</h2>
+        <div className="flex items-center">
+          <div className="font-medium">Kazushi Kawamura</div>
+          <a
+            target="_blank"
+            href="https://github.com/kawamurakazushi"
+            className="ml-2"
+          >
+            <GithubIcon className="" size="24" />
+          </a>
+        </div>
+        <div className="my-2 text-sm">
+          Software Engineer based in Tokyo, Japan.
+        </div>
+      </div>
       <div className="mb-8">
         <h2 className="heading my-2">Writings</h2>
         <div className="flex flex-col">
