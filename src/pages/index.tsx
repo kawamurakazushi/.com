@@ -11,6 +11,20 @@ const useIndexQuery = () => {
   const data = useStaticQuery(
     graphql`
       query IndexQuery {
+        allBooksYaml {
+          edges {
+            node {
+              status
+              childBook {
+                title
+                authors
+                imageLinks {
+                  thumbnail
+                }
+              }
+            }
+          }
+        }
         allProject(limit: 5) {
           edges {
             node {
@@ -50,6 +64,20 @@ const useIndexQuery = () => {
   );
 
   const decoder = object({
+    allBooksYaml: object({
+      edges: array(
+        object({
+          node: object({
+            childBook: object({
+              authors: array(string),
+              imageLinks: object({ thumbnail: string }),
+              title: string,
+            }),
+            status: string,
+          }),
+        })
+      ),
+    }),
     allMarkdownRemark: object({
       edges: array(
         object({
@@ -137,20 +165,20 @@ export default memo(() => {
       </div>
       <div id="books" className="mb-4">
         <h2 className="heading my-2">Books</h2>
-        {/* {data.allGoodreadsReview.edges.map(({ node }) => (
+        {data.allBooksYaml.edges.map(({ node }) => (
           <div className="flex mb-3">
             <div className="w-10">
-              <img src={node.book.imageUrl} />
+              <img src={node.childBook.imageLinks.thumbnail} />
             </div>
             <div className="flex flex-col ml-2 flex-1">
               <div className="flex text-sm">
-                <div className="font-medium mr-2">{node.book.title}</div>
+                <div className="font-medium mr-2">{node.childBook.title}</div>
                 <div className="font-thin">
-                  {node.book.authors.map(({ name }) => name).join(", ")}
+                  {node.childBook.authors.join(", ")}
                 </div>
               </div>
               <div className="text-xs mt-1">
-                {node.readAt === "" ? (
+                {node.status === "reading" ? (
                   <div className="italic">reading...</div>
                 ) : (
                   <div className="font-medium">read!</div>
@@ -158,7 +186,7 @@ export default memo(() => {
               </div>
             </div>
           </div>
-        ))} */}
+        ))}
       </div>
     </Layout>
   );
