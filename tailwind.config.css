@@ -57,23 +57,26 @@ mark {
 
 .remark p {
   margin: 12px 0;
-  font-size: 14px;
+  @apply text-sm;
 }
 
-.remark ol,
+.remark ol {
+  list-style: decimal;
+  margin-left: 16px;
+}
 .remark ul {
   list-style: inherit;
   margin-left: 16px;
 }
 
 .remark li {
-  font-size: 14px;
+  @apply text-sm;
 }
 
 .remark table {
   display: block;
   overflow-x: auto;
-  font-size: 14px;
+  @apply text-sm;
   margin: 16px 0;
 }
 
@@ -98,7 +101,7 @@ mark {
 
 .remark pre {
   font-family: "Roboto Mono", monospace;
-  font-size: 14px;
+  @apply text-sm;
 }
 
 .remark h2 {
