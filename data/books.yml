@@ -1,4 +1,3 @@
 - isbn: 4478025819
-  status: reading
 - isbn: 4532114071
-  status: read
+  readAt: "2019-11-03"

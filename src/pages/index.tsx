@@ -1,4 +1,4 @@
-import { array, guard, object, string } from "decoders";
+import { array, guard, object, string, nullable } from "decoders";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 
@@ -15,7 +15,7 @@ const useIndexQuery = () => {
         allBooksYaml {
           edges {
             node {
-              status
+              readAt
               childBook {
                 title
                 authors
@@ -71,7 +71,7 @@ const useIndexQuery = () => {
               imageLinks: object({ thumbnail: string }),
               title: string,
             }),
-            status: string,
+            readAt: nullable(string),
           }),
         })
       ),
@@ -194,10 +194,10 @@ export default memo(() => {
                 </div>
               </div>
               <div className="text-xs mt-1">
-                {node.status === "reading" ? (
-                  <div className="italic">reading...</div>
+                {node.readAt ? (
+                  <div className="font-medium">read at {node.readAt}</div>
                 ) : (
-                  <div className="font-medium">read - 2019 Nov 3</div>
+                  <div className="italic">reading...</div>
                 )}
               </div>
             </div>
