@@ -3,7 +3,6 @@ title: "Publishing my first React Native library to npm."
 date: "2019-10-28"
 tags: []
 category: "tech"
-status: "draft"
 ---
 
 ## About the Packages

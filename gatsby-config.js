@@ -79,16 +79,10 @@ module.exports = {
       options: {
         name: "posts",
         path: `${__dirname}/posts/`,
+        ignore: process.env.NODE_ENV === "production" ? [`**/draft.md`] : [],
       },
       resolve: "gatsby-source-filesystem",
     },
-    // {
-    //   options: {
-    //     name: "galleries",
-    //     path: `${__dirname}/galleries/`,
-    //   },
-    //   resolve: "gatsby-source-filesystem",
-    // },
     {
       options: {
         path: `${__dirname}/data/`,

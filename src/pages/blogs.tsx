@@ -66,7 +66,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
         <title>Blogs | Kazushi Kawamura</title>
         <meta property="og:title" content="Blogs" />
       </Helmet>
-      <h2 className="mt-4 heading">Writing</h2>
+      <h2 className="mt-4 heading">Writings</h2>
       <div className="flex flex-col">
         {Object.keys(blogsByYear)
           .reverse()

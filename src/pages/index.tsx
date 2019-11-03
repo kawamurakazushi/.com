@@ -40,10 +40,7 @@ const useIndexQuery = () => {
         allMarkdownRemark(
           sort: { order: DESC, fields: frontmatter___date }
           limit: 5
-          filter: {
-            fields: { slug: { ne: null } }
-            frontmatter: { status: { ne: "draft" } }
-          }
+          filter: { fields: { slug: { ne: null } } }
         ) {
           edges {
             node {
@@ -198,7 +195,7 @@ export default memo(() => {
                 {node.status === "reading" ? (
                   <div className="italic">reading...</div>
                 ) : (
-                  <div className="font-medium">read!</div>
+                  <div className="font-medium">read - 2019 Nov 3</div>
                 )}
               </div>
             </div>
