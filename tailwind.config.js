@@ -161,6 +161,7 @@ module.exports = {
       "4xl": "2.25rem",
       "5xl": "3rem",
       "6xl": "4rem",
+      "7xl": "5rem",
     },
     fontWeight: {
       hairline: "100",
@@ -193,6 +194,7 @@ module.exports = {
     },
     lineHeight: {
       none: "1",
+      tighter: "1.1",
       tight: "1.25",
       snug: "1.375",
       normal: "1.5",
@@ -224,6 +226,7 @@ module.exports = {
       "4xl": "56rem",
       "5xl": "64rem",
       "6xl": "72rem",
+      "7xl": "80rem",
       full: "100%",
       main: "780px",
     },

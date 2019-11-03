@@ -14,10 +14,12 @@ const ArticleItem = memo(
   ({ to, date, title, tags, excerpt, type = "detail" }: Props) => {
     if (type === "simple") {
       return (
-        <Link className="flex mb-3 justify-between items-end" to={to}>
-          <span className="underline text-l mr-2 hover:bg-black hover:text-white">
-            {title}
-          </span>
+        <Link className="flex mb-4 justify-between items-end" to={to}>
+          <div className="flex-1 mr-4 flex">
+            <h3 className="text-sm md:text-base hover:bg-black hover:text-white">
+              {title}
+            </h3>
+          </div>
           <div className="text-xs text-gray-400">{date}</div>
         </Link>
       );
@@ -26,9 +28,9 @@ const ArticleItem = memo(
     return (
       <Link className="flex mb-5" to={to}>
         <div className="flex-1">
-          <span className="text-l font-medium hover:bg-black hover:text-white">
+          <h3 className="inline text-base font-medium hover:bg-black hover:text-white">
             {title}
-          </span>
+          </h3>
           {excerpt && <div className="text-xs mt-2 mb-1">{excerpt}</div>}
           <div className="flex">
             {tags && (

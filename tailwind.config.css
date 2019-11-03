@@ -36,11 +36,12 @@ a {
 .heading {
   @apply font-bold;
   @apply text-xl;
+  @apply leading-tighter;
 }
 
 @screen md {
   .heading {
-    @apply text-6xl;
+    @apply text-7xl;
   }
 }
 
@@ -87,15 +88,14 @@ mark {
 }
 
 .remark h1 {
-  font-weight: 700;
-  font-size: 80px;
-  line-height: 88px;
+  @apply font-bold;
+  @apply text-xl;
+  @apply leading-tighter;
 }
 
-@media only screen and (max-device-width: 768px) {
+@screen md {
   .remark h1 {
-    font-size: 40px;
-    line-height: 44px;
+    @apply text-7xl;
   }
 }
 

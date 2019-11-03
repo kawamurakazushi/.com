@@ -85,7 +85,7 @@ export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
         <meta property="og:description" content={post.excerpt} />
       </Helmet>
       <div className="flex flex-col mt-1 mb-4">
-        <h1 className="font-bold text-xl mb-2 md:text-5xl">{post.title}</h1>
+        <h1 className="heading mb-2">{post.title}</h1>
         <p className="text-gray-600 text-sm mb-2">{post.date}</p>
         <div
           className="remark mb-16"

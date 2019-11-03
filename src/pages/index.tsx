@@ -122,13 +122,15 @@ const MoreLink = ({ to, label }: { to: string; label: string }) => {
   );
 };
 
+const header = "heading mt-10 mb-6";
+
 export default memo(() => {
   const data = useIndexQuery();
 
   return (
     <Layout>
       <div className="mb-8">
-        <h2 className="heading my-2">About Me</h2>
+        <h2 className={header}>About Me</h2>
         <div className="flex items-center">
           <div className="font-medium">Kazushi Kawamura</div>
           <a
@@ -144,7 +146,7 @@ export default memo(() => {
         </div>
       </div>
       <div className="mb-8">
-        <h2 className="heading my-2">Writings</h2>
+        <h2 className={header}>Writings</h2>
         <div className="flex flex-col">
           {data.allMarkdownRemark.edges.map(({ node }) => (
             <ArticleItem
@@ -162,7 +164,7 @@ export default memo(() => {
         </div>
       </div>
       <div className="mb-4">
-        <h2 className="heading my-2">Projects</h2>
+        <h2 className={header}>Projects</h2>
         {data.allProject.edges.map(({ node }) => (
           <ProjectItem
             key={node.id}
@@ -178,9 +180,9 @@ export default memo(() => {
         </div>
       </div>
       <div id="books" className="mb-4">
-        <h2 className="heading my-2">Books</h2>
+        <h2 className={header}>Books</h2>
         {data.allBooksYaml.edges.map(({ node }) => (
-          <div className="flex mb-3">
+          <div className="flex mb-5">
             <div className="w-10">
               <img src={node.childBook.imageLinks.thumbnail} />
             </div>

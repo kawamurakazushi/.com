@@ -74,7 +74,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
             return (
               <div>
                 <div className="flex items-center">
-                  <h3 className="font-medium my-4 mr-2">{year}</h3>
+                  <h3 className="text-lg font-semibold my-5 mr-3">{year}</h3>
                   <div className="flex-1 h-px bg-gray-200" />
                 </div>
                 {blogsByYear[year].map(blog => (
