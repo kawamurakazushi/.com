@@ -184,7 +184,12 @@ export default memo(() => {
         {data.allBooksYaml.edges.map(({ node }) => (
           <div className="flex mb-5">
             <div className="w-10">
-              <img src={node.childBook.imageLinks.thumbnail} />
+              <img
+                src={node.childBook.imageLinks.thumbnail.replace(
+                  "http://",
+                  "https://"
+                )}
+              />
             </div>
             <div className="flex flex-col ml-2 flex-1">
               <div className="flex text-sm">
