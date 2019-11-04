@@ -9,7 +9,7 @@
     "gatsby-image": "^2.2.30",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
-    "highlight.js": "^9.15.10",
+    "highlight.js": "^9.16.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.0",
