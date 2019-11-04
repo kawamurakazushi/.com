@@ -31,7 +31,7 @@
     "@types/dotenv": "^8.2.0",
     "@types/node-fetch": "^2.5.2",
     "@types/react": "^16.9.11",
-    "@types/react-helmet": "^5.0.13",
+    "@types/react-helmet": "^5.0.14",
     "@types/react-instantsearch-dom": "^5.2.6",
     "apollo-boost": "^0.4.4",
     "decoders": "^1.16.1",
