@@ -39,7 +39,7 @@
     "gatsby-plugin-algolia": "^0.3.4",
     "gatsby-plugin-google-tagmanager": "^2.1.12",
     "gatsby-plugin-react-helmet": "^3.1.10",
-    "gatsby-plugin-sharp": "^2.2.34",
+    "gatsby-plugin-sharp": "^2.2.36",
     "gatsby-plugin-typescript": "^2.1.11",
     "gatsby-remark-images": "^3.1.25",
     "gatsby-remark-prismjs": "^3.3.16",
