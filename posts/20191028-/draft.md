@@ -1,9 +1,13 @@
 ---
-title: "Publishing my first React Native library to npm."
+title: "Publishing my first React Native library."
 date: "2019-10-28"
 tags: []
 category: "tech"
 ---
+
+## Introduction
+
+https://github.com/kawamurakazushi/react-native-loader2
 
 ## About the Packages
 
@@ -17,3 +21,5 @@ category: "tech"
 - npm version <patch|minor|major>
 - fixpack
 - prebuild
+
+https://t-wada.hatenablog.jp/entry/nodejs-package-json-tips
