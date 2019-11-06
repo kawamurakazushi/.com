@@ -1,4 +1,3 @@
-import ApolloClient from "apollo-boost";
 import { array, guard, nullable, object, string } from "decoders";
 import {
   CreateNodeArgs,
@@ -8,7 +7,7 @@ import {
   SourceNodesArgs,
 } from "gatsby";
 import { createFilePath } from "gatsby-source-filesystem";
-import gql from "graphql-tag";
+import { GraphQLClient } from "graphql-request";
 import fetch from "node-fetch";
 import * as path from "path";
 
@@ -79,48 +78,45 @@ export const sourceNodes = async ({
     "seo-editor",
     "thyme",
   ].map(async p => {
-    const client = new ApolloClient({
-      fetch: require("node-fetch"),
-      headers: {
-        Authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
-      },
-      uri: "https://api.github.com/graphql",
+    const client = new GraphQLClient("https://api.github.com/graphql", {
+      headers: { Authorization: `Bearer ${process.env.GITHUB_API_KEY}` },
     });
 
-    const response = await client.query({
-      query: gql`
-        query Repository($name: String!) {
-          repository(owner: "kawamurakazushi", name: $name) {
-            name
-            description
-            url
-            homepageUrl
-            repositoryTopics(first: 5) {
-              edges {
-                node {
-                  topic {
-                    name
-                  }
-                }
-              }
-            }
-            object(expression: "master:README.md") {
-              ... on Blob {
-                text
-              }
-            }
-            languages(first: 5) {
-              edges {
-                node {
+    const query = `
+      query Repository($name: String!) {
+        repository(owner: "kawamurakazushi", name: $name) {
+          name
+          description
+          url
+          homepageUrl
+          repositoryTopics(first: 5) {
+            edges {
+              node {
+                topic {
                   name
-                  color
                 }
               }
             }
           }
+          object(expression: "master:README.md") {
+            ... on Blob {
+              text
+            }
+          }
+          languages(first: 5) {
+            edges {
+              node {
+                name
+                color
+              }
+            }
+          }
         }
-      `,
-      variables: { name: p },
+      }
+    `;
+
+    const response = await client.request(query, {
+      name: p,
     });
 
     const decode = guard(
@@ -145,7 +141,7 @@ export const sourceNodes = async ({
       })
     );
 
-    const repository = decode(response.data).repository;
+    const repository = decode(response).repository;
 
     const parentId = createNodeId(`project/${repository.name}`);
     const readmeId = createNodeId(`project/${repository.name}/readme`);
@@ -253,6 +249,16 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
     `).then(result => {
       const decode = guard(
         object({
+          allProject: object({
+            edges: array(
+              object({
+                node: object({
+                  id: string,
+                  name: string,
+                }),
+              })
+            ),
+          }),
           posts: object({
             edges: array(
               object({
@@ -260,16 +266,6 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
                   childMarkdownRemark: object({
                     fields: object({ slug: string }),
                   }),
-                }),
-              })
-            ),
-          }),
-          allProject: object({
-            edges: array(
-              object({
-                node: object({
-                  id: string,
-                  name: string,
                 }),
               })
             ),
