@@ -101,7 +101,7 @@ mark {
 
 .remark pre {
   font-family: "Roboto Mono", monospace;
-  @apply text-sm;
+  @apply text-xs;
 }
 
 .remark h2 {
