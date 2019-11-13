@@ -7,16 +7,15 @@ const d = new Date();
 const year = d.getFullYear();
 const month =
   d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : `${d.getMonth() + 1}`;
-const date = d.getDate() < 10 ? `0${d.getData()}` : `${d.getDate()}`;
+const date = d.getDate() < 10 ? `0${d.getDate()}` : `${d.getDate()}`;
 
 const dir = `posts/${year}${month}${date}-`;
-const fileName = "index.md";
+const fileName = "draft.md";
 const content = `---
 title: "Hello World"
 date: "${year}-${month}-${date}"
 tags: []
 category: "tech"
-status: "draft"
 ---
 `;
 
