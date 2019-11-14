@@ -70,12 +70,12 @@ const Skills = () => (
       <div className={accent}>Programming Languages</div>
       <div className="flex">
         <div className="text-xs font-light">
-          Proficient in Typescript, Node.js, Elm, Go
+          Proficient in Typescript, Node.js, Elm
         </div>
       </div>
       <div className="flex">
         <div className="text-xs font-light">
-          Experienced in Ruby, Dart, OCaml, Elixir, Swift, PHP
+          Experienced in Go, Ruby, Dart, Elixir, Swift, PHP
         </div>
       </div>
       <div className={accent}>Frameworks and Libraries</div>
@@ -116,42 +116,42 @@ const WorkHistory = () => (
       </div>
       <div className="my-1">
         <Achievement
-          notes={
-            <div>
-              <div className="mb-1">
-                <div className="font-bold">1. en-courage.com </div>
-                <div>
-                  A platform for job-hunting students.
-                  <br /> Register to events hosted by companies, and get an
-                  offer
-                </div>
-              </div>
-              <div className="mb-1">
-                <div className="font-bold">2. en-courage for Admins</div>
-                <div>
-                  Managing the whole system. <br />
-                  Hosting an Event, Interviewing System, User Management,
-                  Clients Management
-                </div>
-              </div>
-              <div className="mb-1">
-                <div className="font-bold">3. en-courage for Clients</div>
-                <div>
-                  Client's Application. <br />
-                  Hosting an Event, Analyzing the participant of the events.
-                </div>
-              </div>
-              <div className="mb-1">
-                <div className="font-bold">4. CMS</div>
-                <div>
-                  Create Article for en-courage.com
-                  <br />
-                  Complex data types (Image, Video, Quotation, Twitter embeds),
-                  Medium like UI, Reviewing and Publishing System.
-                </div>
-              </div>
-            </div>
-          }
+        // notes={
+        //   <div>
+        //     <div className="mb-1">
+        //       <div className="font-bold">1. en-courage.com </div>
+        //       <div>
+        //         A platform for job-hunting students.
+        //         <br /> Register to events hosted by companies, and get an
+        //         offer
+        //       </div>
+        //     </div>
+        //     <div className="mb-1">
+        //       <div className="font-bold">2. en-courage for Admins</div>
+        //       <div>
+        //         Managing the whole system. <br />
+        //         Hosting an Event, Interviewing System, User Management,
+        //         Clients Management
+        //       </div>
+        //     </div>
+        //     <div className="mb-1">
+        //       <div className="font-bold">3. en-courage for Clients</div>
+        //       <div>
+        //         Client's Application. <br />
+        //         Hosting an Event, Analyzing the participant of the events.
+        //       </div>
+        //     </div>
+        //     <div className="mb-1">
+        //       <div className="font-bold">4. CMS</div>
+        //       <div>
+        //         Create Article for en-courage.com
+        //         <br />
+        //         Complex data types (Image, Video, Quotation, Twitter embeds),
+        //         Medium like UI, Reviewing and Publishing System.
+        //       </div>
+        //     </div>
+        //   </div>
+        // }
         >
           In charge of frontend development in a team of 4 global engineers, and
           developed 4 co-related web application with varied technologies
@@ -346,16 +346,30 @@ const Projects = () => (
     <div className={`${header}`}>Side Projects</div>
     <div className={`${accent}`}>Currylife</div>
     <div className="text-xs font-light">
-      An iOS/Android App for Curry lovers, developed using Dart/Flutter.
+      An iOS/Android App for Curry lovers, developed using React Native.
     </div>
     <div className={`${accent}`}>Figma Map Maker</div>
     <div className="text-xs font-light">
       A map making plugin for Figma, that was featured as #5 product of the day
-      on Product Hunt and TechCrunch.
+      on
+      <a
+        target="_blank"
+        href="https://www.producthunt.com/posts/figma-map-maker"
+      >
+        {" Product Hunt "}
+      </a>
+      and
+      <a
+        target="_blank"
+        href="https://techcrunch.com/2019/08/01/figma-the-design-tool-in-the-cloud-launches-plug-ins/"
+      >
+        {" TechCrunch"}
+      </a>
+      .
     </div>
-    <div className={`${accent}`}>monkeyml</div>
+    <div className={`${accent}`}>kawamurakazushi.com</div>
     <div className="text-xs font-light">
-      Interpreter for Monkey Language written in OCaml.
+      Portfolio / Blog developed using GatsbyJS.
     </div>
   </>
 );
