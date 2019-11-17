@@ -1,14 +1,13 @@
 ---
 title: "Publishing my first React Native library."
 date: "2019-11-07"
-tags: []
+tags: ["react-native"]
 category: "tech"
 ---
 
 ## Introduction
 
 I made a React Native Library called [react-native-loader2](https://github.com/kawamurakazushi/react-native-loader2). It's a very simple overlay loader which is powered by React Hooks.
-
 
 I wanted to write down some quick introduction of this package, and also to share some of the techniques I learned during the publishing process.
 
@@ -75,8 +74,8 @@ const config = {
   foregroundColor: "#fff",
   spinnerColor: "gray",
   cornerRadius: 4,
-  spinnerComponent: () => <MyFavoriteLoader />
-}
+  spinnerComponent: () => <MyFavoriteLoader />,
+};
 
 export default function App() {
   return (
@@ -107,7 +106,7 @@ By doing so you can add any script, that will run before the package is publishe
   "scripts": {
     //...
     "build": "tsc",
-    "prepublish": "yarn build",
+    "prepublish": "yarn build"
   }
 }
 ```
@@ -123,10 +122,8 @@ You add list of files and directory by adding it to the array, like the followin
 ```json
 {
   //...
-  "files": [
-    "lib"
-  ],
- }
+  "files": ["lib"]
+}
 ```
 
 The purpose of this is similar to `.npmignore` but it's while-listing, instead of black-listing.
@@ -153,6 +150,7 @@ yarn global add fixpack
 ```
 
 Then run fixpack.
+
 ```bash
 fixpack
 ```
@@ -181,7 +179,7 @@ You can see the full documentation here: https://docs.npmjs.com/cli/version
 One more thing that is tedious related to versioning is **managing CHANGELOG**.
 
 But by using [standard version](https://github.com/conventional-changelog/standard-version),
-if you follow the [Conventional Commit Message](https://www.conventionalcommits.org/en/v1.0.0/) and run `standard-version` it will *bump the version of your package.json*, *updates CHANGELOG.md*, and m*ake a commit automatically* then *tags a new release*.
+if you follow the [Conventional Commit Message](https://www.conventionalcommits.org/en/v1.0.0/) and run `standard-version` it will _bump the version of your package.json_, _updates CHANGELOG.md_, and m*ake a commit automatically* then _tags a new release_.
 CHANGELOG.md
 
 So by using this, it will kill 2 birds with 1 stone 🐦
@@ -204,7 +202,6 @@ Add add an run scripts in your package.json.
 
 Then you can use `yarn release` in place of `npm version` that I wrote previously.
 
-
 ### 5. Setting up peerDependencies for React Native Libraries
 
 peerDependencies is something you need to add in your package.json, and list libraries that the host application needs to install before using this library
@@ -217,7 +214,7 @@ In this case it will be `react` and `react-native`.
     "react": "*",
     "react-native": "*"
   }
- }
+}
 ```
 
 ## Summary

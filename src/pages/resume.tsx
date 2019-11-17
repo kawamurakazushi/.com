@@ -293,51 +293,56 @@ const AdditionalInformation = () => (
   </>
 );
 
+const Link = ({
+  href,
+  label,
+  icon: Icon,
+}: {
+  href?: string;
+  label: string;
+  icon: React.FunctionComponent;
+}) => (
+  <a target="_blank" href={href} className="flex items-center text-xs mt-1">
+    <Icon />
+    <div className="flex-1 break-all leading-none">{label}</div>
+  </a>
+);
+
 const Links = () => (
   <div className="font-light">
     <div className={header}>Contacts</div>
-    <a
-      href="mailto:kawamurakazushi@gmail.com"
-      className="flex items-center text-xs"
-    >
-      <MailIcon className="mr-1" size="12" />
-      kawamurakazushi@gmail.com
-    </a>
-    <a className="flex items-start text-xs">
-      <div style={{ height: 18 }} className="flex items-center">
-        <MapIcon className="mr-1 text-xs" size="12" />
-      </div>
-      <div className="flex-1">Tokyo, Japan</div>
-    </a>
-    <a className="flex items-center text-xs">
-      <PhoneIcon className="mr-1" size="12" />
-      <div className="flex-1">(+81)8010550667</div>
-    </a>
+    <Link
+      label="kawamurakazushi@gmail.com"
+      icon={() => <MailIcon className="mr-1" size="12" />}
+    />
+    <Link
+      label="Tokyo, Japan"
+      icon={() => (
+        <div style={{ height: 18 }} className="flex items-center">
+          <MapIcon className="mr-1 text-xs" size="12" />
+        </div>
+      )}
+    />
+    <Link
+      label="(+81)8010550667"
+      icon={() => <PhoneIcon className="mr-1" size="12" />}
+    />
     <div className={accent}>Links</div>
-    <a
-      target="_blank"
+    <Link
       href="https://kawamurakazushi.com"
-      className="flex items-center text-xs"
-    >
-      <LinkIcon className="mr-1" size="12" />
-      kawamurakazushi.com
-    </a>
-    <a
-      target="_blank"
+      label="kawamurakazushi.com"
+      icon={() => <LinkIcon className="mr-1" size="12" />}
+    />
+    <Link
       href="https://github.com/kawamurakazushi"
-      className="flex items-center text-xs"
-    >
-      <GithubIcon className="mr-1" size="12" />
-      github.com/kawamurakazushi
-    </a>
-    <a
-      target="_blank"
+      label="github.com/kawamurakazushi"
+      icon={() => <GithubIcon className="mr-1" size="12" />}
+    />
+    <Link
       href="https://www.linkedin.com/in/kawamurakazushi"
-      className="flex items-center text-xs"
-    >
-      <LinkedInIcon className="mr-1" size="12" />
-      www.linkedin.com/in/kawamurakazushi
-    </a>
+      label="www.linkedin.com/in/kawamurakazushi"
+      icon={() => <LinkedInIcon className="mr-1" size="12" />}
+    />
   </div>
 );
 
@@ -379,6 +384,7 @@ export default memo(() => (
     <Helmet>
       <title>Resume | Kazushi Kawamura</title>
       <meta property="og:title" content="Resume" />
+      <meta name="viewport" content="width=1080" />
       <meta name="robots" content="noindex" />
     </Helmet>
     <div className="max-w-main text-sm m-auto px-3 py-2">

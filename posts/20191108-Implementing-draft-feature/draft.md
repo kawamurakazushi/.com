@@ -5,7 +5,7 @@ tags: []
 category: "tech"
 ---
 
-## What I wanted to archieve
+## What I wanted to Achieve
 
 ## How I tackle this problem
 
@@ -34,7 +34,7 @@ The beauty is in `ignore` field.
 
 ## Some scripts for generating blog post
 
-```bash
+```js
 #!/usr/bin/env node
 
 const fs = require("fs");
