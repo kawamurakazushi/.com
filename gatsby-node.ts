@@ -1,4 +1,4 @@
-import { array, guard, nullable, object, string } from "decoders";
+import { array, guard, nullable, object, string, optional } from "decoders";
 import {
   CreateNodeArgs,
   CreatePagesArgs,
@@ -35,7 +35,13 @@ export const onCreateNode = async ({
 
   if (node.internal.type === "BooksYaml") {
     const isbn = node.isbn;
-    const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+    const title = guard(optional(string))(node.title);
+
+    const url = title
+      ? `https://www.googleapis.com/books/v1/volumes?q=title:${encodeURI(
+          title
+        )}`
+      : `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.items.length > 0) {
