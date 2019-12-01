@@ -139,7 +139,6 @@ export default memo(() => {
         </div>
       </div>
       <div className="mb-8">
-        {/* <h2 className="font-semibold mb-5 text-lg">- Writing</h2> */}
         <h2 className={header}>Writings</h2>
         <div className="flex flex-col">
           {data.allMarkdownRemark.edges.map(({ node }) => (

@@ -3,11 +3,9 @@ import React, { memo, useState } from "react";
 
 import Search from "../components/search";
 import { CloseIcon } from "../icons/close";
+import { GithubIcon } from "../icons/github";
 import { MenuIcon } from "../icons/menu";
 import { SearchIcon } from "../icons/search";
-import { GithubIcon } from "../icons/github";
-
-import logo from "../../static/images/logo.png";
 
 const Header = memo(() => {
   const [search, setSearch] = useState(false);
@@ -32,8 +30,10 @@ const Header = memo(() => {
   return (
     <>
       <div className="flex justify-between items-center px-6 py-4 w-full">
-        <Link to="/" className="no-underline flex items-center">
-          <div className="text-sm font-semibold">Kazushi Kawamura</div>
+        <div className="flex items-center">
+          <Link to="/" className="no-underline">
+            <div className="text-sm font-semibold">Kazushi Kawamura</div>
+          </Link>
           <a
             target="_blank"
             href="https://github.com/kawamurakazushi"
@@ -41,7 +41,7 @@ const Header = memo(() => {
           >
             <GithubIcon className="" size="24" />
           </a>
-        </Link>
+        </div>
         <div className="flex">
           <div className="cursor-pointer mr-2" onClick={() => setSearch(true)}>
             <SearchIcon size="24" />

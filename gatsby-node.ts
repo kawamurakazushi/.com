@@ -212,7 +212,7 @@ export const sourceNodes = async ({
 export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
   const { createPage } = actions;
 
-  return new Promise((resolve, _) => {
+  return new Promise((resolve, reject) => {
     graphql(`
       {
         posts: allFile(
@@ -284,60 +284,66 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
           }),
         })
       );
-      const data = decode(result.data);
+      try {
+        const data = decode(result.data);
 
-      // create /posts pages
-      const posts = data.posts.edges;
-      posts.forEach(({ node }, i) => {
-        createPage({
-          component: path.resolve(`./src/templates/blog.tsx`),
-          context: {
-            nextSlug:
-              i === posts.length - 1
-                ? ""
-                : posts[i + 1].node.childMarkdownRemark.fields.slug, // FiXME: make it null instead of an empty string
-            prevSlug:
-              i === 0 ? "" : posts[i - 1].node.childMarkdownRemark.fields.slug,
-            slug: node.childMarkdownRemark.fields.slug,
-          },
-          path: node.childMarkdownRemark.fields.slug,
+        // create /posts pages
+        const posts = data.posts.edges;
+        posts.forEach(({ node }, i) => {
+          createPage({
+            component: path.resolve(`./src/templates/blog.tsx`),
+            context: {
+              nextSlug:
+                i === posts.length - 1
+                  ? ""
+                  : posts[i + 1].node.childMarkdownRemark.fields.slug, // FiXME: make it null instead of an empty string
+              prevSlug:
+                i === 0
+                  ? ""
+                  : posts[i - 1].node.childMarkdownRemark.fields.slug,
+              slug: node.childMarkdownRemark.fields.slug,
+            },
+            path: node.childMarkdownRemark.fields.slug,
+          });
         });
-      });
 
-      // create /projects pages
-      data.allProject.edges.forEach(({ node }) => {
-        createPage({
-          component: path.resolve(`./src/templates/project.tsx`),
-          context: {
-            id: node.id,
-          },
-          path: `projects/${node.name}`,
+        // create /projects pages
+        data.allProject.edges.forEach(({ node }) => {
+          createPage({
+            component: path.resolve(`./src/templates/project.tsx`),
+            context: {
+              id: node.id,
+            },
+            path: `projects/${node.name}`,
+          });
         });
-      });
 
-      // create /tags pages
-      data.tags.group.forEach(({ fieldValue }) => {
-        createPage({
-          component: path.resolve(`./src/templates/tag.tsx`),
-          context: {
-            tag: fieldValue,
-          },
-          path: `tags/${fieldValue}`,
+        // create /tags pages
+        data.tags.group.forEach(({ fieldValue }) => {
+          createPage({
+            component: path.resolve(`./src/templates/tag.tsx`),
+            context: {
+              tag: fieldValue,
+            },
+            path: `tags/${fieldValue}`,
+          });
         });
-      });
 
-      // create /galleries pages
-      data.galleries.group.forEach(({ fieldValue }) => {
-        createPage({
-          component: path.resolve(`./src/templates/gallery.tsx`),
-          context: {
-            name: fieldValue,
-          },
-          path: `galleries/${fieldValue}`,
+        // create /galleries pages
+        data.galleries.group.forEach(({ fieldValue }) => {
+          createPage({
+            component: path.resolve(`./src/templates/gallery.tsx`),
+            context: {
+              name: fieldValue,
+            },
+            path: `galleries/${fieldValue}`,
+          });
         });
-      });
-
-      resolve();
+        resolve();
+      } catch (error) {
+        reject(error);
+        console.error(error);
+      }
     });
   });
 };
