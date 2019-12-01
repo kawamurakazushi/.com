@@ -5,6 +5,7 @@ import Search from "../components/search";
 import { CloseIcon } from "../icons/close";
 import { MenuIcon } from "../icons/menu";
 import { SearchIcon } from "../icons/search";
+import { GithubIcon } from "../icons/github";
 
 import logo from "../../static/images/logo.png";
 
@@ -30,9 +31,16 @@ const Header = memo(() => {
 
   return (
     <>
-      <div className="flex justify-between items-center px-6 py-6 w-full">
-        <Link to="/" className="no-underline">
-          <img className="w-8 h-8 rounded-full" src={logo} />
+      <div className="flex justify-between items-center px-6 py-4 w-full">
+        <Link to="/" className="no-underline flex items-center">
+          <div className="text-sm font-semibold">Kazushi Kawamura</div>
+          <a
+            target="_blank"
+            href="https://github.com/kawamurakazushi"
+            className="ml-2"
+          >
+            <GithubIcon className="" size="24" />
+          </a>
         </Link>
         <div className="flex">
           <div className="cursor-pointer mr-2" onClick={() => setSearch(true)}>
@@ -45,7 +53,7 @@ const Header = memo(() => {
       </div>
       {(menu || search) && (
         <div className="fixed left-0 bg-black z-10 w-full h-full w-full">
-          <div className="md:min-w-main max-w-main px-6 py-6 md:min-w-main text-white mx-auto">
+          <div className="md:min-w-main max-w-main px-6 py-4 md:min-w-main text-white mx-auto">
             <div className="flex flex-row-reverse mt-1 mb-4">
               <div
                 className="cursor-pointer"

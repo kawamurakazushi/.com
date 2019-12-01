@@ -129,23 +129,17 @@ export default memo(() => {
 
   return (
     <Layout>
-      <div className="mb-8">
-        <h2 className={header}>About Me</h2>
-        <div className="flex items-center">
-          <div className="font-medium">Kazushi Kawamura</div>
-          <a
-            target="_blank"
-            href="https://github.com/kawamurakazushi"
-            className="ml-2"
-          >
-            <GithubIcon className="" size="24" />
-          </a>
+      <div className="text-sm mb-12">
+        <div className="mb-2">
+          Hello! I’m a Software Engineer living in Tokyo.
         </div>
-        <div className="my-2 text-sm">
-          Software Engineer based in Tokyo, Japan.
+        <div>
+          I enjoy cooking curry 🍛 and also maintain an app called currylife, a
+          online community for curry lovers.
         </div>
       </div>
       <div className="mb-8">
+        {/* <h2 className="font-semibold mb-5 text-lg">- Writing</h2> */}
         <h2 className={header}>Writings</h2>
         <div className="flex flex-col">
           {data.allMarkdownRemark.edges.map(({ node }) => (
