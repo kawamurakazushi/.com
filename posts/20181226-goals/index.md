@@ -13,7 +13,7 @@ I want to set some personal goals for 2019.
 I believe goals are important.
 They makes you focus and challenge you to meet new objectives.
 
-It's even better when they are visible by others, such as this blog post (although no one is actually reading this, certainly not someone named \*\*\*).
+It's even better when they are visible by others, such as this blog post.
 It gives me more responsibility than just writing it down in my notepad.
 
 There are two elements that I want to work on.

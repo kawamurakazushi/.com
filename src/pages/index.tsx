@@ -129,13 +129,16 @@ export default memo(() => {
 
   return (
     <Layout>
-      <div className="text-sm mb-12">
+      <div className="text-sm mt-6 mb-12">
         <div className="mb-2">
           Hello! I’m a Software Engineer living in Tokyo.
         </div>
         <div>
           I enjoy cooking curry 🍛 and also maintain an app called currylife, a
           online community for curry lovers.
+        </div>
+        <div className="flex mt-6">
+          <MoreLink to="/me" label="VIEW MORE ABOUT ME" />
         </div>
       </div>
       <div className="mb-8">

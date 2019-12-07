@@ -3,9 +3,11 @@ import React, { memo, useState } from "react";
 
 import Search from "../components/search";
 import { CloseIcon } from "../icons/close";
-import { GithubIcon } from "../icons/github";
-import { MenuIcon } from "../icons/menu";
-import { SearchIcon } from "../icons/search";
+// import { MenuIcon } from "../icons/menu";
+// import { SearchIcon } from "../icons/search";
+
+import logo from "../../static/images/logo2.png";
+import avatar from "../../static/images/avatar.jpg";
 
 const Header = memo(() => {
   const [search, setSearch] = useState(false);
@@ -32,23 +34,28 @@ const Header = memo(() => {
       <div className="flex justify-between items-center px-6 py-4 w-full">
         <div className="flex items-center">
           <Link to="/" className="no-underline">
-            <div className="text-sm font-semibold">Kazushi Kawamura</div>
+            <img src={logo} className="w-8" />
           </Link>
-          <a
-            target="_blank"
-            href="https://github.com/kawamurakazushi"
-            className="ml-2"
-          >
-            <GithubIcon className="" size="24" />
-          </a>
         </div>
-        <div className="flex">
-          <div className="cursor-pointer mr-2" onClick={() => setSearch(true)}>
+        <div className="flex items-center">
+          <Link className="font-thin text-xs mr-1" to="/blogs">
+            Writings
+          </Link>
+          <Link className="font-thin text-xs mr-1" to="/projects">
+            Projects
+          </Link>
+          <Link className="font-thin text-xs mr-2" to="/#books">
+            Books
+          </Link>
+          <Link to="/me">
+            <img src={avatar} className="w-6 rounded-full" />
+          </Link>
+          {/* <div className="cursor-pointer mr-2" onClick={() => setSearch(true)}>
             <SearchIcon size="24" />
-          </div>
-          <div className="cursor-pointer" onClick={() => setMenu(true)}>
+          </div> */}
+          {/* <div className="cursor-pointer" onClick={() => setMenu(true)}>
             <MenuIcon size="24" />
-          </div>
+          </div> */}
         </div>
       </div>
       {(menu || search) && (
