@@ -1,13 +1,13 @@
 import React, { memo, ReactNode, useState } from "react";
 import Helmet from "react-helmet";
 
+import { CloseIcon } from "../icons/close";
 import { GithubIcon } from "../icons/github";
 import { LinkIcon } from "../icons/link";
 import { LinkedInIcon } from "../icons/linkedin";
 import { MailIcon } from "../icons/mail";
 import { MapIcon } from "../icons/map";
 import { PhoneIcon } from "../icons/phone";
-import { CloseIcon } from "../icons/close";
 
 const header = "font-semibold text-sm border-b border-black mt-2 mb-1";
 const accent = "font-semibold text-xs mt-1 mb-";

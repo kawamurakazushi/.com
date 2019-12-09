@@ -1,4 +1,4 @@
-import { array, guard, object, string, nullable } from "decoders";
+import { array, guard, nullable, object, string } from "decoders";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 

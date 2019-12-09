@@ -6,8 +6,8 @@ import { CloseIcon } from "../icons/close";
 // import { MenuIcon } from "../icons/menu";
 // import { SearchIcon } from "../icons/search";
 
-import logo from "../../static/images/logo2.png";
-import avatar from "../../static/images/avatar.jpg";
+import * as avatar from "../../static/images/avatar.jpg";
+import * as logo from "../../static/images/logo2.png";
 
 const Header = memo(() => {
   const [search, setSearch] = useState(false);

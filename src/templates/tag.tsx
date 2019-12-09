@@ -1,4 +1,4 @@
-import { array, guard, object, string, map } from "decoders";
+import { array, guard, map, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 import { Helmet } from "react-helmet";
