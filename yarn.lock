@@ -5721,16 +5721,6 @@ gatsby-transformer-sharp@^2.3.7:
     semver "^5.7.1"
     sharp "^0.23.3"
 
-gatsby-transformer-yaml@^2.2.18:
-  version "2.2.18"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-yaml/-/gatsby-transformer-yaml-2.2.18.tgz#12ac34e0523c21d2f701abdf81e17d79a7575753"
-  integrity sha512-07iX5ZglnfzSv8bx6z2ZqC6eJtVxVoI1KL5yB6SAifGIVmxOjIgdWTsr/84s2B3EzLw27xJXSvFWgzn4KQaQEQ==
-  dependencies:
-    "@babel/runtime" "^7.7.4"
-    js-yaml "^3.13.1"
-    lodash "^4.17.15"
-    unist-util-select "^1.5.0"
-
 gatsby@^2.18.7:
   version "2.18.7"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.18.7.tgz#6bddbc93dd632092c6f8154ce8b511518f849658"

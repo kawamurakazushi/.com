@@ -74,7 +74,7 @@ const decoder = map(
   }
 );
 
-export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
+export default memo(({ data }: ReplaceComponentRendererArgs) => {
   const { post, prevPost, nextPost } = guard(decoder)(data);
 
   return (

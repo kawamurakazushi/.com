@@ -1,4 +1,12 @@
-import { array, guard, nullable, object, string, optional } from "decoders";
+import {
+  array,
+  guard,
+  nullable,
+  object,
+  string,
+  number,
+  optional,
+} from "decoders";
 import {
   CreateNodeArgs,
   CreatePagesArgs,
@@ -32,35 +40,32 @@ export const onCreateNode = async ({
       value: slug,
     });
   }
-
-  if (node.internal.type === "BooksYaml") {
-    const isbn = node.isbn;
-    const title = guard(optional(string))(node.title);
-
-    const url = title
-      ? `https://www.googleapis.com/books/v1/volumes?q=title:${encodeURI(
-          title
-        )}`
-      : `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    if (data.items.length > 0) {
-      const book = data.items[0].volumeInfo;
-
-      const bookNode: Node = {
-        ...book,
-        children: [],
-        id: createNodeId(isbn),
-        internal: {
-          contentDigest: createContentDigest(book),
-          owner: "",
-          type: "Book",
-        },
-        parent: node.id,
-      };
-
-      createNode(bookNode);
-      createParentChildLink({ parent: node, child: bookNode });
+  if (node.internal.type === "MarkdownRemark" && node.frontmatter) {
+    try {
+      const frontmatterDecoder = object({ isbn: number, title: string });
+      const { isbn } = guard(frontmatterDecoder)(node.frontmatter);
+      const url = `https://api.openbd.jp/v1/get?isbn=${isbn}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      if (data.length > 0) {
+        const summary = data[0].summary;
+        console.log(summary);
+        const bookNode: Node = {
+          ...summary,
+          children: [],
+          id: createNodeId(isbn),
+          internal: {
+            contentDigest: createContentDigest(summary),
+            owner: "",
+            type: "Book",
+          },
+          parent: node.id,
+        };
+        createNode(bookNode);
+        createParentChildLink({ parent: node, child: bookNode });
+      }
+    } catch {
+      console.log("wrong", node.frontmatter);
     }
   }
 };
@@ -231,6 +236,22 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
             }
           }
         }
+        books: allFile(
+          filter: {
+            sourceInstanceName: { eq: "books" }
+            internal: { mediaType: { eq: "text/markdown" } }
+          }
+        ) {
+          edges {
+            node {
+              childMarkdownRemark {
+                frontmatter {
+                  isbn
+                }
+              }
+            }
+          }
+        }
         allProject {
           edges {
             node {
@@ -244,13 +265,6 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
             fieldValue
           }
         }
-        galleries: allFile(
-          filter: { sourceInstanceName: { eq: "galleries" } }
-        ) {
-          group(field: relativeDirectory) {
-            fieldValue
-          }
-        }
       }
     `).then(result => {
       const decode = guard(
@@ -261,6 +275,17 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
                 node: object({
                   id: string,
                   name: string,
+                }),
+              })
+            ),
+          }),
+          books: object({
+            edges: array(
+              object({
+                node: object({
+                  childMarkdownRemark: object({
+                    frontmatter: object({ isbn: number }),
+                  }),
                 }),
               })
             ),
@@ -279,15 +304,12 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
           tags: object({
             group: array(object({ fieldValue: string })),
           }),
-          galleries: object({
-            group: array(object({ fieldValue: string })),
-          }),
         })
       );
       try {
         const data = decode(result.data);
 
-        // create /posts pages
+        // create posts pages
         const posts = data.posts.edges;
         posts.forEach(({ node }, i) => {
           createPage({
@@ -307,7 +329,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
           });
         });
 
-        // create /projects pages
+        // create /projects/{id} pages
         data.allProject.edges.forEach(({ node }) => {
           createPage({
             component: path.resolve(`./src/templates/project.tsx`),
@@ -318,7 +340,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
           });
         });
 
-        // create /tags pages
+        // create /tags/{name} pages
         data.tags.group.forEach(({ fieldValue }) => {
           createPage({
             component: path.resolve(`./src/templates/tag.tsx`),
@@ -329,16 +351,17 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
           });
         });
 
-        // create /galleries pages
-        data.galleries.group.forEach(({ fieldValue }) => {
+        // create /books/{isbn} pages
+        data.books.edges.forEach(({ node }) => {
           createPage({
-            component: path.resolve(`./src/templates/gallery.tsx`),
+            component: path.resolve(`./src/templates/book.tsx`),
             context: {
-              name: fieldValue,
+              isbn: node.childMarkdownRemark.frontmatter.isbn,
             },
-            path: `galleries/${fieldValue}`,
+            path: `books/${node.childMarkdownRemark.frontmatter.isbn}`,
           });
         });
+
         resolve();
       } catch (error) {
         reject(error);

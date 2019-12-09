@@ -85,11 +85,11 @@ module.exports = {
     },
     {
       options: {
-        path: `${__dirname}/data/`,
+        name: "books",
+        path: `${__dirname}/books/`,
       },
       resolve: "gatsby-source-filesystem",
     },
-    "gatsby-transformer-yaml",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {

@@ -7,16 +7,18 @@ import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";
 
 const decoder = object({
-  allMarkdownRemark: object({
+  allPost: object({
     edges: array(
       object({
         node: object({
-          fields: object({ slug: string }),
-          frontmatter: object({
-            date: string,
-            tags: array(string),
-            title: string,
-            year: string,
+          childMarkdownRemark: object({
+            fields: object({ slug: string }),
+            frontmatter: object({
+              date: string,
+              tags: array(string),
+              title: string,
+              year: string,
+            }),
           }),
         }),
       })
@@ -35,17 +37,18 @@ interface BlogByYear {
 
 export default memo(({ data }: ReplaceComponentRendererArgs) => {
   const blogs = guard(decoder)(data);
-  const blogsByYear = blogs.allMarkdownRemark.edges.reduce<BlogByYear>(
-    (acc, cur) => {
-      const year = cur.node.frontmatter.year;
+  const blogsByYear = blogs.allPost.edges.reduce<BlogByYear>(
+    (acc, { node }) => {
+      const { childMarkdownRemark } = node;
+      const { frontmatter, fields } = childMarkdownRemark;
+      const year = frontmatter.year;
       const accByYear = acc[year];
 
-      const node = cur.node;
       const b = {
-        date: node.frontmatter.date,
-        slug: node.fields.slug,
-        tags: node.frontmatter.tags,
-        title: node.frontmatter.title,
+        date: frontmatter.date,
+        slug: fields.slug,
+        tags: frontmatter.tags,
+        title: frontmatter.title,
       };
 
       if (accByYear) {
@@ -72,15 +75,15 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
           .reverse()
           .map(year => {
             return (
-              <div>
+              <div key={year}>
                 <div className="flex items-center">
                   <h3 className="text-lg font-semibold my-5 mr-3">{year}</h3>
                   <div className="flex-1 h-px bg-gray-200" />
                 </div>
                 {blogsByYear[year].map(blog => (
                   <ArticleItem
-                    type="simple"
                     key={blog.slug}
+                    type="simple"
                     to={blog.slug}
                     title={blog.title}
                     date={blog.date}
@@ -98,22 +101,28 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
 
 export const query = graphql`
   query BlogsQuery {
-    allMarkdownRemark(
-      sort: { order: DESC, fields: frontmatter___date }
-      filter: { fields: { slug: { ne: null } } }
+    allPost: allFile(
+      filter: {
+        internal: { mediaType: { eq: "text/markdown" } }
+        sourceInstanceName: { eq: "posts" }
+      }
+      sort: { fields: childMarkdownRemark___frontmatter___date, order: DESC }
     ) {
       edges {
         node {
-          fields {
-            slug
+          childMarkdownRemark {
+            excerpt(format: PLAIN)
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+              date(formatString: "MMM. DD")
+              year: date(formatString: "YYYY")
+              tags
+              category
+            }
           }
-          frontmatter {
-            title
-            date(formatString: "MMM. DD")
-            year: date(formatString: "YYYY")
-            tags
-          }
-          excerpt(format: PLAIN)
         }
       }
     }

@@ -1,4 +1,4 @@
-import { array, guard, nullable, object, string } from "decoders";
+import { array, guard, nullable, object, string, number } from "decoders";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 
@@ -6,26 +6,11 @@ import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";
 import ProjectItem from "../components/projectItem";
 import { ArrowRightIcon } from "../icons/arrowRight";
-import { GithubIcon } from "../icons/github";
 
 const useIndexQuery = () => {
   const data = useStaticQuery(
     graphql`
       query IndexQuery {
-        allBooksYaml {
-          edges {
-            node {
-              readAt
-              childBook {
-                title
-                authors
-                imageLinks {
-                  thumbnail
-                }
-              }
-            }
-          }
-        }
         allProject(limit: 5) {
           edges {
             node {
@@ -37,23 +22,58 @@ const useIndexQuery = () => {
             }
           }
         }
-        allMarkdownRemark(
-          sort: { order: DESC, fields: frontmatter___date }
+        allPost: allFile(
           limit: 5
-          filter: { fields: { slug: { ne: null } } }
+          filter: {
+            internal: { mediaType: { eq: "text/markdown" } }
+            sourceInstanceName: { eq: "posts" }
+          }
+          sort: {
+            fields: childMarkdownRemark___frontmatter___date
+            order: DESC
+          }
         ) {
           edges {
             node {
-              fields {
-                slug
+              childMarkdownRemark {
+                excerpt(format: PLAIN)
+                fields {
+                  slug
+                }
+                frontmatter {
+                  title
+                  date(formatString: "YYYY.MM.DD")
+                  tags
+                  category
+                }
               }
-              frontmatter {
-                title
-                date(formatString: "YYYY.MM.DD")
-                tags
-                category
+            }
+          }
+        }
+        allBook: allFile(
+          limit: 5
+          filter: {
+            internal: { mediaType: { eq: "text/markdown" } }
+            sourceInstanceName: { eq: "books" }
+          }
+          sort: {
+            fields: childMarkdownRemark___frontmatter___readAt
+            order: DESC
+          }
+        ) {
+          edges {
+            node {
+              childMarkdownRemark {
+                frontmatter {
+                  isbn
+                  readAt
+                }
+                childBook {
+                  author
+                  cover
+                  title
+                }
               }
-              excerpt(format: PLAIN)
             }
           }
         }
@@ -62,31 +82,38 @@ const useIndexQuery = () => {
   );
 
   const decoder = object({
-    allBooksYaml: object({
+    allBook: object({
       edges: array(
         object({
           node: object({
-            childBook: object({
-              authors: array(string),
-              imageLinks: object({ thumbnail: string }),
-              title: string,
+            childMarkdownRemark: object({
+              childBook: object({
+                author: string,
+                cover: string,
+                title: string,
+              }),
+              frontmatter: object({
+                isbn: number,
+                readAt: nullable(string),
+              }),
             }),
-            readAt: nullable(string),
           }),
         })
       ),
     }),
-    allMarkdownRemark: object({
+    allPost: object({
       edges: array(
         object({
           node: object({
-            excerpt: string,
-            fields: object({ slug: string }),
-            frontmatter: object({
-              category: string,
-              date: string,
-              tags: array(string),
-              title: string,
+            childMarkdownRemark: object({
+              excerpt: string,
+              fields: object({ slug: string }),
+              frontmatter: object({
+                category: string,
+                date: string,
+                tags: array(string),
+                title: string,
+              }),
             }),
           }),
         })
@@ -144,16 +171,19 @@ export default memo(() => {
       <div className="mb-8">
         <h2 className={header}>Writings</h2>
         <div className="flex flex-col">
-          {data.allMarkdownRemark.edges.map(({ node }) => (
-            <ArticleItem
-              key={node.fields.slug}
-              to={node.fields.slug}
-              date={node.frontmatter.date}
-              tags={node.frontmatter.tags}
-              title={node.frontmatter.title}
-              excerpt={node.excerpt}
-            />
-          ))}
+          {data.allPost.edges.map(({ node }) => {
+            const { fields, frontmatter, excerpt } = node.childMarkdownRemark;
+            return (
+              <ArticleItem
+                key={fields.slug}
+                to={fields.slug}
+                date={frontmatter.date}
+                tags={frontmatter.tags}
+                title={frontmatter.title}
+                excerpt={excerpt}
+              />
+            );
+          })}
         </div>
         <div className="flex mt-2">
           <MoreLink to="/blogs" label="VIEW MORE WRITINGS" />
@@ -177,32 +207,33 @@ export default memo(() => {
       </div>
       <div id="books" className="mb-4">
         <h2 className={header}>Books</h2>
-        {data.allBooksYaml.edges.map(({ node }) => (
-          <div className="flex mb-5">
+        {data.allBook.edges.map(({ node }, i) => (
+          <Link
+            to={`/books/${node.childMarkdownRemark.frontmatter.isbn}`}
+            key={i}
+            className="flex mb-5"
+          >
             <div className="w-10">
-              <img
-                src={node.childBook.imageLinks.thumbnail.replace(
-                  "http://",
-                  "https://"
-                )}
-              />
+              <img src={node.childMarkdownRemark.childBook.cover} />
             </div>
             <div className="flex flex-col ml-2 flex-1">
-              <div className="flex text-sm">
-                <div className="font-medium mr-2">{node.childBook.title}</div>
-                <div className="font-thin">
-                  {node.childBook.authors.join(", ")}
-                </div>
+              <div className="font-medium mr-2">
+                {node.childMarkdownRemark.childBook.title}
               </div>
-              <div className="text-xs mt-1">
-                {node.readAt ? (
-                  <div className="font-medium">read at {node.readAt}</div>
-                ) : (
-                  <div className="italic">reading...</div>
-                )}
+              <div className="font-thin text-xs mt-1">
+                {node.childMarkdownRemark.childBook.author}
               </div>
             </div>
-          </div>
+            <div className="text-xs mt-1">
+              {node.childMarkdownRemark.frontmatter.readAt ? (
+                <div className="">
+                  read at {node.childMarkdownRemark.frontmatter.readAt}
+                </div>
+              ) : (
+                <div className="italic">reading</div>
+              )}
+            </div>
+          </Link>
         ))}
       </div>
     </Layout>
