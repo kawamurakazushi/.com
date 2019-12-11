@@ -88,7 +88,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
         <p className="text-gray-600 text-sm mb-2">{post.date}</p>
         <h1 className="heading mb-2">{post.title}</h1>
         <div
-          className="remark mb-16"
+          className="remark mb-16 overflow-hidden"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
         <Author />
