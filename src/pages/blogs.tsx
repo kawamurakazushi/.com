@@ -64,7 +64,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
   );
 
   return (
-    <Layout>
+    <Layout breadcrumbs={[{ label: "Blogs", to: "/blogs" }]}>
       <Helmet>
         <title>Blogs | Kazushi Kawamura</title>
         <meta property="og:title" content="Blogs" />

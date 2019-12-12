@@ -1,9 +1,8 @@
-import { array, guard, map, object, string, number } from "decoders";
+import { guard, object, string } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 import { Helmet } from "react-helmet";
 
-import ArticleItem from "../components/articleItem";
 import Layout from "../components/layout";
 
 const decoder = object({
@@ -18,14 +17,18 @@ const decoder = object({
   }),
 });
 
-const pageContextDecoder = object({ isbn: number });
-
 export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
-  // const isbn = guard(pageContextDecoder)(pageContext).isbn;
   const book = guard(decoder)(data);
 
   return (
-    <Layout>
+    <Layout
+      breadcrumbs={[
+        {
+          label: book.markdownRemark.childBook.title,
+          to: `/books/${book.markdownRemark.childBook.isbn}`,
+        },
+      ]}
+    >
       <Helmet>
         <title>{book.markdownRemark.childBook.title} | Kazushi Kawamura</title>
         <meta
@@ -33,9 +36,7 @@ export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
           content={book.markdownRemark.childBook.title}
         />
       </Helmet>
-      <h2 className="font-bold text-xl mb-2 md:text-5xl">
-        {book.markdownRemark.childBook.title}
-      </h2>
+      <h1 className="heading my-2">{book.markdownRemark.childBook.title}</h1>
       <div
         className="remark mb-16"
         dangerouslySetInnerHTML={{ __html: book.markdownRemark.html }}

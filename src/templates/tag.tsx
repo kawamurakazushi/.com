@@ -40,7 +40,14 @@ export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
   const posts = guard(decoder)(data);
 
   return (
-    <Layout>
+    <Layout
+      breadcrumbs={[
+        {
+          label: `#${tag}`,
+          to: `/tags/${tag}`,
+        },
+      ]}
+    >
       <Helmet>
         <title>#{tag} | Kazushi Kawamura</title>
         <meta property="og:title" content={tag} />

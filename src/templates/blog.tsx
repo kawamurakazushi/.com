@@ -78,7 +78,12 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
   const { post, prevPost, nextPost } = guard(decoder)(data);
 
   return (
-    <Layout>
+    <Layout
+      breadcrumbs={[
+        { label: "Blogs", to: "/blogs" },
+        { label: post.title, to: `/blogs/${post.slug}` },
+      ]}
+    >
       <Helmet>
         <title>{post.title} | Kazushi Kawamura</title>
         <meta property="og:title" content={post.title} />

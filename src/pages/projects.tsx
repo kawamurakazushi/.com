@@ -24,7 +24,7 @@ const decoder = object({
 export default memo(({ data }: ReplaceComponentRendererArgs) => {
   const projects = guard(decoder)(data);
   return (
-    <Layout>
+    <Layout breadcrumbs={[{ label: "Projects", to: "/projects" }]}>
       <Helmet>
         <title>Projects | Kazushi Kawamura</title>
         <meta property="og:title" content="Projects" />

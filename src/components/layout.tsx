@@ -1,5 +1,5 @@
-import { guard, object, string } from "decoders";
-import React, { memo } from "react";
+import { Link } from "gatsby";
+import React, { FC } from "react";
 import Helmet from "react-helmet";
 
 import Footer from "../components/footer";
@@ -11,11 +11,16 @@ import favicon from "../../static/images/favicon.ico";
 import appleIcon from "../../static/images/icon-192x192.png";
 import "../tailwind.css";
 
-interface Props {
-  children: React.ReactNode;
+interface Breadcrumb {
+  label: string;
+  to: string;
 }
 
-const Layout = memo(({ children }: Props) => {
+interface Props {
+  breadcrumbs?: Breadcrumb[];
+}
+
+const Layout: FC<Props> = ({ children, breadcrumbs }) => {
   return (
     <>
       <Helmet>
@@ -38,7 +43,26 @@ const Layout = memo(({ children }: Props) => {
       <div className="flex flex-col min-h-screen mx-auto max-w-main">
         <Header />
         <div className="flex-1">
-          <div className="flex justify-center px-6 flex-1">
+          <div className="flex flex-col justify-center px-6 flex-1">
+            {breadcrumbs && (
+              <div className="flex items-center text-xs ">
+                <Link className=" whitespace-no-wrap" to="/">
+                  Top
+                </Link>
+                {breadcrumbs.map((b, i) => (
+                  <div
+                    className={`flex ${
+                      i === breadcrumbs.length - 1
+                        ? "truncate"
+                        : "whitespace-no-wrap"
+                    }`}
+                  >
+                    <div className="mx-1">/</div>
+                    <Link to={b.to}>{b.label}</Link>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="w-full">{children}</div>
           </div>
         </div>
@@ -46,6 +70,6 @@ const Layout = memo(({ children }: Props) => {
       <Footer />
     </>
   );
-});
+};
 
 export default Layout;
