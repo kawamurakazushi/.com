@@ -1,5 +1,5 @@
 ---
-title: "Sprint Retrospective Exercise."
+title: "Sprint Retrospective Exercise"
 date: "2019-12-16"
 tags: ["agile", "scrum"]
 category: "tech"
