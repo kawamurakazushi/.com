@@ -131,8 +131,67 @@ module.exports = {
         chunkSize: 10000,
       },
     },
+    {
+      resolve: "gatsby-plugin-feed",
+      options: {
+        feeds: [
+          {
+            serialize: ({ query: { site, allPost } }) => {
+              return allPost.edges.map(({ node }) => {
+                const {
+                  frontmatter,
+                  excerpt,
+                  fields,
+                  html,
+                } = node.childMarkdownRemark;
+                return {
+                  ...frontmatter,
+                  description: excerpt,
+                  url: `${site.siteMetadata.siteUrl}${fields.slug}`,
+                  guid: `${site.siteMetadata.siteUrl}${fields.slug}`,
+                  custom_elements: [{ "content:encoded": html }],
+                };
+              });
+            },
+            query: `
+              {
+                allPost: allFile(
+                  filter: {
+                    internal: { mediaType: { eq: "text/markdown" } }
+                    sourceInstanceName: { eq: "posts" }
+                  }
+                  sort: {
+                    fields: childMarkdownRemark___frontmatter___date
+                    order: DESC
+                  }
+                ) {
+                  edges {
+                    node {
+                      childMarkdownRemark {
+                        excerpt
+                        html
+                        fields {
+                          slug
+                        }
+                        frontmatter {
+                          title
+                          date
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+          },
+        ],
+      },
+    },
   ],
   siteMetadata: {
     title: "kawamurakazushi.com",
+    siteUrl: "https://kawamurakazushi.com",
+    description: "Kazushi Kawamura's Software Engineering Portfolio / Blog.",
   },
 };

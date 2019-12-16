@@ -49,7 +49,6 @@ export const onCreateNode = async ({
       const data = await response.json();
       if (data.length > 0) {
         const summary = data[0].summary;
-        console.log(summary);
         const bookNode: Node = {
           ...summary,
           children: [],
@@ -65,7 +64,6 @@ export const onCreateNode = async ({
         createParentChildLink({ parent: node, child: bookNode });
       }
     } catch {
-      console.log("wrong", node.frontmatter);
     }
   }
 };

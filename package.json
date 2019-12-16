@@ -37,6 +37,7 @@
     "decoders": "^1.17.0",
     "dotenv": "^8.1.0",
     "gatsby-plugin-algolia": "^0.5.0",
+    "gatsby-plugin-feed": "^2.3.25",
     "gatsby-plugin-google-tagmanager": "^2.1.20",
     "gatsby-plugin-react-helmet": "^3.1.18",
     "gatsby-plugin-sharp": "^2.3.7",
