@@ -44,11 +44,19 @@ export const onCreateNode = async ({
     try {
       const frontmatterDecoder = object({ isbn: number, title: string });
       const { isbn } = guard(frontmatterDecoder)(node.frontmatter);
-      const url = `https://api.openbd.jp/v1/get?isbn=${isbn}`;
+      // const url = `https://api.openbd.jp/v1/get?isbn=${isbn}`;
+      const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
       const response = await fetch(url);
       const data = await response.json();
-      if (data.length > 0) {
-        const summary = data[0].summary;
+      if (data.items.length > 0) {
+        const item = data.items[0];
+        const summary = {
+          author: item.volumeInfo.authors.join(" / "),
+          cover: item.volumeInfo.imageLinks.thumbnail.replace("http", "https"),
+          isbn: `${isbn}`,
+          title: item.volumeInfo.title,
+        };
+
         const bookNode: Node = {
           ...summary,
           children: [],
@@ -63,8 +71,7 @@ export const onCreateNode = async ({
         createNode(bookNode);
         createParentChildLink({ parent: node, child: bookNode });
       }
-    } catch {
-    }
+    } catch {}
   }
 };
 
