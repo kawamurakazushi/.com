@@ -29,7 +29,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
         <title>Projects | Kazushi Kawamura</title>
         <meta property="og:title" content="Projects" />
       </Helmet>
-      <h2 className="font-bold mb-4 heading">Projects</h2>
+      <h2 className="font-bold my-4 heading">Projects</h2>
       <div className="flex flex-col">
         {projects.allProject.edges.map(({ node }) => (
           <ProjectItem

@@ -3,6 +3,7 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 
 import ArticleItem from "../components/articleItem";
+import BookItem from "../components/bookItem";
 import Layout from "../components/layout";
 import ProjectItem from "../components/projectItem";
 import { ArrowRightIcon } from "../icons/arrowRight";
@@ -161,8 +162,11 @@ export default memo(() => {
           Hello! I’m a Software Engineer living in Tokyo.
         </div>
         <div>
-          I enjoy cooking curry 🍛 and also maintain an app called currylife, a
-          online community for curry lovers.
+          I enjoy cooking curry 🍛 and also maintain an app called{" "}
+          <a className="underline" target="_blank" href="https://currylife.me">
+            currylife
+          </a>
+          , a online community for curry lovers.
         </div>
         <div className="flex mt-6">
           <MoreLink to="/me" label="VIEW MORE ABOUT ME" />
@@ -207,34 +211,23 @@ export default memo(() => {
       </div>
       <div id="books" className="mb-4">
         <h2 className={header}>Books</h2>
-        {data.allBook.edges.map(({ node }, i) => (
-          <Link
-            to={`/books/${node.childMarkdownRemark.frontmatter.isbn}`}
-            key={i}
-            className="flex mb-5"
-          >
-            <div className="w-10">
-              <img src={node.childMarkdownRemark.childBook.cover} />
-            </div>
-            <div className="flex flex-col ml-2 flex-1">
-              <div className="font-medium mr-2">
-                {node.childMarkdownRemark.childBook.title}
-              </div>
-              <div className="font-thin text-xs mt-1">
-                {node.childMarkdownRemark.childBook.author}
-              </div>
-            </div>
-            <div className="text-xs mt-1">
-              {node.childMarkdownRemark.frontmatter.readAt ? (
-                <div className="">
-                  read at {node.childMarkdownRemark.frontmatter.readAt}
-                </div>
-              ) : (
-                <div className="italic">reading</div>
-              )}
-            </div>
-          </Link>
-        ))}
+        {data.allBook.edges.map(({ node }) => {
+          const { childMarkdownRemark } = node;
+          const { frontmatter, childBook } = childMarkdownRemark;
+          return (
+            <BookItem
+              key={frontmatter.isbn}
+              author={childBook.author}
+              readAt={frontmatter.readAt}
+              title={childBook.title}
+              cover={childBook.cover}
+              isbn={frontmatter.isbn}
+            />
+          );
+        })}
+        <div className="flex mt-2">
+          <MoreLink to="/books" label="VIEW MORE BOOKS" />
+        </div>
       </div>
     </Layout>
   );

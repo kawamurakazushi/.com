@@ -44,7 +44,7 @@ const Header = memo(() => {
           <Link className="font-thin text-xs mr-1" to="/projects">
             Projects
           </Link>
-          <Link className="font-thin text-xs mr-2" to="/#books">
+          <Link className="font-thin text-xs mr-2" to="/books">
             Books
           </Link>
           <Link to="/me">
