@@ -83,6 +83,7 @@ export const sourceNodes = async ({
   require("dotenv").config();
   const { createNode } = actions;
 
+  // TODO: Make this a yml file
   const nodes = [
     "spice-blending-puzzle",
     "figma-map-maker",
@@ -91,6 +92,7 @@ export const sourceNodes = async ({
     "vscode-grep",
     "figma-format",
     "figma-sort-it",
+    "pomopomo",
     "seo-editor",
     "thyme",
   ].map(async p => {
