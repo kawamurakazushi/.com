@@ -31,6 +31,11 @@ const MePage = () => {
           </a>{" "}
           :)
         </p>
+        <h2 className="my-4 text-base">🛠Tools I use daily </h2>
+        <p>
+          VSCode / vim / Notion / Kindle / Alacritty / zsh / ghq / karabiner /
+          yabai / skhrd / Slack
+        </p>
       </div>
     </Layout>
   );
