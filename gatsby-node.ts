@@ -93,6 +93,7 @@ export const sourceNodes = async ({
     "figma-format",
     "figma-sort-it",
     "pomopomo",
+    ".com",
     "seo-editor",
     "thyme",
   ].map(async p => {

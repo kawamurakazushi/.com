@@ -1,4 +1,4 @@
-name: kawamurakazushi.com CI
+name: ci
 
 on: [push]
 
