@@ -11,10 +11,9 @@ And this has been a great milestone, and it made me try to make this year more m
 
 This year I wanted to focus on **3** things.
 
-1. To become a functional programmer - *Be Functional*
-2. To continue self development - *Continuous Development*
-3. To learn business and make money - *Make Money*
-
+1. To become a functional programmer - _Be Functional_
+2. To continue self development - _Continuous Development_
+3. To learn business and make money - _Make Money_
 
 ## Be Functional
 
@@ -57,17 +56,16 @@ I'll need to think about this more.
 
 But I want to expand my output capability, and one great way is to make a presentation
 
-
 ## Make Money
 
 In 2019, I made a lot of apps, figma / vscode plugins, and uploaded many blog posts. (You can see all my projects [here](/projects).)
 
-But nothing made money, which is fine because that wasn't the benefit
+But nothing made money, which was fine because that wasn't the purpose.
 
-But it's also I know nothing about business and money.
+It also means, I know nothing about business and money.
 
-In 2020, I want to start learning business, and learn how to make money with my own knowledge and skills.
+In 2020, I want to start learning business and about money, and learn how to make money with my own knowledge and skills.
 
-----------------------------------------------------------------
+---
 
 ![goal](./goal.png)
