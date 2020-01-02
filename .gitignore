@@ -15,3 +15,5 @@ gatsby-node.js
 secrets
 .env
 
+src/generated
+

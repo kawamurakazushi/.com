@@ -94,6 +94,18 @@ mark {
   @apply leading-tighter;
 }
 
+.remark blockquote {
+  @apply bg-gray-100;
+  @apply rounded;
+  @apply p-4;
+  @apply text-xs;
+  @apply my-4;
+}
+
+.remark blockquote p {
+  @apply m-0;
+}
+
 @screen md {
   .remark h1 {
     @apply text-7xl;

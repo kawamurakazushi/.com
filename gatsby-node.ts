@@ -1,12 +1,4 @@
-import {
-  array,
-  guard,
-  nullable,
-  object,
-  string,
-  number,
-  optional,
-} from "decoders";
+import { array, guard, nullable, object, string, number } from "decoders";
 import {
   CreateNodeArgs,
   CreatePagesArgs,
@@ -44,33 +36,53 @@ export const onCreateNode = async ({
     try {
       const frontmatterDecoder = object({ isbn: number, title: string });
       const { isbn } = guard(frontmatterDecoder)(node.frontmatter);
-      // const url = `https://api.openbd.jp/v1/get?isbn=${isbn}`;
+
       const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
       const response = await fetch(url);
       const data = await response.json();
-      if (data.items.length > 0) {
+      let summary = null;
+
+      if (data.totalItems > 0) {
         const item = data.items[0];
-        const summary = {
+        summary = {
           author: item.volumeInfo.authors.join(" / "),
           cover: item.volumeInfo.imageLinks.thumbnail.replace("http", "https"),
           isbn: `${isbn}`,
           title: item.volumeInfo.title,
         };
-
-        const bookNode: Node = {
-          ...summary,
-          children: [],
-          id: createNodeId(isbn),
-          internal: {
-            contentDigest: createContentDigest(summary),
-            owner: "",
-            type: "Book",
-          },
-          parent: node.id,
-        };
-        createNode(bookNode);
-        createParentChildLink({ parent: node, child: bookNode });
       }
+
+      if (summary === null) {
+        const openDbData = await (
+          await fetch(`https://api.openbd.jp/v1/get?isbn=${isbn}`)
+        ).json();
+
+        if (openDbData.length > 0) {
+          const { author, cover, isbn, title } = openDbData[0].summary;
+          summary = {
+            author,
+            cover,
+            isbn,
+            title,
+          };
+        }
+      }
+
+      // Make Node
+      const bookNode: Node = {
+        ...summary,
+        children: [],
+        id: createNodeId(isbn),
+        internal: {
+          contentDigest: createContentDigest(summary),
+          owner: "",
+          type: "Book",
+        },
+        parent: node.id,
+      };
+
+      createNode(bookNode);
+      createParentChildLink({ parent: node, child: bookNode });
     } catch {}
   }
 };
