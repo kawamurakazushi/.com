@@ -15,7 +15,7 @@ const BookItem: FC<Props> = ({ author, cover, isbn, title, readAt }) => {
       <div className="w-10">
         <img src={cover} />
       </div>
-      <div className="flex flex-col ml-2">
+      <div className="flex flex-col ml-2 flex-1">
         <div className="font-medium mr-2 hover:bg-black hover:text-white">
           {title}
         </div>
@@ -23,7 +23,7 @@ const BookItem: FC<Props> = ({ author, cover, isbn, title, readAt }) => {
       </div>
       <div className="text-xs mt-1 ml-auto">
         {readAt ? (
-          <div className="">read at {readAt}</div>
+          <div className="">{readAt}</div>
         ) : (
           <div className="italic">reading</div>
         )}
