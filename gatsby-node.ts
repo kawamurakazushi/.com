@@ -182,6 +182,7 @@ export const sourceNodes = async ({
       homepageUrl: repository.homepageUrl,
       languages: repository.languages.edges.map(({ node }) => node),
       name: repository.name,
+      slug: repository.name.replace(".", ""),
       topics: repository.repositoryTopics.edges.map(
         ({ node }) => node.topic.name
       ),
@@ -277,6 +278,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
             node {
               id
               name
+              slug
             }
           }
         }
@@ -295,6 +297,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
                 node: object({
                   id: string,
                   name: string,
+                  slug: string,
                 }),
               })
             ),
@@ -356,7 +359,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
             context: {
               id: node.id,
             },
-            path: `projects/${node.name}`,
+            path: `projects/${node.slug}`,
           });
         });
 

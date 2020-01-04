@@ -13,6 +13,7 @@ const decoder = object({
         node: object({
           description: string,
           name: string,
+          slug: string,
           topics: array(string),
           url: string,
         }),
@@ -35,7 +36,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
           <ProjectItem
             key={node.name}
             name={node.name}
-            to={node.name}
+            to={node.slug}
             description={node.description}
             topics={node.topics}
             url={node.url}
@@ -54,6 +55,7 @@ export const query = graphql`
           name
           url
           description
+          slug
           topics
         }
       }

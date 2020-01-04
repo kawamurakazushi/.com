@@ -19,6 +19,7 @@ const useIndexQuery = () => {
               name
               url
               description
+              slug
               topics
             }
           }
@@ -127,6 +128,7 @@ const useIndexQuery = () => {
             description: string,
             id: string,
             name: string,
+            slug: string,
             topics: array(string),
             url: string,
           }),
@@ -199,7 +201,7 @@ export default memo(() => {
           <ProjectItem
             key={node.id}
             name={node.name}
-            to={node.name}
+            to={node.slug}
             description={node.description}
             topics={node.topics}
             url={node.url}

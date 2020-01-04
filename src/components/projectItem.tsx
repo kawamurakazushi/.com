@@ -14,7 +14,7 @@ interface Props {
 const ProjectItem = memo(({ to, name, topics, description, url }: Props) => {
   return (
     <div className="mb-5 block">
-      <Link to={`/projects/${name}`} className="mb-5">
+      <Link to={`/projects/${to}`} className="mb-5">
         <div className="flex">
           <span className="text-l font-medium hover:bg-black hover:text-white">
             {name}
