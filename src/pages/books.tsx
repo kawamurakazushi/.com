@@ -21,6 +21,7 @@ const decoder = object({
               isbn: number,
               readAt: nullable(string),
             }),
+            html: string,
           }),
         }),
       })
@@ -30,6 +31,8 @@ const decoder = object({
 
 export default memo(({ data }: ReplaceComponentRendererArgs) => {
   const books = guard(decoder)(data);
+
+  console.log(books);
 
   return (
     <Layout breadcrumbs={[{ label: "Books", to: "/books" }]}>
@@ -43,7 +46,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
       </div>
       {books.allBook.edges.map(({ node }) => {
         const { childMarkdownRemark } = node;
-        const { frontmatter, childBook } = childMarkdownRemark;
+        const { frontmatter, childBook, html } = childMarkdownRemark;
         return (
           <BookItem
             key={frontmatter.isbn}
@@ -52,6 +55,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
             title={childBook.title}
             cover={childBook.cover}
             isbn={frontmatter.isbn}
+            html={html}
           />
         );
       })}
@@ -71,6 +75,7 @@ export const query = graphql`
       edges {
         node {
           childMarkdownRemark {
+            html
             frontmatter {
               isbn
               readAt

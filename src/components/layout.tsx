@@ -51,6 +51,7 @@ const Layout: FC<Props> = ({ children, breadcrumbs }) => {
                 </Link>
                 {breadcrumbs.map((b, i) => (
                   <div
+                    key={i}
                     className={`flex ${
                       i === breadcrumbs.length - 1
                         ? "truncate"

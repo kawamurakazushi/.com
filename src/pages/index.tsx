@@ -75,6 +75,7 @@ const useIndexQuery = () => {
                   cover
                   title
                 }
+                html
               }
             }
           }
@@ -98,6 +99,7 @@ const useIndexQuery = () => {
                 isbn: number,
                 readAt: nullable(string),
               }),
+              html: string,
             }),
           }),
         })
@@ -215,7 +217,7 @@ export default memo(() => {
         <h2 className={header}>Books</h2>
         {data.allBook.edges.map(({ node }) => {
           const { childMarkdownRemark } = node;
-          const { frontmatter, childBook } = childMarkdownRemark;
+          const { frontmatter, childBook, html } = childMarkdownRemark;
           return (
             <BookItem
               key={frontmatter.isbn}
@@ -224,6 +226,7 @@ export default memo(() => {
               title={childBook.title}
               cover={childBook.cover}
               isbn={frontmatter.isbn}
+              html={html}
             />
           );
         })}
