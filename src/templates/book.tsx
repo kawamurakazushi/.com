@@ -8,6 +8,7 @@ import Layout from "../components/layout";
 const decoder = object({
   markdownRemark: object({
     childBook: object({
+      author: string,
       cover: string,
       isbn: string,
       title: string,
@@ -43,13 +44,22 @@ export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
           content={book.markdownRemark.childBook.title}
         />
       </Helmet>
-      <div className="flex flex-col mb-2">
-        <p className="text-gray-400 text-sm mt-5 mb-2">
-          {book.markdownRemark.frontmatter.readAt
-            ? book.markdownRemark.frontmatter.readAt
-            : "reading"}
-        </p>
-        <h1 className="heading my-2">{book.markdownRemark.childBook.title}</h1>
+      <h1 className="heading mt-5 mb-4">
+        {book.markdownRemark.childBook.title}
+      </h1>
+      <div className="flex my-5">
+        <img
+          className="max-w-20 items-start"
+          src={book.markdownRemark.childBook.cover}
+        />
+        <div className="text-gray-500 text-sm m-4">
+          <p className="">
+            {book.markdownRemark.frontmatter.readAt
+              ? `${book.markdownRemark.frontmatter.readAt} 読了`
+              : "reading"}
+          </p>
+          <p className="italic">{book.markdownRemark.childBook.author}</p>
+        </div>
       </div>
       <div
         className="remark mb-16"
@@ -64,6 +74,7 @@ export const query = graphql`
     markdownRemark(frontmatter: { isbn: { eq: $isbn } }) {
       id
       childBook {
+        author
         isbn
         title
         cover
