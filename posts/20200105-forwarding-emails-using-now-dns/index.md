@@ -9,7 +9,6 @@ Now DNS doesn't have any support for mail servers. So unlike Google Domain you c
 
 So you have to use a third party tool like [improvmx](https://improv.mx/) to configure forwarding.
 
-
 ## Setting up improvmx
 
 Using improvmx is super simple, there's no registration, and you can use it immediately.
@@ -26,14 +25,12 @@ You will receive email from improvmx to setup your MX record in your DNS.
 
 You can just hit the following command and you are good to go.
 
-
 ```bash
 now dns add <domain_name_here> '@' MX mx2.improvmx.com 20
 now dns add <domain_name_here> '@' MX mx2.improvmx.com 20
 ```
 
 If you don't want to use CLI, you can install the DNS integration [here](https://zeit.co/integrations/dns). You can easily add edit and remove your DNS configuration
-
 
 ![dns](./dns.png)
 
@@ -43,9 +40,12 @@ Done!
 
 Note that any email from that domain will be forwarding to your specified email. If you want to setup specific forwarding you'll need to start paying to improvmx.
 
+There's quite a few alternative services as well.
+
+- https://forwardemail.net
+- https://forwardmx.io
+- https://www.duocircle.com/email/email-forwarding
 
 ## Reference
 
 https://spectrum.chat/zeit/now/redirection-email-domain~b5e1b613-ae92-42f9-bc49-e8c824a8a7f2
-
-
