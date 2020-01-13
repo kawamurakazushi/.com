@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 const MePage = () => {
   return (
     <Layout breadcrumbs={[{ label: "Me", to: "/me" }]}>
-      <h1 className="heading mb-4">Hello.</h1>
+      <h1 className="heading my-4">Hello.</h1>
       <div className="text-sm">
         <p className="my-2">I’m a Software Engineer living in Tokyo.</p>
         <p className="my-2">
@@ -31,11 +31,13 @@ const MePage = () => {
           </a>{" "}
           :)
         </p>
-        <h2 className="my-4 text-base">🛠Tools I use daily </h2>
+        <h2 className="my-4 text-lg">🛠</h2>
         <p>
           VSCode / vim / Notion / Kindle / Alacritty / zsh / ghq / karabiner /
-          yabai / skhrd / Slack
+          yabai / skhrd / Figma / Slack
         </p>
+        <h2 className="my-4 text-lg">😍</h2>
+        <p>Cooking / Coffee</p>
       </div>
     </Layout>
   );
