@@ -34,7 +34,14 @@ const Header = memo(() => {
       <div className="flex justify-between items-center px-6 py-4 w-full">
         <div className="flex items-center">
           <Link to="/" className="no-underline">
-            <img src={logo} className="w-8" />
+            <img
+              src={logo}
+              className="w-8"
+              style={{
+                transform: `rotate(${360 *
+                  ((new Date().getMonth() + 1) / 12)}deg)`,
+              }}
+            />
           </Link>
         </div>
         <div className="flex items-center">
