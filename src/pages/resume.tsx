@@ -75,10 +75,10 @@ const Skills = () => (
       </div>
       <div className="flex">
         <div className="text-xs font-light">
-          Experienced in Go, Ruby, Dart, Elixir, Swift, PHP
+          Experienced in Go, Ruby, Dart, ReasonML, Swift, PHP
         </div>
       </div>
-      <div className={accent}>Frameworks and Libraries</div>
+      <div className={accent}>Frameworks, Libraries and Technologies</div>
       <div className="text-xs font-light">
         React, Redux, TEA, Gatsbyjs, webpack, tailwindcss, Flutter, Electron,
         Lerna
@@ -159,12 +159,13 @@ const WorkHistory = () => (
           <i> Elm</i>.
         </Achievement>
         <Achievement>
-          Create a website builder targeting restaurant, developed using
+          Create a website CMS targeting restaurant, developed using
           <i> Go</i>, and <i>React</i>
         </Achievement>
         <Achievement>
-          Online Media, developed using <i>Elixir</i>/<i>Phoenix</i>, and
-          <i> Javascript</i>/<i>React</i>
+          Built the whole online media system, using <i>Elixir</i>/
+          <i>Phoenix</i> for the API, and
+          <i> Javascript</i>/<i>React</i> for the frontend.
         </Achievement>
         <Achievement>
           Contributed to marketing, but automating repetitive task on
@@ -179,6 +180,25 @@ const WorkHistory = () => (
         <Achievement>
           Trained over 20 interns, especially for frontend developers, including
           HTML, CSS, Javascript, and React.
+        </Achievement>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between">
+        <div className={accent}>
+          <a target="_blank" href="https://retty.me">
+            Navyy Bar
+          </a>
+        </div>
+        <div className={accent}>Nov 2019 - Present</div>
+      </div>
+      <div className="flex justify-between">
+        <div className="text-xs italic">Part Time Curry Chef</div>
+        <div className="text-xs italic">Tokyo, Japan</div>
+      </div>
+      <div className="my-1">
+        <Achievement>
+          Cooks spice curries for the membership only bar.
         </Achievement>
       </div>
     </div>
@@ -240,7 +260,7 @@ const WorkHistory = () => (
           developing a slack bot to deploy a specific branch to staging servers.
         </Achievement>
         <Achievement>
-          Created a provider system but scraping RSS feeds from other media.
+          Created a provider system by scraping RSS feeds from other media.
         </Achievement>
         <Achievement>
           Push notification functionality for iOS using <i>Amazon SNS</i>.
@@ -349,30 +369,50 @@ const Links = () => (
 const Projects = () => (
   <>
     <div className={`${header}`}>Side Projects</div>
-    <div className={`${accent}`}>Currylife</div>
+    <div className={`${accent}`}>
+      <a
+        target="_blank"
+        href="https://apps.apple.com/jp/app/currylife-%E3%82%AB%E3%83%AA%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%95/id1493953558"
+      >
+        CURRYLIFE
+      </a>
+    </div>
     <div className="text-xs font-light">
       An iOS/Android App for Curry lovers, developed using React Native.
     </div>
-    <div className={`${accent}`}>Figma Map Maker</div>
+    <div className={`${accent}`}>
+      <a
+        target="_blank"
+        href="https://www.figma.com/c/plugin/731312569747199418/Map-Maker"
+      >
+        Figma Map Maker
+      </a>
+    </div>
     <div className="text-xs font-light">
       A map making plugin for Figma, that was featured as #5 product of the day
-      on
+      on{" "}
       <a
+        className="underline"
         target="_blank"
         href="https://www.producthunt.com/posts/figma-map-maker"
       >
-        {" Product Hunt "}
-      </a>
-      and
+        {"Product Hunt"}
+      </a>{" "}
+      and on{" "}
       <a
+        className="underline"
         target="_blank"
         href="https://techcrunch.com/2019/08/01/figma-the-design-tool-in-the-cloud-launches-plug-ins/"
       >
-        {" TechCrunch"}
+        {"TechCrunch"}
       </a>
-      .
+      . 20k+ installs.
     </div>
-    <div className={`${accent}`}>kawamurakazushi.com</div>
+    <div className={`${accent}`}>
+      <a target="_blank" href="https://kawamurakazushi.com">
+        kawamurakazushi.com
+      </a>
+    </div>
     <div className="text-xs font-light">
       Portfolio / Blog developed using GatsbyJS.
     </div>
@@ -401,8 +441,8 @@ export default memo(() => (
       </div>
       <main className="flex flex-row">
         <section className="mr-3 w-2/3">
-          <WorkHistory />
           <Skills />
+          <WorkHistory />
         </section>
         <section className="ml-1 w-1/3">
           <Links />

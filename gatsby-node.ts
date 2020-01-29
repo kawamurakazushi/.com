@@ -36,6 +36,7 @@ export const onCreateNode = async ({
     try {
       const frontmatterDecoder = object({ isbn: number, title: string });
       const { isbn } = guard(frontmatterDecoder)(node.frontmatter);
+      console.log(isbn);
 
       const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
       const response = await fetch(url);
