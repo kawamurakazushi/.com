@@ -173,8 +173,8 @@ const WorkHistory = () => (
           efficient articles.
         </Achievement>
         <Achievement>
-          Interviewed over 80 students from Vietnam, invited 6 students as a
-          intern, and hired 2 of them as a full-time employee after their
+          Interviewed over 80 students from Vietnam, invited 6 students as an
+          intern and hired 2 of them as a full-time employee after their
           graduation
         </Achievement>
         <Achievement>
@@ -224,8 +224,8 @@ const WorkHistory = () => (
           Complex data aggregating using <i>Redash</i> and <i>SQL</i>.
         </Achievement>
         <Achievement>
-          Implemented a timeline of new user's post, doubled the number of
-          likes, and reduce exit rate of new users.
+          Implemented a timeline of new user's posts, doubled the number of
+          likes, and reduce the exit rate of new users.
         </Achievement>
         <Achievement>
           Build a dynamic OG image depending on user information using
@@ -256,7 +256,7 @@ const WorkHistory = () => (
           Refactored and Redesigned old API using <i>RESTful API</i>.
         </Achievement>
         <Achievement>
-          Improved development environment, by introducing git flow, and by
+          Improved development environment, by introducing git-flow, and by
           developing a slack bot to deploy a specific branch to staging servers.
         </Achievement>
         <Achievement>

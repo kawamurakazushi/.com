@@ -63,7 +63,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
           </a>
         </div>
         <div
-          className="remark"
+          className="remark mb-4"
           dangerouslySetInnerHTML={{
             __html: project.readme.childMarkdownRemark.html,
           }}

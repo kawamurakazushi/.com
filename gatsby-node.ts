@@ -98,9 +98,10 @@ export const sourceNodes = async ({
 
   // TODO: Make this a yml file
   const nodes = [
-    "spice-blending-puzzle",
+    "CURRYLIFE",
     "figma-map-maker",
     "figma-walker",
+    "spice-blending-puzzle",
     "react-native-loader2",
     "vscode-grep",
     "figma-format",
