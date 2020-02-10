@@ -46,6 +46,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
           {project.homepageUrl && project.homepageUrl !== "" && (
             <a
               target="_blank"
+              rel="noopener"
               href={project.homepageUrl}
               className="mr-3 flex items-center hover:text-black"
             >
@@ -55,6 +56,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
           )}
           <a
             target="_blank"
+            rel="noopener"
             className="flex items-center hover:text-black"
             href={project.url}
           >

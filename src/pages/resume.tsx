@@ -103,7 +103,11 @@ const WorkHistory = () => (
     <div>
       <div className="flex justify-between">
         <div className={accent}>
-          <a target="_blank" href="https://sc0ville.com/index.html?lang=en">
+          <a
+            target="_blank"
+            rel="noopener"
+            href="https://sc0ville.com/index.html?lang=en"
+          >
             Scoville Inc
           </a>
           .
@@ -186,7 +190,7 @@ const WorkHistory = () => (
     <div>
       <div className="flex justify-between">
         <div className={accent}>
-          <a target="_blank" href="https://retty.me">
+          <a target="_blank" rel="noopener" href="https://retty.me">
             Navyy Bar
           </a>
         </div>
@@ -205,7 +209,7 @@ const WorkHistory = () => (
     <div>
       <div className="flex justify-between">
         <div className={accent}>
-          <a target="_blank" href="https://retty.me">
+          <a target="_blank" rel="noopener" href="https://retty.me">
             Retty Inc.
           </a>
         </div>
@@ -236,7 +240,7 @@ const WorkHistory = () => (
     <div>
       <div className="flex justify-between">
         <div className={`${accent}`}>
-          <a target="_blank" href="https://www.donuts.ne.jp/">
+          <a target="_blank" rel="noopener" href="https://www.donuts.ne.jp/">
             Donuts Co. Ltd.
           </a>
         </div>
@@ -322,7 +326,12 @@ const Link = ({
   label: string;
   icon: React.FunctionComponent;
 }) => (
-  <a target="_blank" href={href} className="flex items-center text-xs mt-1">
+  <a
+    target="_blank"
+    rel="noopener"
+    href={href}
+    className="flex items-center text-xs mt-1"
+  >
     <Icon />
     <div className="flex-1 break-all leading-none">{label}</div>
   </a>
@@ -372,6 +381,7 @@ const Projects = () => (
     <div className={`${accent}`}>
       <a
         target="_blank"
+        rel="noopener"
         href="https://apps.apple.com/jp/app/currylife-%E3%82%AB%E3%83%AA%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%95/id1493953558"
       >
         CURRYLIFE
@@ -383,6 +393,7 @@ const Projects = () => (
     <div className={`${accent}`}>
       <a
         target="_blank"
+        rel="noopener"
         href="https://www.figma.com/c/plugin/731312569747199418/Map-Maker"
       >
         Figma Map Maker
@@ -394,6 +405,7 @@ const Projects = () => (
       <a
         className="underline"
         target="_blank"
+        rel="noopener"
         href="https://www.producthunt.com/posts/figma-map-maker"
       >
         {"Product Hunt"}
@@ -402,6 +414,7 @@ const Projects = () => (
       <a
         className="underline"
         target="_blank"
+        rel="noopener"
         href="https://techcrunch.com/2019/08/01/figma-the-design-tool-in-the-cloud-launches-plug-ins/"
       >
         {"TechCrunch"}
@@ -409,7 +422,7 @@ const Projects = () => (
       . 20k+ installs.
     </div>
     <div className={`${accent}`}>
-      <a target="_blank" href="https://kawamurakazushi.com">
+      <a target="_blank" rel="noopener" href="https://kawamurakazushi.com">
         kawamurakazushi.com
       </a>
     </div>

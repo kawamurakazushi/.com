@@ -167,7 +167,12 @@ export default memo(() => {
         </div>
         <div>
           I enjoy cooking curry 🍛 and also maintain an app called{" "}
-          <a className="underline" target="_blank" href="https://currylife.me">
+          <a
+            className="underline"
+            target="_blank"
+            rel="noopener"
+            href="https://currylife.me"
+          >
             currylife
           </a>
           , a online community for curry lovers.

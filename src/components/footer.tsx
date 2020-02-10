@@ -10,12 +10,17 @@ const Footer = memo(({}) => (
       <div className="flex">
         <a
           target="_blank"
+          rel="noopener"
           href="https://github.com/kawamurakazushi/.com"
           className="mr-2"
         >
           <GithubIcon size="18" />
         </a>
-        <a target="_blank" href="https:/kawamurakazushi.com/rss.xml">
+        <a
+          target="_blank"
+          rel="noopener"
+          href="https:/kawamurakazushi.com/rss.xml"
+        >
           <RssIcon size="18" />
         </a>
       </div>

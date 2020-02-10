@@ -92,7 +92,7 @@ const Search = memo(() => {
             </>
           )}
           <div className="flex flex-row-reverse items-center text-xs py-4 mt-4">
-            <a target="_blank" href="https://www.algolia.com/">
+            <a target="_blank" rel="noopener" href="https://www.algolia.com/">
               <AlgoliaLogo />
             </a>
             <div className="mr-2">Search by</div>
