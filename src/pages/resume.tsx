@@ -75,7 +75,7 @@ const Skills = () => (
       </div>
       <div className="flex">
         <div className="text-xs font-light">
-          Experienced in Go, Ruby, Dart, ReasonML, Swift, PHP
+          Experienced in Go, Ruby, Dart, ReasonML, Swift, PHP, Rust
         </div>
       </div>
       <div className={accent}>Frameworks, Libraries and Technologies</div>
@@ -189,11 +189,7 @@ const WorkHistory = () => (
     </div>
     <div>
       <div className="flex justify-between">
-        <div className={accent}>
-          <a target="_blank" rel="noopener" href="https://retty.me">
-            Navyy Bar
-          </a>
-        </div>
+        <div className={accent}>Navyy Bar</div>
         <div className={accent}>Nov 2019 - Present</div>
       </div>
       <div className="flex justify-between">
@@ -419,7 +415,7 @@ const Projects = () => (
       >
         {"TechCrunch"}
       </a>
-      . 20k+ installs.
+      . 22k+ installs.
     </div>
     <div className={`${accent}`}>
       <a target="_blank" rel="noopener" href="https://kawamurakazushi.com">
