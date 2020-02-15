@@ -102,6 +102,7 @@ export const sourceNodes = async ({
     "figma-map-maker",
     "figma-walker",
     "spice-blending-puzzle",
+    "tle-parser",
     "react-native-loader2",
     "vscode-grep",
     "figma-format",
