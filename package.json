@@ -5,7 +5,7 @@
   "author": "Kazushi Kawamura <wakaka2277@gmail.com>",
   "dependencies": {
     "algoliasearch": "^3.35.0",
-    "gatsby": "^2.19.17",
+    "gatsby": "^2.19.18",
     "gatsby-image": "^2.2.41",
     "graphql": "^14.6.0",
     "graphql-request": "^1.8.2",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/node-fetch": "^2.5.4",
-    "@types/react": "^16.9.19",
+    "@types/react": "^16.9.21",
     "@types/react-helmet": "^5.0.15",
     "@types/react-instantsearch-dom": "^5.2.6",
     "decoders": "^1.18.1",
@@ -45,7 +45,7 @@
     "gatsby-remark-images": "^3.1.44",
     "gatsby-remark-prismjs": "^3.3.31",
     "gatsby-source-filesystem": "^2.1.48",
-    "gatsby-transformer-remark": "^2.6.51",
+    "gatsby-transformer-remark": "^2.6.52",
     "gatsby-transformer-sharp": "^2.3.14",
     "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",

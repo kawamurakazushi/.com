@@ -75,7 +75,7 @@ const Skills = () => (
       </div>
       <div className="flex">
         <div className="text-xs font-light">
-          Experienced in Go, Ruby, Dart, ReasonML, Swift, PHP, Rust
+          Experienced in Rust, Go, Ruby, Dart, ReasonML, Swift, Python
         </div>
       </div>
       <div className={accent}>Frameworks, Libraries and Technologies</div>
