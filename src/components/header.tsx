@@ -29,6 +29,8 @@ const Header = memo(() => {
     );
   };
 
+  const link = "font-thin text-xs hover:text-white hover:bg-black";
+
   return (
     <>
       <div className="flex justify-between items-center px-6 py-4 w-full">
@@ -45,17 +47,17 @@ const Header = memo(() => {
           </Link>
         </div>
         <div className="flex items-center">
-          <Link className="font-thin text-xs mr-1" to="/blogs">
+          <Link className={`${link} mr-1`} to="/blogs">
             Writings
           </Link>
-          <Link className="font-thin text-xs mr-1" to="/projects">
+          <Link className={`${link} mr-1`} to="/projects">
             Projects
           </Link>
-          <Link className="font-thin text-xs mr-1" to="/books">
+          <Link className={`${link} mr-1`} to="/books">
             Books
           </Link>
           <a
-            className="font-thin text-xs mr-2"
+            className={`${link} mr-2`}
             target="_blank"
             href="https://currylife.me/users/bbqSpNlK5bVSxakRfCz8F4Z6IJy1"
           >
