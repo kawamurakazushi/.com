@@ -163,7 +163,7 @@ export default memo(() => {
     <Layout>
       <div className="text-sm mt-6 mb-12">
         <div className="mb-2">
-          Hello! I’m a Software Engineer living in Tokyo.
+          👋Hello! I’m a Software Engineer living in Tokyo.
         </div>
         <div>
           I enjoy cooking curry 🍛 and also maintain an app called{" "}

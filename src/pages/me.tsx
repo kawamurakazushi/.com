@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 const MePage = () => {
   return (
     <Layout breadcrumbs={[{ label: "Me", to: "/me" }]}>
-      <h1 className="heading my-4">Hello.</h1>
+      <h1 className="heading my-4">👋 Hello.</h1>
       <div className="text-sm">
         <p className="my-2">I’m a Software Engineer living in Tokyo.</p>
         <p className="my-2">
