@@ -12,25 +12,16 @@ const MePage = () => {
           I enjoy cooking curry 🍛 and also maintain an app called currylife, a
           online community for curry lovers.
         </p>
-        <h2 className="my-4 text-lg">✉️</h2>
-        <ul>
-          <li>
-            <a
-              className="underline"
-              target="_blank"
-              href="https://keybase.io/kawamurakazushi"
-            >
-              keybase (keybase.io/kawamurakazushi)
-            </a>
-          </li>
-        </ul>
-        <h2 className="my-4 text-lg">🛠</h2>
-        <p>
-          VSCode / vim / Notion / Kindle / Alacritty / zsh / ghq / karabiner /
-          yabai / skhrd / Figma / Slack
-        </p>
-        <h2 className="my-4 text-lg">😍</h2>
-        <p>Cooking / Coffee</p>
+        <div className="my-4 flex items-center">
+          <h2 className="text-lg mr-2">✉️</h2>
+          <a
+            className="underline"
+            target="_blank"
+            href="https://keybase.io/kawamurakazushi"
+          >
+            keybase (keybase.io/kawamurakazushi)
+          </a>
+        </div>
       </div>
     </Layout>
   );
