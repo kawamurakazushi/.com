@@ -18,7 +18,7 @@ const decoder = object({
               title: string,
             }),
             frontmatter: object({
-              isbn: number,
+              isbn: string,
               readAt: nullable(string),
             }),
             html: string,

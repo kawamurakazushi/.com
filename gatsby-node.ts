@@ -34,7 +34,7 @@ export const onCreateNode = async ({
   }
   if (node.internal.type === "MarkdownRemark" && node.frontmatter) {
     try {
-      const frontmatterDecoder = object({ isbn: number, title: string });
+      const frontmatterDecoder = object({ isbn: string, title: string });
       const { isbn } = guard(frontmatterDecoder)(node.frontmatter);
       console.log(isbn);
 
@@ -310,7 +310,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
               object({
                 node: object({
                   childMarkdownRemark: object({
-                    frontmatter: object({ isbn: number }),
+                    frontmatter: object({ isbn: string }),
                   }),
                 }),
               })

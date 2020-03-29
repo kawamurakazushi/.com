@@ -5,7 +5,7 @@ import { FileIcon } from "../icons/file";
 import { SitemapIcon } from "../icons/sitemap";
 
 interface Props {
-  isbn: number;
+  isbn: string;
   cover: string;
   title: string;
   author: string;

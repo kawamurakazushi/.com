@@ -70,7 +70,7 @@ export default memo(({ data, pageContext }: ReplaceComponentRendererArgs) => {
 });
 
 export const query = graphql`
-  query BookQuery($isbn: Float!) {
+  query BookQuery($isbn: String!) {
     markdownRemark(frontmatter: { isbn: { eq: $isbn } }) {
       id
       childBook {

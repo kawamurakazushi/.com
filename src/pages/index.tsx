@@ -96,7 +96,7 @@ const useIndexQuery = () => {
                 title: string,
               }),
               frontmatter: object({
-                isbn: number,
+                isbn: string,
                 readAt: nullable(string),
               }),
               html: string,
