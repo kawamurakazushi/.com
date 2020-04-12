@@ -146,7 +146,7 @@ const MoreLink = ({ to, label }: { to: string; label: string }) => {
   return (
     <Link
       to={to}
-      className="text-xs font-normal flex items-center hover:text-white hover:bg-black"
+      className="flex items-center text-xs font-normal hover:text-white hover:bg-black"
     >
       {label}
       <ArrowRightIcon size="16" />
