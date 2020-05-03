@@ -12,18 +12,18 @@
     "highlight.js": "^9.18.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "ts-node": "^8.9.1"
   },
   "keywords": [],
   "license": "MIT",
   "scripts": {
     "css": "tailwind build tailwind.config.css -c ./tailwind.config.js -o src/tailwind.css",
-    "build:config": "tsc gatsby-node.ts",
-    "build": "yarn css && yarn build:config && gatsby build",
-    "develop": "yarn css && yarn build:config && gatsby develop",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
-    "install": "yarn css && yarn build:config",
     "lint": "tslint -c tslint.json 'src/**/*.tsx'",
+    "postinstall": "yarn css",
     "create-post": "bin/create-post"
   },
   "devDependencies": {
