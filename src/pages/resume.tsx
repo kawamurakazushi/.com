@@ -1,5 +1,5 @@
 import React, { memo, ReactNode, useState } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
 import { CloseIcon } from "../icons/close";
 import { GithubIcon } from "../icons/github";

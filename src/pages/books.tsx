@@ -32,8 +32,6 @@ const decoder = object({
 export default memo(({ data }: ReplaceComponentRendererArgs) => {
   const books = guard(decoder)(data);
 
-  console.log(books);
-
   return (
     <Layout breadcrumbs={[{ label: "Books", to: "/books" }]}>
       <Helmet>

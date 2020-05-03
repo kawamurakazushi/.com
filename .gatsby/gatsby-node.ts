@@ -36,7 +36,6 @@ export const onCreateNode = async ({
     try {
       const frontmatterDecoder = object({ isbn: string, title: string });
       const { isbn } = guard(frontmatterDecoder)(node.frontmatter);
-      console.log(isbn);
 
       const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
       const response = await fetch(url);
@@ -93,7 +92,7 @@ export const sourceNodes = async ({
   createNodeId,
   createContentDigest,
 }: SourceNodesArgs) => {
-  require("dotenv").config();
+  require("dotenv").config({ path: '../.env' });
   const { createNode } = actions;
 
   // TODO: Make this a yml file
@@ -111,7 +110,7 @@ export const sourceNodes = async ({
     ".com",
     "seo-editor",
     "thyme",
-  ].map(async p => {
+  ].map(async (p) => {
     const client = new GraphQLClient("https://api.github.com/graphql", {
       headers: { Authorization: `Bearer ${process.env.GITHUB_API_KEY}` },
     });
@@ -291,7 +290,7 @@ export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
           }
         }
       }
-    `).then(result => {
+    `).then((result) => {
       const decode = guard(
         object({
           allProject: object({

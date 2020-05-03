@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import React, { FC } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
 import Footer from "../components/footer";
 import Header from "../components/header";
