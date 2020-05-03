@@ -20,8 +20,5 @@ jobs:
         run: yarn
       - name: Build
         env:
-          GATSBY_ALGOLIA_ADMIN_KEY: ${{ secrets.GATSBY_ALGOLIA_ADMIN_KEY }}
-          GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
-          GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
           GITHUB_API_KEY: ${{ secrets.GITHUB_API_KEY }}
         run: yarn build

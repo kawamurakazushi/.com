@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
 import React, { memo, useState } from "react";
 
-import Search from "../components/search";
 import { CloseIcon } from "../icons/close";
 // import { MenuIcon } from "../icons/menu";
 // import { SearchIcon } from "../icons/search";
