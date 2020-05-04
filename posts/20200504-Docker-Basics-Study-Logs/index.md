@@ -1,9 +1,11 @@
 ---
-title: "Docker Basics"
+title: "Docker Basics Study Logs."
 date: "2020-05-04"
-tags: []
+tags: ["docker", "log"]
 category: "tech"
 ---
+
+This is my logs, while taking the [docker mastery](https://www.udemy.com/course/docker-mastery/) course on Udemy.
 
 ## Create and Use Containers
 
@@ -161,3 +163,50 @@ docker container run --rm --net search_net alpine nslookup search
 docker container run -it --name centos --net search_net centos
 # Check if the response of the elasticsearch has different two different names, when you request couple of times
 ```
+
+## Docker Image
+
+- Consider small OS like alphine
+
+- Layered
+
+```bash
+docker image history <image>
+docker image inspect <image>
+```
+
+- Tags
+
+```bash
+docker image tag nginx kawamurakazushi/nginx
+docker image push kawmaurakazushi/nginx
+
+docker image tag kawamurakazushi/nginx kawamurakazushi/nginx:testing
+```
+
+- Building from Dockerfile
+
+```Dockerfile
+FROM
+ENV
+# set environment variable
+WORKDIR
+# bascially change directory
+COPY
+# copy from local
+CMD
+```
+
+You should put the commands that change the least on the top, and the command that changet most on the bottom, since it caches from the top.
+
+```bash
+docker image build customnginx .
+```
+
+- if you don't specify `CMD`, it will inherit from the image from `FROM`.
+
+```
+docker image build -t nginx-with-html .
+docker container run -p 80:80 --rm nginx-with-html
+```
+
