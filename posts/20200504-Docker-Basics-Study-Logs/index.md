@@ -1,11 +1,13 @@
 ---
-title: "Docker Basics Study Logs."
+title: "Docker Basics Study Logs Part 1."
 date: "2020-05-04"
 tags: ["docker", "log"]
 category: "tech"
 ---
 
-This is my logs, while taking the [docker mastery](https://www.udemy.com/course/docker-mastery/) course on Udemy.
+This is my study logs, while taking the [docker mastery](https://www.udemy.com/course/docker-mastery/) course on Udemy.
+
+It basically covers fundamental of containers, images, and the use of docker compose.
 
 ## Create and Use Containers
 
@@ -205,8 +207,122 @@ docker image build customnginx .
 
 - if you don't specify `CMD`, it will inherit from the image from `FROM`.
 
-```
+```bash
 docker image build -t nginx-with-html .
 docker container run -p 80:80 --rm nginx-with-html
 ```
 
+- Cleaning up images and systems
+
+```bash
+docker image prune
+docker system prune
+# Delete everything that is not running
+
+docker system prune -a
+# Delete everything that is not used
+
+docker system df
+# Check the disk usaage
+```
+
+## Container Lifetime & Persistent Data
+
+- Volumes => make special location outside of container UFS
+- Bind Mounts => link container path to host path
+
+- `VOLUME` will create a persistent data.
+
+This will be never removed, when the container is removed.
+
+```bash
+docker volume ls
+# DRIVER              VOLUME NAME
+# local               2fa2e747189d574821f59592e541822c1c96485e93d8640a8ee57b366b6c45fc
+# local               3b385d7fa684c1664b37ac4eb025f8d8edb97b3ed95266f4a67462627b46d1ae
+# local               3d49b042e6f5279fe27ee21d99698f3ef41fedecec88bbf01f87895f9c3c9c62
+# ...
+```
+
+But it's quite hard to keep track, without the names.
+
+```bash
+docker container run -d --name mysql -e ALLOW_EMPTY_PASSWORD=true -v mysql-db:/var/lib/mysql mysql
+docker volume ls
+# DRIVER              VOLUME NAME
+# local               2fa2e747189d574821f59592e541822c1c96485e93d8640a8ee57b366b6c45fc
+# local               mysql-db
+
+docker volume inspect mysql-db
+# [
+#     {
+#         "CreatedAt": "2020-05-05T03:22:58Z",
+#         "Driver": "local",
+#         "Labels": null,
+#         "Mountpoint": "/var/lib/docker/volumes/mysql-db/_data",
+#         "Name": "mysql-db",
+#         "Options": null,
+#         "Scope": "local"
+#     }
+# ]
+```
+
+- Bind Mounting
+
+Maps a host file or directory to a container file or directory.
+Can't be used in a Dockerfile, and should be specified on container run
+
+```bash
+d container run -d --name nginx -p 80:80 -v $(pwd):/usr/share/nginx/html nginx
+```
+
+## Docker Compose
+
+- Configure relationship between containers
+- Save our docker container run settings in easy-to-read files
+- Create one-liner developer environment start up
+
+```bash
+docker-compose up
+docker-compose down
+```
+
+- Example for drupal configuration with posgres
+
+```yml
+version: "3"
+services:
+  drupal:
+    image: "drupal"
+    ports:
+      - 8080:80
+  psql:
+    image: "postgres:11"
+    environment:
+      POSTGRES_DB: drupal
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+```
+
+- Building from specific Dockerfile
+
+```yml
+version: "2"
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "80:80"
+  web:
+    image: httpd
+    volumes:
+      - ./html:/usr/local/apache2/htdocs/
+```
+
+- If you change something on your Dockerfile, you need to specify `--build` option, to build from Dockerfile again.
+
+```
+docker-compose up --build
+```
