@@ -1,4 +1,4 @@
-import { array, guard, object, string, nullable, number } from "decoders";
+import { array, guard, object, string, nullable, boolean } from "decoders";
 import { graphql, ReplaceComponentRendererArgs } from "gatsby";
 import React, { memo } from "react";
 import { Helmet } from "react-helmet";
@@ -20,6 +20,7 @@ const decoder = object({
             frontmatter: object({
               isbn: string,
               readAt: nullable(string),
+              audible: nullable(boolean),
             }),
             html: string,
           }),
@@ -54,6 +55,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
             cover={childBook.cover}
             isbn={frontmatter.isbn}
             html={html}
+            audible={frontmatter.audible ? frontmatter.audible : false}
           />
         );
       })}
@@ -77,6 +79,7 @@ export const query = graphql`
             frontmatter {
               isbn
               readAt
+              audible
             }
             childBook {
               author

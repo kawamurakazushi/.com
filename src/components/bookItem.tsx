@@ -3,6 +3,7 @@ import React, { FC } from "react";
 
 import { FileIcon } from "../icons/file";
 import { SitemapIcon } from "../icons/sitemap";
+import { AudibleIcon } from "../icons/audible";
 
 interface Props {
   isbn: string;
@@ -11,9 +12,18 @@ interface Props {
   author: string;
   readAt: string | null;
   html: string;
+  audible: boolean;
 }
 
-const BookItem: FC<Props> = ({ author, cover, isbn, title, readAt, html }) => {
+const BookItem: FC<Props> = ({
+  author,
+  cover,
+  isbn,
+  title,
+  readAt,
+  html,
+  audible,
+}) => {
   return (
     <Link to={`/books/${isbn}`} className="flex mb-5">
       <div className="w-16">
@@ -25,6 +35,7 @@ const BookItem: FC<Props> = ({ author, cover, isbn, title, readAt, html }) => {
         </div>
         <div className="font-thin text-xs mt-1">{author}</div>
         <div className="mt-1 flex ">
+          {audible && <AudibleIcon className="mr-1" size="14" />}
           {html !== "" && <FileIcon className="mr-1" size="14" />}
           {html.includes("www.mindmeister.com") && (
             <SitemapIcon className="" size="14" />

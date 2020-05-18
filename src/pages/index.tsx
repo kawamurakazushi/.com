@@ -1,4 +1,4 @@
-import { array, guard, nullable, object, string, number } from "decoders";
+import { array, guard, nullable, object, string, boolean } from "decoders";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 
@@ -68,6 +68,7 @@ const useIndexQuery = () => {
               childMarkdownRemark {
                 frontmatter {
                   isbn
+                  audible
                   readAt
                 }
                 childBook {
@@ -98,6 +99,7 @@ const useIndexQuery = () => {
               frontmatter: object({
                 isbn: string,
                 readAt: nullable(string),
+                audible: nullable(boolean),
               }),
               html: string,
             }),
@@ -232,6 +234,7 @@ export default memo(() => {
               cover={childBook.cover}
               isbn={frontmatter.isbn}
               html={html}
+              audible={frontmatter.audible ? frontmatter.audible : false}
             />
           );
         })}

@@ -1,4 +1,4 @@
-import { array, guard, nullable, object, string, number } from "decoders";
+import { array, guard, nullable, object, string } from "decoders";
 import {
   CreateNodeArgs,
   CreatePagesArgs,
@@ -34,7 +34,10 @@ export const onCreateNode = async ({
   }
   if (node.internal.type === "MarkdownRemark" && node.frontmatter) {
     try {
-      const frontmatterDecoder = object({ isbn: string, title: string });
+      const frontmatterDecoder = object({
+        isbn: string,
+        title: string,
+      });
       const { isbn } = guard(frontmatterDecoder)(node.frontmatter);
 
       const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
@@ -69,20 +72,24 @@ export const onCreateNode = async ({
       }
 
       // Make Node
-      const bookNode: Node = {
-        ...summary,
-        children: [],
-        id: createNodeId(isbn),
-        internal: {
-          contentDigest: createContentDigest(summary),
-          owner: "",
-          type: "Book",
-        },
-        parent: node.id,
-      };
+      if (summary) {
+        const bookNode: Node = {
+          ...summary,
+          children: [],
+          id: createNodeId(isbn),
+          internal: {
+            contentDigest: createContentDigest({
+              ...summary,
+            }),
+            owner: "",
+            type: "Book",
+          },
+          parent: node.id,
+        };
 
-      createNode(bookNode);
-      createParentChildLink({ parent: node, child: bookNode });
+        createNode(bookNode);
+        createParentChildLink({ parent: node, child: bookNode });
+      }
     } catch {}
   }
 };
@@ -92,7 +99,7 @@ export const sourceNodes = async ({
   createNodeId,
   createContentDigest,
 }: SourceNodesArgs) => {
-  require("dotenv").config({ path: '../.env' });
+  require("dotenv").config({ path: "../.env" });
   const { createNode } = actions;
 
   // TODO: Make this a yml file
