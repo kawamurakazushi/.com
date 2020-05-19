@@ -46,7 +46,7 @@ const BookItem: FC<Props> = ({
         {readAt ? (
           <div className="">{readAt}</div>
         ) : (
-          <div className="italic">reading</div>
+          <div className="italic">{audible ? "listening" : "reading"}</div>
         )}
       </div>
     </Link>
