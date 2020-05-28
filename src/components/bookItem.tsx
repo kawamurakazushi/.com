@@ -7,7 +7,7 @@ import { AudibleIcon } from "../icons/audible";
 
 interface Props {
   isbn: string;
-  cover: string;
+  cover: string | null;
   title: string;
   author: string;
   readAt: string | null;
@@ -27,7 +27,7 @@ const BookItem: FC<Props> = ({
   return (
     <Link to={`/books/${isbn}`} className="flex mb-5">
       <div className="w-16">
-        <img src={cover} />
+        {cover ? <img src={cover} /> : <div className="w-full h-full bg-gray-200" />}
       </div>
       <div className="flex flex-col ml-2 flex-1">
         <div className="font-medium mr-2">

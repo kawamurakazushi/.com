@@ -1,4 +1,4 @@
-import { array, guard, nullable, object, string, boolean } from "decoders";
+import { array, guard, object, string, boolean, nullable } from "decoders";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { memo } from "react";
 
@@ -93,7 +93,7 @@ const useIndexQuery = () => {
             childMarkdownRemark: object({
               childBook: object({
                 author: string,
-                cover: string,
+                cover: nullable(string),
                 title: string,
               }),
               frontmatter: object({

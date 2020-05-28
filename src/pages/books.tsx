@@ -14,7 +14,7 @@ const decoder = object({
           childMarkdownRemark: object({
             childBook: object({
               author: string,
-              cover: string,
+              cover: nullable(string),
               title: string,
             }),
             frontmatter: object({

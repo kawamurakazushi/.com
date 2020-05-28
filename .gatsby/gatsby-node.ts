@@ -32,12 +32,13 @@ export const onCreateNode = async ({
       value: slug,
     });
   }
+
   if (node.internal.type === "MarkdownRemark" && node.frontmatter) {
     try {
       const frontmatterDecoder = object({
         isbn: string,
-        title: string,
       });
+
       const { isbn } = guard(frontmatterDecoder)(node.frontmatter);
 
       const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
@@ -49,7 +50,9 @@ export const onCreateNode = async ({
         const item = data.items[0];
         summary = {
           author: item.volumeInfo.authors.join(" / "),
-          cover: item.volumeInfo.imageLinks.thumbnail.replace("http", "https"),
+          cover: item.volumeInfo.imageLinks
+            ? item.volumeInfo.imageLinks.thumbnail.replace("http", "https")
+            : null,
           isbn: `${isbn}`,
           title: item.volumeInfo.title,
         };
@@ -90,7 +93,7 @@ export const onCreateNode = async ({
         createNode(bookNode);
         createParentChildLink({ parent: node, child: bookNode });
       }
-    } catch {}
+    } catch (e) {}
   }
 };
 

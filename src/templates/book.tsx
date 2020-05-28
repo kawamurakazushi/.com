@@ -9,7 +9,7 @@ const decoder = object({
   markdownRemark: object({
     childBook: object({
       author: string,
-      cover: string,
+      cover: nullable(string),
       isbn: string,
       title: string,
     }),
