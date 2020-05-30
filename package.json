@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Kazushi Kawamura <wakaka2277@gmail.com>",
   "dependencies": {
+    "chart.js": "^2.9.3",
     "gatsby": "^2.22.12",
     "gatsby-image": "^2.4.5",
     "graphql": "^15.0.0",
@@ -11,6 +12,7 @@
     "graphql-tag": "^2.10.3",
     "highlight.js": "^10.0.3",
     "react": "^16.13.1",
+    "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "ts-node": "^8.10.2"
@@ -27,9 +29,11 @@
     "create-post": "bin/create-post"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.21",
     "@types/dotenv": "^8.2.0",
     "@types/node-fetch": "^2.5.4",
     "@types/react": "^16.9.35",
+    "@types/react-chartjs-2": "^2.5.7",
     "@types/react-dom": "^16.9.8",
     "@types/react-helmet": "^6.0.0",
     "decoders": "^1.20.1",
