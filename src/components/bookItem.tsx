@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { FileIcon } from "../icons/file";
 import { SitemapIcon } from "../icons/sitemap";
 import { AudibleIcon } from "../icons/audible";
+import { BookIcon } from "../icons/book";
 
 interface Props {
   isbn: string;
@@ -27,7 +28,13 @@ const BookItem: FC<Props> = ({
   return (
     <Link to={`/books/${isbn}`} className="flex mb-5">
       <div className="w-16">
-        {cover ? <img src={cover} /> : <div className="w-full h-full bg-gray-200" />}
+        {cover ? (
+          <img src={cover} />
+        ) : (
+          <div className="w-full h-20 bg-gray-200 flex items-center justify-center">
+            <BookIcon className="w-6 text-gray-500" />
+          </div>
+        )}
       </div>
       <div className="flex flex-col ml-2 flex-1">
         <div className="font-medium mr-2">
