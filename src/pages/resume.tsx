@@ -108,11 +108,46 @@ const WorkHistory = () => (
             rel="noopener"
             href="https://sc0ville.com/index.html?lang=en"
           >
+            Axelspace Corporation
+          </a>
+          .
+        </div>
+        <div className={accent}>June 2020 - Present</div>
+      </div>
+      <div className="flex justify-between">
+        <div className="text-xs italic">Software Engineer</div>
+        <div className="text-xs italic">Tokyo, Japan</div>
+      </div>
+      <div className="my-1">
+        <Achievement>
+          Maintenance and Operation of micro satellites (GRUS-1A).
+        </Achievement>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between">
+        <div className={accent}>Navyy Bar</div>
+        <div className={accent}>Nov 2019 - Present</div>
+      </div>
+      <div className="flex justify-between">
+        <div className="text-xs italic">Part Time Curry Chef</div>
+        <div className="text-xs italic">Tokyo, Japan</div>
+      </div>
+      <div className="my-1">
+        <Achievement>
+          Cooks spice curries for the membership only bar.
+        </Achievement>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between">
+        <div className={accent}>
+          <a target="_blank" rel="noopener" href="http://axelspace.com">
             Scoville Inc
           </a>
           .
         </div>
-        <div className={accent}>Apr 2017 - Present</div>
+        <div className={accent}>Apr 2017 - May 2020</div>
       </div>
       <div className="flex justify-between">
         <div className="text-xs italic">Full Stack Web Developer</div>
@@ -184,21 +219,6 @@ const WorkHistory = () => (
         <Achievement>
           Trained over 20 interns, especially for frontend developers, including
           HTML, CSS, Javascript, and React.
-        </Achievement>
-      </div>
-    </div>
-    <div>
-      <div className="flex justify-between">
-        <div className={accent}>Navyy Bar</div>
-        <div className={accent}>Nov 2019 - Present</div>
-      </div>
-      <div className="flex justify-between">
-        <div className="text-xs italic">Part Time Curry Chef</div>
-        <div className="text-xs italic">Tokyo, Japan</div>
-      </div>
-      <div className="my-1">
-        <Achievement>
-          Cooks spice curries for the membership only bar.
         </Achievement>
       </div>
     </div>
@@ -415,7 +435,7 @@ const Projects = () => (
       >
         {"TechCrunch"}
       </a>
-      . 22k+ installs.
+      . 42.9k+ installs.
     </div>
     <div className={`${accent}`}>
       <a target="_blank" rel="noopener" href="https://kawamurakazushi.com">
