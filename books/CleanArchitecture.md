@@ -46,3 +46,14 @@ isbn: "4048930656"
 境界線を超えるデータは単純なオブジェクトであるべき、DB Framework の行構造のデータ構造を利用して、依存性のルールに違反してしまう可能性もあるから、注意が必要
 
 ### 23. プレゼンターと Humble Object
+
+View は Humble Object である。Presenter はテスト可能なコンポーネントでそれらを分離する。
+
+### 24. 部分的な境界
+
+- Strategy Pattern
+- Facade
+
+YAGNI (You Aren't Going to Need It)
+
+### 25. レイヤーと境界
