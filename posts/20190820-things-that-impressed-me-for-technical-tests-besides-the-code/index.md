@@ -46,6 +46,15 @@ I don't consider deploying it in a server like Heroku, Now, or Netlify is a must
 
 Test is not just for testing the expected values, but it's also good for documentation. By looking at the test you'll understand where's the core logic, and how it's works. Which will be obviously useful for the reviewer.
 
+### Linter and Formatter
+
+I said beside code, but I consider linter and formatter very essential.
+
+There are pro and cons using and not using these, but It's now very common to use one of those or both on projects, especially working as a team, to avoid unproductive discussion.
+In the javascript world prettier is the go to formatter, and some languages like rust or Go, has it's own built-in formatter.
+
+It would be a plus for me, if the candidate uses a linter / formatter. I can know that the candidate cares about working with different people as a team.
+
 ### Limitation
 
 The test generally has a time frame, and you might not be able to do everything perfectly, which is totally fine and understandable. But it's thoughtful to list what you were not able to do because of the time.
