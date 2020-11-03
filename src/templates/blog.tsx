@@ -96,6 +96,11 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
           className="remark mb-16 overflow-hidden"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
+        <hr/>
+        <div className="text-sm my-8">
+          My blog is hosted on <a className="underline" href="https://github.com/kawamurakazushi/.com/issues">Github</a>. If you'd like to leave a comment, report
+          a problem, or contact me, then that's a fine place to do so.
+        </div>
         <Author />
         <div className="my-8">
           <h3 className="mt-1 mb-4 font-bold">You Might also like...</h3>
