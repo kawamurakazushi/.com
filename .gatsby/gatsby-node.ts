@@ -23,6 +23,7 @@ export const onCreateNode = async ({
   // Create slug only if it is a markdown from File. It might be from README.md
   if (
     node.internal.type === "MarkdownRemark" &&
+    node.parent &&
     getNode(node.parent).internal.type === "File"
   ) {
     const slug = createFilePath({ node, getNode, basePath: "pages" });
@@ -238,7 +239,7 @@ export const sourceNodes = async ({
     return [parentNode, readmeNode];
   });
 
-  return new Promise(async (resolve, _) => {
+  return new Promise<void>(async (resolve, _) => {
     for (const [parentNode, readmeNode] of await Promise.all(nodes)) {
       createNode(parentNode);
       createNode(readmeNode);
@@ -250,7 +251,7 @@ export const sourceNodes = async ({
 export const createPages = ({ graphql, actions }: CreatePagesArgs) => {
   const { createPage } = actions;
 
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     graphql(`
       {
         posts: allFile(
