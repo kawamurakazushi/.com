@@ -98,7 +98,7 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
         />
         <hr/>
         <div className="text-sm my-8">
-          My blog is hosted on <a className="underline" href="https://github.com/kawamurakazushi/.com/issues">Github</a>. If you'd like to leave a comment, report
+          My blog is hosted on <a className="underline" href="https://github.com/kawamurakazushi/.com/discussions">Github</a>. If you'd like to leave a comment, report
           a problem, or contact me, then that's a fine place to do so.
         </div>
         <Author />
