@@ -108,27 +108,28 @@ export const sourceNodes = async ({
 
   // TODO: Make this a yml file
   const nodes = [
-    "CURRYLIFE",
-    "figma-map-maker",
-    "figma-walker",
-    "spice-blending-puzzle",
-    "tle-parser",
-    "react-native-loader2",
-    "vscode-grep",
-    "figma-format",
-    "figma-sort-it",
-    "pomopomo",
-    ".com",
-    "seo-editor",
-    "thyme",
+    { owner: "grepbox", name: "grepQL" },
+    { owner: "kawamurakazushi", name: "CURRYLIFE" },
+    { owner: "kawamurakazushi", name: "figma-map-maker" },
+    { owner: "kawamurakazushi", name: "figma-walker" },
+    { owner: "kawamurakazushi", name: "spice-blending-puzzle" },
+    { owner: "kawamurakazushi", name: "tle-parser" },
+    { owner: "kawamurakazushi", name: "react-native-loader2" },
+    { owner: "kawamurakazushi", name: "vscode-grep" },
+    { owner: "kawamurakazushi", name: "figma-format" },
+    { owner: "kawamurakazushi", name: "figma-sort-it" },
+    { owner: "kawamurakazushi", name: "pomopomo" },
+    { owner: "kawamurakazushi", name: ".com" },
+    { owner: "kawamurakazushi", name: "seo-editor" },
+    { owner: "kawamurakazushi", name: "thyme" },
   ].map(async (p) => {
     const client = new GraphQLClient("https://api.github.com/graphql", {
       headers: { Authorization: `Bearer ${process.env.GITHUB_API_KEY}` },
     });
 
     const query = `
-      query Repository($name: String!) {
-        repository(owner: "kawamurakazushi", name: $name) {
+      query Repository($owner: String!, $name: String!) {
+        repository(owner: $owner, name: $name) {
           name
           description
           url
@@ -160,7 +161,8 @@ export const sourceNodes = async ({
     `;
 
     const response = await client.request(query, {
-      name: p,
+      name: p.name,
+      owner: p.owner,
     });
 
     const decode = guard(
@@ -220,7 +222,7 @@ export const sourceNodes = async ({
         if (img.includes("http")) {
           return match;
         }
-        return `![${alt}](https://raw.githubusercontent.com/kawamurakazushi/${repository.name}/master/${img})`;
+        return `![${alt}](https://raw.githubusercontent.com/${p.owner}/${repository.name}/master/${img})`;
       }
     );
 
