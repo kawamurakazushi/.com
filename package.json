@@ -50,7 +50,7 @@
     "gatsby-transformer-sharp": "^2.9.0",
     "node-fetch": "^2.6.1",
     "prettier": "^2.1.2",
-    "prismjs": "^1.22.0",
+    "prismjs": "^1.23.0",
     "tailwindcss": "^1.9.6",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
