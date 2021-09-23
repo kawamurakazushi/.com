@@ -18,8 +18,8 @@ const useIndexQuery = () => {
               id
               name
               url
-              description
               slug
+              description
               topics
             }
           }
@@ -163,7 +163,7 @@ export default memo(() => {
 
   return (
     <Layout>
-      <div className="text-sm mt-6 mb-12">
+      <div className="mt-6 mb-12 text-sm">
         <div className="mb-2">
           👋Hello! I’m a Software Engineer living in Tokyo.
         </div>
@@ -220,28 +220,28 @@ export default memo(() => {
           <MoreLink to="/projects" label="VIEW MORE PROJECTS" />
         </div>
       </div>
-      <div id="books" className="mb-4">
-        <h2 className={header}>Books</h2>
-        {data.allBook.edges.map(({ node }) => {
-          const { childMarkdownRemark } = node;
-          const { frontmatter, childBook, html } = childMarkdownRemark;
-          return (
-            <BookItem
-              key={frontmatter.isbn}
-              author={childBook.author}
-              readAt={frontmatter.readAt}
-              title={childBook.title}
-              cover={childBook.cover}
-              isbn={frontmatter.isbn}
-              html={html}
-              audible={frontmatter.audible ? frontmatter.audible : false}
-            />
-          );
-        })}
-        <div className="flex mt-2">
-          <MoreLink to="/books" label="VIEW MORE BOOKS" />
-        </div>
-      </div>
+      {/* <div id="books" className="mb-4"> */}
+      {/*   <h2 className={header}>Books</h2> */}
+      {/*   {data.allBook.edges.map(({ node }) => { */}
+      {/*     const { childMarkdownRemark } = node; */}
+      {/*     const { frontmatter, childBook, html } = childMarkdownRemark; */}
+      {/*     return ( */}
+      {/*       <BookItem */}
+      {/*         key={frontmatter.isbn} */}
+      {/*         author={childBook.author} */}
+      {/*         readAt={frontmatter.readAt} */}
+      {/*         title={childBook.title} */}
+      {/*         cover={childBook.cover} */}
+      {/*         isbn={frontmatter.isbn} */}
+      {/*         html={html} */}
+      {/*         audible={frontmatter.audible ? frontmatter.audible : false} */}
+      {/*       /> */}
+      {/*     ); */}
+      {/*   })} */}
+      {/*   <div className="flex mt-2"> */}
+      {/*     <MoreLink to="/books" label="VIEW MORE BOOKS" /> */}
+      {/*   </div> */}
+      {/* </div> */}
     </Layout>
   );
 });
