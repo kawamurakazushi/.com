@@ -20,10 +20,10 @@ const Header = memo(() => {
           setMenu(false);
         }}
         to={to}
-        className="flex items-center cursor-pointer mb-1"
+        className="flex items-center mb-1 cursor-pointer"
       >
-        <div className="heading mr-4">{title}</div>
-        <div className="h-px bg-white flex-1" />
+        <div className="mr-4 heading">{title}</div>
+        <div className="flex-1 h-px bg-white" />
       </Link>
     );
   };
@@ -32,15 +32,16 @@ const Header = memo(() => {
 
   return (
     <>
-      <div className="flex justify-between items-center px-6 py-4 w-full">
+      <div className="flex items-center justify-between w-full px-6 py-4">
         <div className="flex items-center">
           <Link to="/" className="no-underline">
             <img
-              src={logo}
+              src={logo.default}
               className="w-8"
               style={{
-                transform: `rotate(${360 *
-                  ((new Date().getMonth() + 1) / 12)}deg)`,
+                transform: `rotate(${
+                  360 * ((new Date().getMonth() + 1) / 12)
+                }deg)`,
               }}
             />
           </Link>
@@ -63,9 +64,9 @@ const Header = memo(() => {
             Curries
           </a>
           <Link to="/me">
-            <img src={avatar} className="w-6 rounded-full" />
+            <img src={avatar.default} className="w-6 rounded-full" />
           </Link>
-          {/* <div className="cursor-pointer mr-2" onClick={() => setSearch(true)}>
+          {/* <div className="mr-2 cursor-pointer" onClick={() => setSearch(true)}>
             <SearchIcon size="24" />
           </div> */}
           {/* <div className="cursor-pointer" onClick={() => setMenu(true)}>
@@ -74,8 +75,8 @@ const Header = memo(() => {
         </div>
       </div>
       {(menu || search) && (
-        <div className="fixed left-0 bg-black z-10 w-full h-full w-full">
-          <div className="md:min-w-main max-w-main px-6 py-4 md:min-w-main text-white mx-auto">
+        <div className="fixed left-0 z-10 w-full h-full bg-black">
+          <div className="px-6 py-4 mx-auto text-white md:min-w-main max-w-main">
             <div className="flex flex-row-reverse mt-1 mb-4">
               <div
                 className="cursor-pointer"
