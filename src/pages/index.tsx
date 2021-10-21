@@ -184,7 +184,7 @@ export default memo(() => {
         </div>
       </div>
       <div className="mb-8">
-        <h2 className={header}>Reading</h2>
+        <h2 className={header}>Archives</h2>
         <div className="flex flex-col">
           {data.allPost.edges.map(({ node }) => {
             const { fields, frontmatter, excerpt } = node.childMarkdownRemark;

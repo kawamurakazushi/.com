@@ -90,16 +90,23 @@ export default memo(({ data }: ReplaceComponentRendererArgs) => {
         <meta property="og:description" content={post.excerpt} />
       </Helmet>
       <div className="flex flex-col mt-5 mb-4">
-        <p className="text-gray-400 text-sm mb-2">{post.date}</p>
-        <h1 className="heading mb-2">{post.title}</h1>
+        <p className="text-sm text-gray-500 ">{post.date}</p>
+        <h1 className="mt-16 mb-12 text-2xl" style={{fontWeight: 600}}>{post.title}</h1>
         <div
-          className="remark mb-16 overflow-hidden"
+          className="mb-16 overflow-hidden remark"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
-        <hr/>
-        <div className="text-sm my-8">
-          My blog is hosted on <a className="underline" href="https://github.com/kawamurakazushi/.com/discussions">Github</a>. If you'd like to leave a comment, report
-          a problem, or contact me, then that's a fine place to do so.
+        <hr />
+        <div className="my-8 text-sm">
+          My blog is hosted on{" "}
+          <a
+            className="underline"
+            href="https://github.com/kawamurakazushi/.com/discussions"
+          >
+            Github
+          </a>
+          . If you'd like to leave a comment, report a problem, or contact me,
+          then that's a fine place to do so.
         </div>
         <Author />
         <div className="my-8">
