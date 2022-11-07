@@ -24,7 +24,7 @@ const Achievement = ({
   return (
     <div className="">
       <div className="flex font-light">
-        <div className="font-bold mr-1 text-xs">・</div>
+        <div className="mr-1 text-xs font-bold">・</div>
         <div
           className={`${
             notes ? "cursor-help hover:text-gray-700" : ""
@@ -37,14 +37,14 @@ const Achievement = ({
         </div>
       </div>
       {modal && notes && (
-        <div className="fixed flex justify-center items-center left-0 top-0 text-xs w-full h-full">
+        <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full text-xs">
           <div
             onClick={() => {
               setModal(false);
             }}
             className="absolute w-full h-full bg-black opacity-25"
           ></div>
-          <div className="z-30 w-2/3 min-w-64 py-4 px-4 bg-white text-black shadow-md rounded">
+          <div className="z-30 w-2/3 px-4 py-4 text-black bg-white rounded shadow-md min-w-64">
             <div className="flex flex-row-reverse mb-1">
               <div
                 className="cursor-pointer"
@@ -75,7 +75,7 @@ const Skills = () => (
       </div>
       <div className="flex">
         <div className="text-xs font-light">
-          Experienced in Rust, Go, Ruby, Dart, ReasonML, Swift, Python
+          Experienced in Python, Rust, Go, Ruby, Dart, ReasonML, Swift
         </div>
       </div>
       <div className={accent}>Frameworks, Libraries and Technologies</div>
@@ -103,16 +103,53 @@ const WorkHistory = () => (
     <div>
       <div className="flex justify-between">
         <div className={accent}>
-          <a
-            target="_blank"
-            rel="noopener"
-            href="https://sc0ville.com/index.html?lang=en"
-          >
+          <a target="_blank" rel="noopener" href="https://corp.henry-app.jp/">
+            Henry Inc
+          </a>
+          .
+        </div>
+        <div className={accent}>Nov 2021 - Present</div>
+      </div>
+      <div className="flex justify-between">
+        <div className="text-xs italic">Senior Frontend Engineer</div>
+        <div className="text-xs italic">Tokyo, Japan</div>
+      </div>
+      <div className="my-1">
+        <Achievement>
+          Developing cloud-based electronic medical record using Typescript and
+          React.
+        </Achievement>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between">
+        <div className={accent}>
+          <a target="_blank" rel="noopener" href="http://r.goope.jp/newport/">
+            Restaurant New Port
+          </a>
+        </div>
+        <div className={accent}>Jun 2022 - Present</div>
+      </div>
+      <div className="flex justify-between">
+        <div className="text-xs italic">Part Time Kitchen Assistant</div>
+        <div className="text-xs italic">Yamanashi, Japan</div>
+      </div>
+      <div className="my-1">
+        <Achievement>
+          Preparing salads using local vegetables, and desserts including tarts
+          and cakes.
+        </Achievement>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between">
+        <div className={accent}>
+          <a target="_blank" rel="noopener" href="https://www.axelspace.com/">
             Axelspace Corporation
           </a>
           .
         </div>
-        <div className={accent}>June 2020 - Present</div>
+        <div className={accent}>Jun 2020 - Oct 2021</div>
       </div>
       <div className="flex justify-between">
         <div className="text-xs italic">Software Engineer</div>
@@ -120,14 +157,22 @@ const WorkHistory = () => (
       </div>
       <div className="my-1">
         <Achievement>
-          Maintenance and Operation of micro satellites (GRUS-1A).
+          Maintained initial operation on multiple micro satellites (GRUS-1BCDE)
+          as an Operation Lead.
+        </Achievement>
+        <Achievement>
+          Developed commaned line interface for internal use, to operate betwwen
+          satellites easier.
+        </Achievement>
+        <Achievement>
+          Developed Monitoring System to detect abnormal behaviour of satellites
         </Achievement>
       </div>
     </div>
     <div>
       <div className="flex justify-between">
         <div className={accent}>Navyy Bar</div>
-        <div className={accent}>Nov 2019 - Present</div>
+        <div className={accent}>Nov 2019 - Nov 2020</div>
       </div>
       <div className="flex justify-between">
         <div className="text-xs italic">Part Time Curry Chef</div>
@@ -299,7 +344,7 @@ const Education = () => (
         <div className={accent}>2012 - 2017</div>
       </div>
       {/* <div className={`text-xs`}>Tokyo, Japan</div> */}
-      <div className="italic text-xs font-light">
+      <div className="text-xs italic font-light">
         Bachelor of Information and Communication Science
       </div>
     </div>
@@ -346,10 +391,10 @@ const Link = ({
     target="_blank"
     rel="noopener"
     href={href}
-    className="flex items-center text-xs mt-1"
+    className="flex items-center mt-1 text-xs"
   >
     <Icon />
-    <div className="flex-1 break-all leading-none">{label}</div>
+    <div className="flex-1 leading-none break-all">{label}</div>
   </a>
 );
 
@@ -468,12 +513,12 @@ export default memo(() => (
       <meta name="viewport" content="width=1080" />
       <meta name="robots" content="noindex" />
     </Helmet>
-    <div className="max-w-main text-sm m-auto px-3 py-2">
+    <div className="px-3 py-2 m-auto text-sm max-w-main">
       <div>
         <div style={{ lineHeight: "60px" }} className="text-4xl font-semibold">
           Kazushi Kawamura
         </div>
-        <div className="italic text-xs font-semibold">Software Developer</div>
+        <div className="text-xs italic font-semibold">Software Developer</div>
         <div className="text-xs font-light">
           Versatile Full-Stack Developer with 4+ years of experience developing,
           and managing small to large web services, to mobile application in a
@@ -481,11 +526,11 @@ export default memo(() => (
         </div>
       </div>
       <main className="flex flex-row">
-        <section className="mr-3 w-2/3">
+        <section className="w-2/3 mr-3">
           <Skills />
           <WorkHistory />
         </section>
-        <section className="ml-1 w-1/3">
+        <section className="w-1/3 ml-1">
           <Links />
           <Education />
           <Projects />
