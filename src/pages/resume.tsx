@@ -8,6 +8,7 @@ import { LinkedInIcon } from "../icons/linkedin";
 import { MailIcon } from "../icons/mail";
 import { MapIcon } from "../icons/map";
 import { PhoneIcon } from "../icons/phone";
+import { ProductHuntIcon } from "../icons/productHunt";
 
 const header = "font-semibold text-sm border-b border-black mt-2 mb-1";
 const accent = "font-semibold text-xs mt-1 mb-";
@@ -70,26 +71,24 @@ const Skills = () => (
       <div className={accent}>Programming Languages</div>
       <div className="flex">
         <div className="text-xs font-light">
-          Proficient in Typescript, Node.js, Elm
+          Proficient in Typescript, Node.js
         </div>
       </div>
       <div className="flex">
         <div className="text-xs font-light">
-          Experienced in Python, Rust, Go, Ruby, Dart, ReasonML, Swift
+          Experienced in Python, Kotlin, Elm, Rust, Go, Ruby, ReasonML, Swift
         </div>
       </div>
       <div className={accent}>Frameworks, Libraries and Technologies</div>
       <div className="text-xs font-light">
-        React, Redux, TEA, Gatsbyjs, webpack, tailwindcss, Flutter, Electron,
-        Lerna
+        React, Next.js, TEA, tailwindcss/radix-ui, Electron, TRPC, Ruby on
+        Rails, GraphQL, REST, SQL
       </div>
-      <div className="text-xs font-light">
-        Ruby on Rails, GraphQL, REST, SQL
-      </div>
+      <div className="text-xs font-light"></div>
       <div className={accent}>Tools</div>
       <div className="text-xs font-light">
-        Github, JIRA, AWS (EC2, S3, ELB), Firebase (Firestore, Functions,
-        Authentication), CircleCI, Netlify, Docker, Vim, Figma
+        Github, Vercel, AWS (EC2, S3, ELB), Firebase (Firestore, Functions,
+        Authentication), CircleCI, Netlify, Docker, Vim, Figma, Notion
       </div>
       <div className={accent}>Methodology</div>
       <div className="text-xs font-light">Agile, Scrum, Pair Programming</div>
@@ -116,8 +115,12 @@ const WorkHistory = () => (
       </div>
       <div className="my-1">
         <Achievement>
-          Developing cloud-based electronic medical record using Typescript and
-          React.
+          Developing cloud-based electronic medical record using
+          Typescript/React for web frontend, Typescript/Node.js for BFF,
+          Kotlin/GRPC for backend.
+        </Achievement>
+        <Achievement>
+          Implemented spreadsheet like complex UI, with many keyboard shortcuts.
         </Achievement>
       </div>
     </div>
@@ -128,7 +131,7 @@ const WorkHistory = () => (
             Restaurant New Port
           </a>
         </div>
-        <div className={accent}>Jun 2022 - Present</div>
+        <div className={accent}>Jun 2022 - Jun 2023</div>
       </div>
       <div className="flex justify-between">
         <div className="text-xs italic">Part Time Kitchen Assistant</div>
@@ -136,8 +139,12 @@ const WorkHistory = () => (
       </div>
       <div className="my-1">
         <Achievement>
-          Preparing salads using local vegetables, and desserts including tarts
+          Prepared salads using local vegetables, and desserts including tarts
           and cakes.
+        </Achievement>
+        <Achievement>
+          Increased about 500 instagram followers, tntroduced AirRegi and
+          trained employees/staffs.
         </Achievement>
       </div>
     </div>
@@ -375,6 +382,13 @@ const AdditionalInformation = () => (
       <div className="text-xs">1st place at Sophia University Hackathon.</div>
       <div className="text-xs">Awarded at ZenHack Hackathon</div>
     </div>
+    <div className={accent}>Certifications</div>
+    <div className="font-light">
+      <div className="text-xs">
+        2023/7 食品衛生責任者 (Food Safety Supervisor)
+      </div>
+      <div className="text-xs">2023/8 医療事務認定実務者</div>
+    </div>
   </>
 );
 
@@ -406,7 +420,7 @@ const Links = () => (
       icon={() => <MailIcon className="mr-1" size="12" />}
     />
     <Link
-      label="Tokyo, Japan"
+      label="Yamanashi, Japan"
       icon={() => (
         <div style={{ height: 18 }} className="flex items-center">
           <MapIcon className="mr-1 text-xs" size="12" />
@@ -429,8 +443,13 @@ const Links = () => (
       icon={() => <GithubIcon className="mr-1" size="12" />}
     />
     <Link
+      href="https://www.producthunt.com/@kawamurakazushi"
+      label="producthunt.com/@kawamurakazushi"
+      icon={() => <ProductHuntIcon className="mr-1" size="12" />}
+    />
+    <Link
       href="https://www.linkedin.com/in/kawamurakazushi"
-      label="www.linkedin.com/in/kawamurakazushi"
+      label="linkedin.com/in/kawamurakazushi"
       icon={() => <LinkedInIcon className="mr-1" size="12" />}
     />
   </div>
@@ -440,16 +459,25 @@ const Projects = () => (
   <>
     <div className={`${header}`}>Side Projects</div>
     <div className={`${accent}`}>
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://apps.apple.com/jp/app/currylife-%E3%82%AB%E3%83%AA%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%95/id1493953558"
-      >
-        CURRYLIFE
+      <a target="_blank" rel="noopener" href="https://blendmarket.jp">
+        BlendMarket
       </a>
     </div>
     <div className="text-xs font-light">
-      An iOS/Android App for Curry lovers, developed using React Native.
+      A Marketplace for original spices, developed with Next.js/TRPC.
+    </div>
+    <div className={`${accent}`}>
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://www.producthunt.com/products/grepmark"
+      >
+        grepmark
+      </a>
+    </div>
+    <div className="text-xs font-light">
+      Collaborative bookmark management app, developed with React/Relay and
+      Elixer/Phoenix.
     </div>
     <div className={`${accent}`}>
       <a
@@ -500,7 +528,19 @@ const Projects = () => (
       </a>
     </div>
     <div className="text-xs font-light">
-      TLE Parser written with Rust and nom.
+      TLE Parser written in Rust and nom.
+    </div>
+    <div className={`${accent}`}>
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://apps.apple.com/jp/app/currylife-%E3%82%AB%E3%83%AA%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%95/id1493953558"
+      >
+        CURRYLIFE (NLA)
+      </a>
+    </div>
+    <div className="text-xs font-light">
+      An iOS/Android App for Curry lovers, developed with React Native.
     </div>
   </>
 );
@@ -520,7 +560,7 @@ export default memo(() => (
         </div>
         <div className="text-xs italic font-semibold">Software Developer</div>
         <div className="text-xs font-light">
-          Versatile Full-Stack Developer with 4+ years of experience developing,
+          Versatile Full-Stack Developer with 6+ years of experience developing,
           and managing small to large web services, to mobile application in a
           startup environment. Currently specializing in Frontend development.
         </div>

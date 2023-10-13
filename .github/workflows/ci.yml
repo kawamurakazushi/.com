@@ -20,5 +20,5 @@ jobs:
         run: yarn
       - name: Build
         env:
-          GITHUB_API_KEY: ${{ secrets.GITHUB_API_KEY }}
+          GITHUB_API_KEY: ${{ secrets.API_KEY }}
         run: yarn build

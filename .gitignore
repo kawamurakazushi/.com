@@ -1,6 +1,7 @@
 # Project dependencies
 .cache
 .vscode
+.yarn
 node_modules
 yarn-error.log
 src/tailwind.css
