@@ -103,11 +103,37 @@ const WorkHistory = () => (
       <div className="flex justify-between">
         <div className={accent}>
           <a target="_blank" rel="noopener" href="https://corp.henry-app.jp/">
+            Zevero
+          </a>
+          .
+        </div>
+        <div className={accent}>Mar 2024 - Present</div>
+      </div>
+      <div className="flex justify-between">
+        <div className="text-xs italic">Senior Software Engineer</div>
+        <div className="text-xs italic">Tokyo, Japan</div>
+      </div>
+      <div className="my-1">
+        <Achievement>
+          Lead the frontend team, and developed a new design system using shadcn/ui and Storybook.
+        </Achievement>
+        <Achievement>
+          Rearchitectured the web application with modern technologies like Tanstack Query / Tanstack Router / Orval to improve the performance and maintainability.
+        </Achievement>
+        <Achievement>
+          Implemented internationalization using Lingui.
+        </Achievement>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between">
+        <div className={accent}>
+          <a target="_blank" rel="noopener" href="https://corp.henry-app.jp/">
             Henry Inc
           </a>
           .
         </div>
-        <div className={accent}>Nov 2021 - Present</div>
+        <div className={accent}>Nov 2021 - Feb 2024</div>
       </div>
       <div className="flex justify-between">
         <div className="text-xs italic">Senior Frontend Engineer</div>
@@ -115,7 +141,7 @@ const WorkHistory = () => (
       </div>
       <div className="my-1">
         <Achievement>
-          Developing cloud-based electronic medical record using
+          Developed cloud-based electronic medical record using
           Typescript/React for web frontend, Typescript/Node.js for BFF,
           Kotlin/GRPC for backend.
         </Achievement>
@@ -159,7 +185,7 @@ const WorkHistory = () => (
         <div className={accent}>Jun 2020 - Oct 2021</div>
       </div>
       <div className="flex justify-between">
-        <div className="text-xs italic">Software Engineer</div>
+        <div className="text-xs italic">Satellite Ground Systems Engineer</div>
         <div className="text-xs italic">Tokyo, Japan</div>
       </div>
       <div className="my-1">
