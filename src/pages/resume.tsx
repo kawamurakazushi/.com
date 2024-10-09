@@ -150,30 +150,30 @@ const WorkHistory = () => (
         </Achievement>
       </div>
     </div>
-    <div>
-      <div className="flex justify-between">
-        <div className={accent}>
-          <a target="_blank" rel="noopener" href="http://r.goope.jp/newport/">
-            Restaurant New Port
-          </a>
-        </div>
-        <div className={accent}>Jun 2022 - Jun 2023</div>
-      </div>
-      <div className="flex justify-between">
-        <div className="text-xs italic">Part Time Kitchen Assistant</div>
-        <div className="text-xs italic">Yamanashi, Japan</div>
-      </div>
-      <div className="my-1">
-        <Achievement>
-          Prepared salads using local vegetables, and desserts including tarts
-          and cakes.
-        </Achievement>
-        <Achievement>
-          Increased about 500 instagram followers, tntroduced AirRegi and
-          trained employees/staffs.
-        </Achievement>
-      </div>
-    </div>
+    {/* <div> */}
+    {/*   <div className="flex justify-between"> */}
+    {/*     <div className={accent}> */}
+    {/*       <a target="_blank" rel="noopener" href="http://r.goope.jp/newport/"> */}
+    {/*         Restaurant New Port */}
+    {/*       </a> */}
+    {/*     </div> */}
+    {/*     <div className={accent}>Jun 2022 - Jun 2023</div> */}
+    {/*   </div> */}
+    {/*   <div className="flex justify-between"> */}
+    {/*     <div className="text-xs italic">Part Time Kitchen Assistant</div> */}
+    {/*     <div className="text-xs italic">Yamanashi, Japan</div> */}
+    {/*   </div> */}
+    {/*   <div className="my-1"> */}
+    {/*     <Achievement> */}
+    {/*       Prepared salads using local vegetables, and desserts including tarts */}
+    {/*       and cakes. */}
+    {/*     </Achievement> */}
+    {/*     <Achievement> */}
+    {/*       Increased about 500 instagram followers, tntroduced AirRegi and */}
+    {/*       trained employees/staffs. */}
+    {/*     </Achievement> */}
+    {/*   </div> */}
+    {/* </div> */}
     <div>
       <div className="flex justify-between">
         <div className={accent}>
@@ -202,21 +202,21 @@ const WorkHistory = () => (
         </Achievement>
       </div>
     </div>
-    <div>
-      <div className="flex justify-between">
-        <div className={accent}>Navyy Bar</div>
-        <div className={accent}>Nov 2019 - Nov 2020</div>
-      </div>
-      <div className="flex justify-between">
-        <div className="text-xs italic">Part Time Curry Chef</div>
-        <div className="text-xs italic">Tokyo, Japan</div>
-      </div>
-      <div className="my-1">
-        <Achievement>
-          Cooks spice curries for the membership only bar.
-        </Achievement>
-      </div>
-    </div>
+    {/* <div> */}
+    {/*   <div className="flex justify-between"> */}
+    {/*     <div className={accent}>Navyy Bar</div> */}
+    {/*     <div className={accent}>Nov 2019 - Nov 2020</div> */}
+    {/*   </div> */}
+    {/*   <div className="flex justify-between"> */}
+    {/*     <div className="text-xs italic">Part Time Curry Chef</div> */}
+    {/*     <div className="text-xs italic">Tokyo, Japan</div> */}
+    {/*   </div> */}
+    {/*   <div className="my-1"> */}
+    {/*     <Achievement> */}
+    {/*       Cooks spice curries for the membership only bar. */}
+    {/*     </Achievement> */}
+    {/*   </div> */}
+    {/* </div> */}
     <div>
       <div className="flex justify-between">
         <div className={accent}>
