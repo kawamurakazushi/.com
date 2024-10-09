@@ -102,10 +102,9 @@ const WorkHistory = () => (
     <div>
       <div className="flex justify-between">
         <div className={accent}>
-          <a target="_blank" rel="noopener" href="https://corp.henry-app.jp/">
+          <a target="_blank" rel="noopener" href="https://zevero.earth">
             Zevero
           </a>
-          .
         </div>
         <div className={accent}>Mar 2024 - Present</div>
       </div>
@@ -118,7 +117,7 @@ const WorkHistory = () => (
           Lead the frontend team, and developed a new design system using shadcn/ui and Storybook.
         </Achievement>
         <Achievement>
-          Rearchitectured the web application with modern technologies like Tanstack Query / Tanstack Router / Orval to improve the performance and maintainability.
+          Rearchitectured the web application with modern technologies using Tanstack Query / Tanstack Router / Orval to improve the performance and maintainability.
         </Achievement>
         <Achievement>
           Implemented internationalization using Lingui.
@@ -401,7 +400,7 @@ const AdditionalInformation = () => (
     <div className="font-light">
       <div className="text-xs">Japanese - Native</div>
       <div className="text-xs">English - Proficient</div>
-      <div className="text-xs">TOEIC 945, TOEFL iBT 92</div>
+      <div className="text-xs">IELTS 7.5, TOEIC 945, TOEFL iBT 92</div>
     </div>
     <div className={accent}>Awards</div>
     <div className="font-light">
@@ -446,17 +445,17 @@ const Links = () => (
       icon={() => <MailIcon className="mr-1" size="12" />}
     />
     <Link
-      label="Yamanashi, Japan"
+      label="Gifu, Japan"
       icon={() => (
         <div style={{ height: 18 }} className="flex items-center">
           <MapIcon className="mr-1 text-xs" size="12" />
         </div>
       )}
     />
-    <Link
-      label="(+81)8010550667"
-      icon={() => <PhoneIcon className="mr-1" size="12" />}
-    />
+    {/* <Link */}
+    {/*   label="(+81)8010550667" */}
+    {/*   icon={() => <PhoneIcon className="mr-1" size="12" />} */}
+    {/* /> */}
     <div className={accent}>Links</div>
     <Link
       href="https://kawamurakazushi.com"
@@ -586,7 +585,7 @@ export default memo(() => (
         </div>
         <div className="text-xs italic font-semibold">Software Developer</div>
         <div className="text-xs font-light">
-          Versatile Full-Stack Developer with 6+ years of experience developing,
+          Versatile Full-Stack Developer with 7+ years of experience developing,
           and managing small to large web services, to mobile application in a
           startup environment. Currently specializing in Frontend development.
         </div>
